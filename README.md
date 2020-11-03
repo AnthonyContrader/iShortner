@@ -1,1 +1,2 @@
-# iShortner
+# SAMPLE
+Sample Projects
