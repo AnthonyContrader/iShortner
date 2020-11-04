@@ -19,7 +19,7 @@ public class HomeAdminView extends AbstractView {
 	private Request request;
 
 	/**
-	 * Se la request non è nulla mostra un messaggio di benvenuto
+	 * Se la request non ï¿½ nulla mostra un messaggio di benvenuto
 	 */
     public void showResults(Request request) {
     	if(request!=null) {
@@ -36,18 +36,18 @@ public class HomeAdminView extends AbstractView {
         System.out.println(" Seleziona cosa vuoi gestire:");
         System.out.println("[U]tenti  [E]sci");
         //Il metodo che salva l'input nella stringa choice.
-        //getInput() è definito in AbstractView.
+        //getInput() ï¿½ definito in AbstractView.
         choice = this.getInput();
     }
 
     /**
-     * Impacchetta una request (in base alla scelta sarà diversa) che invia ai controller tramite il
+     * Impacchetta una request (in base alla scelta sarï¿½ diversa) che invia ai controller tramite il
      * Dispatcher
      */
     public void submit() {    
     	//crea una nuova Request (vedi classe Request)
     	request = new Request();
-        switch (choice) {
+        switch (choice.toLowerCase()) {
         case "u":
         	this.request.put("mode", "USERLIST");
         	MainDispatcher.getInstance().callAction("User", "doControl", request);
