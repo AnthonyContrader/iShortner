@@ -1,20 +1,20 @@
-package it.contrader.model;
+package it.contrader.dto;
 
-public class Url_Table {
+public class Url_TableDTO {
 
 	
 	private int id;
 	private String url; 
 	
-	public Url_Table() {
+	public Url_TableDTO() {
 		
 	}
 	
-	public Url_Table(String url) {
+	public Url_TableDTO(String url) {
 		this.url = url;
 	}
 	
-	public Url_Table(int id, String url) {
+	public Url_TableDTO(int id, String url) {
 		this.id = id;
 		this.url = url;
 	}
