@@ -5,12 +5,12 @@ import it.contrader.controller.Request;
 import it.contrader.main.MainDispatcher;
 
 public class HomeUserView extends AbstractView{
-
+	
 	String choice;
 
 	@Override
 	public void showResults(Request request) {
-		System.out.println("\n-----Purtroppo in questo sample l'utente non puà fare nulla, ci scusiamo per il disagio.-----");
+		System.out.println("\n-----Purtroppo in questo sample l'utente non puï¿½ fare nulla, ci scusiamo per il disagio.-----");
 
 	}
 
