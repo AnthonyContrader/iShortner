@@ -13,6 +13,7 @@ public class ShortUrlController extends AbstractView{
 		String url = this.getInput();	
 		request.put("shortUrl", shortServ.createShortUrl(url));
 		MainDispatcher.getInstance().callView("ShortUrl", request);
+		System.out.println("Ciao");
 	}
 
 	@Override
