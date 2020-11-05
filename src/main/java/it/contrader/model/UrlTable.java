@@ -6,7 +6,7 @@ package it.contrader.model;
  *
  */
 
-public class Url_Table {
+public class UrlTable {
 
 	/**
 	 * Definisco gli attributi della Tabella url
@@ -20,7 +20,7 @@ public class Url_Table {
 	 * Costruttore di default
 	 */
 	
-	public Url_Table() {
+	public UrlTable() {
 		
 	}
 	
@@ -28,16 +28,16 @@ public class Url_Table {
 	 * Costruttori
 	 */
 	
-	public Url_Table(String url) {
+	public UrlTable(String url) {
 		this.url = url;
 	}
 	
-	public Url_Table(String url, int fk_id_user) {
+	public UrlTable(String url, int fk_id_user) {
 		this.url = url;
 		this.fk_id_user = fk_id_user;
 	}
 	
-	public Url_Table(int id, String url, int fk_id_user) {
+	public UrlTable(int id, String url, int fk_id_user) {
 		this.id = id;
 		this.url = url;
 		this.fk_id_user = fk_id_user;

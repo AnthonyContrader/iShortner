@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.contrader.main.ConnectionSingleton;
-import it.contrader.model.Url_Table;
+import it.contrader.model.UrlTable;
 
 /**
  * 
@@ -30,18 +30,18 @@ public class UrlTableDAO {
 		
 	}
 	
-	public List<Url_Table> getAll() {
-		List<Url_Table> urlList = new ArrayList<>();
+	public List<UrlTable> getAll() {
+		List<UrlTable> urlList = new ArrayList<>();
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(QUERY_ALL);
-			Url_Table u;
+			UrlTable u;
 			while (resultSet.next()) {
 				int id = resultSet.getInt("id");
 				String url = resultSet.getString("url");
 				int id_user = resultSet.getInt("fk_id_user");
-				u = new Url_Table(id, url, id_user);
+				u = new UrlTable(id, url, id_user);
 				u.setId(id);
 				urlList.add(u);
 			}
@@ -51,7 +51,7 @@ public class UrlTableDAO {
 		return urlList;
 	}
 	
-	public boolean insert(Url_Table urlToInsert) {
+	public boolean insert(UrlTable urlToInsert) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {	
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_CREATE);
@@ -66,7 +66,7 @@ public class UrlTableDAO {
 
 	}
 	
-	public Url_Table read(int urlId) {
+	public UrlTable read(int urlId) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 
@@ -79,7 +79,7 @@ public class UrlTableDAO {
 
 			url = resultSet.getString("url");
 			fk_id_user = resultSet.getInt("user_id");
-			Url_Table url_tab = new Url_Table(url, fk_id_user);
+			UrlTable url_tab = new UrlTable(url, fk_id_user);
 			url_tab.setId(resultSet.getInt("id"));
 
 			return url_tab;

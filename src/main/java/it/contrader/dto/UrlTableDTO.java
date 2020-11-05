@@ -6,22 +6,22 @@ package it.contrader.dto;
  *
  */
 
-public class Url_TableDTO {
+public class UrlTableDTO {
 
 	
 	private int id;
 	private String url;
 	private int fk_id_user;
 	
-	public Url_TableDTO() {
+	public UrlTableDTO() {
 		
 	}
 	
-	public Url_TableDTO(String url) {
+	public UrlTableDTO(String url) {
 		this.url = url;
 	}
 	
-	public Url_TableDTO(int id, String url, int fk_id_user) {
+	public UrlTableDTO(int id, String url, int fk_id_user) {
 		this.id = id;
 		this.url = url;
 		this.fk_id_user = fk_id_user;
