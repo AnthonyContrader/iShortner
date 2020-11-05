@@ -24,7 +24,7 @@ public class LoginDAO {
 		try {
 			PreparedStatement statement = connection.prepareStatement(QUERY_LOGIN);
 			
-			statement.setString(1, username);
+			statement.setString(1, username); 
 			statement.setString(2, password);
 
 			String usertype = null;
@@ -35,6 +35,8 @@ public class LoginDAO {
 				resultSet = statement.executeQuery();
 				resultSet.next();
 				usertype = resultSet.getString("usertype");
+			}else {
+				System.out.println("Login errato");
 			}
 
 			return usertype;

@@ -1,18 +1,36 @@
 package it.contrader.controller;
 
-public class ShortUrlController {
+import it.contrader.main.MainDispatcher;
+import it.contrader.service.ShortUrlService;
+import it.contrader.view.AbstractView;
 
-	public String createShortUrl() {
-		generateRndString();
-	}
+public class ShortUrlController extends AbstractView{
 	
-	public String generateRndString() {
-		String alg = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-		String short = "";
-		for(int i=0; i<7;i++) {
-			int index = (int)(alg.length()*Math.random());
-			char c = alg.indexOf(index);
-			short += c;
-		}
+	private ShortUrlService shortServ;
+	
+	public void doControl(Request request) {
+		System.out.println("Inserisci url: ");
+		String url = this.getInput();	
+		request.put("shortUrl", shortServ.createShortUrl(url));
+		MainDispatcher.getInstance().callView("ShortUrl", request);
 	}
+
+	@Override
+	public void showResults(Request request) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void showOptions() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void submit() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
