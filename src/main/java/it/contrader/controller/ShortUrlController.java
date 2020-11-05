@@ -4,7 +4,7 @@ import it.contrader.main.MainDispatcher;
 import it.contrader.service.ShortUrlService;
 import it.contrader.view.AbstractView;
 
-public class ShortUrlController extends AbstractView{
+public class ShortUrlController extends AbstractView implements Controller{
 	
 	private ShortUrlService shortServ;
 	
@@ -12,8 +12,7 @@ public class ShortUrlController extends AbstractView{
 		System.out.println("Inserisci url: ");
 		String url = this.getInput();	
 		request.put("shortUrl", shortServ.createShortUrl(url));
-		MainDispatcher.getInstance().callView("ShortUrl", request);
-		System.out.println("Ciao");
+		MainDispatcher.getInstance().callView("HomeUser", request);
 	}
 
 	@Override

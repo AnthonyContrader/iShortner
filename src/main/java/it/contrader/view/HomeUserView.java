@@ -7,14 +7,14 @@ import it.contrader.main.MainDispatcher;
 public class HomeUserView extends AbstractView{
 	
 	String choice;
-
+	Request r;
 	@Override
 	public void showResults(Request request) {
 		//System.out.println("\n-----Purtroppo in questo sample l'utente non pu� fare nulla, ci scusiamo per il disagio.-----");
-		if(request != null) {
-			System.out.println("bla bla cose "+request);
+		if(request.get("username") != null) {
+			System.out.println("Benvenuto "+request.get("username"));
 		}
-		
+		r = request;
 	}
 
 	@Override
@@ -28,11 +28,12 @@ public class HomeUserView extends AbstractView{
 
 	@Override
 	public void submit() {
-
+		
+		
 		switch (choice.toLowerCase()) {
 		
 		case "c":
-			MainDispatcher.getInstance().callAction("ShortUrl", "doControl", null);
+			MainDispatcher.getInstance().callAction("ShortUrl", "doControl", r);
 			break;
 		case "e":
 			MainDispatcher.getInstance().callAction("Login", "doControl", null);
