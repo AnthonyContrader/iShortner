@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `sampledb` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `sampledb`;
--- MySQL dump 10.13  Distrib 8.0.21, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.22, for macos10.15 (x86_64)
 --
--- Host: localhost    Database: sampledb
+-- Host: 127.0.0.1    Database: sampledb
 -- ------------------------------------------------------
--- Server version	8.0.22-0ubuntu0.20.04.2
+-- Server version	8.0.19
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -27,10 +25,8 @@ DROP TABLE IF EXISTS `server`;
 CREATE TABLE `server` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nome_citta` varchar(20) NOT NULL,
-  `fk_id_url` int NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_id_url_idx` (`fk_id_url`),
-  CONSTRAINT `fk_id_url` FOREIGN KEY (`fk_id_url`) REFERENCES `url` (`id_url`)
+  `fk_id_url` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -53,11 +49,12 @@ DROP TABLE IF EXISTS `url`;
 CREATE TABLE `url` (
   `id_url` int NOT NULL AUTO_INCREMENT,
   `url` varchar(200) NOT NULL,
-  `fk_id_user` int DEFAULT NULL,
+  `fk_id_user` varchar(16) NOT NULL,
   PRIMARY KEY (`id_url`),
   UNIQUE KEY `url_UNIQUE` (`url`),
+  UNIQUE KEY `fk_id_user_UNIQUE` (`fk_id_user`),
   KEY `fk_id_user_idx` (`fk_id_user`),
-  CONSTRAINT `fk_id_user` FOREIGN KEY (`fk_id_user`) REFERENCES `user` (`id`)
+  CONSTRAINT `fk_id_user` FOREIGN KEY (`fk_id_user`) REFERENCES `user` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -82,7 +79,9 @@ CREATE TABLE `user` (
   `usertype` varchar(255) DEFAULT NULL,
   `password` varchar(32) NOT NULL,
   `id` int NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`username`),
+  UNIQUE KEY `username_UNIQUE` (`username`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -105,4 +104,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-05 10:39:10
+-- Dump completed on 2020-11-05 16:36:19
