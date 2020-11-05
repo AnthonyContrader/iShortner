@@ -20,9 +20,9 @@ import it.contrader.model.UrlTable;
 public class UrlTableDAO {
 	
 	private final String QUERY_ALL = "SELECT * FROM url";
-	private final String QUERY_CREATE = "INSERT INTO url (url, fk_id_user) VALUES (?,?)";
+	private final String QUERY_CREATE = "INSERT INTO url (url, fk_user) VALUES (?,?)";
 	private final String QUERY_READ = "SELECT * FROM url WHERE id=?";
-	private final String QUERY_UPDATE = "UPDATE url SET url=?, fk_id_user=?, WHERE id=?";
+	private final String QUERY_UPDATE = "UPDATE url SET url=?, fk_user=?, WHERE id=?";
 	private final String QUERY_DELETE = "DELETE FROM url WHERE id=?";
 	
 	//Costruttore di default
@@ -40,7 +40,7 @@ public class UrlTableDAO {
 			while (resultSet.next()) {
 				int id = resultSet.getInt("id");
 				String url = resultSet.getString("url");
-				int id_user = resultSet.getInt("fk_id_user");
+				String id_user = resultSet.getString("fk_id_user");
 				u = new UrlTable(id, url, id_user);
 				u.setId(id);
 				urlList.add(u);
@@ -57,7 +57,7 @@ public class UrlTableDAO {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_CREATE);
 			preparedStatement.setInt(1, urlToInsert.getId());
 			preparedStatement.setString(2, urlToInsert.getUrl());
-			preparedStatement.setInt(3, urlToInsert.getFk_id_user());
+			preparedStatement.setString(3, urlToInsert.getFk_id_user());
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {
@@ -75,10 +75,10 @@ public class UrlTableDAO {
 			ResultSet resultSet = preparedStatement.executeQuery();
 			resultSet.next();
 			String url;
-			int fk_id_user;
+			String fk_id_user;
 
 			url = resultSet.getString("url");
-			fk_id_user = resultSet.getInt("user_id");
+			fk_id_user = resultSet.getString("fk_id_user");
 			UrlTable url_tab = new UrlTable(url, fk_id_user);
 			url_tab.setId(resultSet.getInt("id"));
 

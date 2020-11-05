@@ -5,18 +5,17 @@ import it.contrader.model.UrlTable;
 import it.contrader.model.User;
 
 public class ShortUrlService {
+	
 
-	public static String createShortUrl(String url) {		
+	public String createShortUrl(String username, String url) {		
 		if(checkUrl(url)) {
 			String shortUrl = "iShort.ly/"+generateRndString();
 			System.out.println(shortUrl);
 			UrlTable urlTable = new UrlTable();
-			User user = new User();
-			//System.out.println("ID: "+user.getId());
 			urlTable.setUrl(url);
+			urlTable.setFk_id_user(username);
 			UrlTableDAO urlTableDao = new UrlTableDAO();
 			urlTableDao.insert(urlTable);
-			return shortUrl;
 		}
 		return "";
 	}

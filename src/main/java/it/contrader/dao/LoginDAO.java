@@ -35,6 +35,7 @@ public class LoginDAO {
 				resultSet = statement.executeQuery();
 				resultSet.next();
 				usertype = resultSet.getString("usertype");
+				
 			}else {
 				System.out.println("Login errato");
 			}

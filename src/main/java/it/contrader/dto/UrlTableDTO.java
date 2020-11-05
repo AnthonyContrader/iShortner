@@ -11,7 +11,7 @@ public class UrlTableDTO {
 	
 	private int id;
 	private String url;
-	private int fk_id_user;
+	private String fk_id_user;
 	
 	public UrlTableDTO() {
 		
@@ -21,7 +21,7 @@ public class UrlTableDTO {
 		this.url = url;
 	}
 	
-	public UrlTableDTO(int id, String url, int fk_id_user) {
+	public UrlTableDTO(int id, String url, String fk_id_user) {
 		this.id = id;
 		this.url = url;
 		this.fk_id_user = fk_id_user;
@@ -43,11 +43,11 @@ public class UrlTableDTO {
 		this.url = url;
 	}
 	
-	public int getFk_id_user() {
+	public String getFk_id_user() {
 		return fk_id_user;
 	}
 
-	public void setFk_id_user(int fk_id_user) {
+	public void setFk_id_user(String fk_id_user) {
 		this.fk_id_user = fk_id_user;
 	}
 	
