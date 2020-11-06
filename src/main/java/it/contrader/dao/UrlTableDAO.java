@@ -11,6 +11,7 @@ import java.util.List;
 import it.contrader.dto.UrlTableDTO;
 import it.contrader.main.ConnectionSingleton;
 import it.contrader.model.UrlTable;
+import it.contrader.model.User;
 
 /**
  * 
@@ -21,10 +22,11 @@ import it.contrader.model.UrlTable;
 public class UrlTableDAO {
 	
 	private final String QUERY_ALL = "SELECT * FROM url";
-	private final static String QUERY_CREATE = "INSERT INTO url (url, fk_user) VALUES (?,?)";
-	private final static String QUERY_READ = "SELECT * FROM url WHERE id_url=?";
+	private final static String QUERY_CREATE = "INSERT INTO url (url, fk_id_user) VALUES (?,?)";
+	private final static String QUERY_READ = "SELECT * FROM url WHERE fk_id_user=?";
 	private final String QUERY_UPDATE = "UPDATE url SET url=?, fk_user=?, WHERE id=?";
 	private final String QUERY_DELETE = "DELETE FROM url WHERE id=?";
+	private final static String QUERY_READ2 = "select * from user where id=?";
 	
 	//Costruttore di default
 	public UrlTableDAO() {
@@ -67,22 +69,30 @@ public class UrlTableDAO {
 
 	}
 	
-	public static UrlTable read(int urlId) {
+	public static List<UrlTable> read(int urlId) {
+		List<UrlTable> urlList = new ArrayList<>();
 		Connection connection = ConnectionSingleton.getInstance();
+		Connection conn = ConnectionSingleton.getInstance();
+		UrlTable urlTable;
+		int id = 0;
 		try {
-
+			PreparedStatement prepStat = conn.prepareStatement(QUERY_READ2);
+			prepStat.setInt(1, urlId);
+			ResultSet result = prepStat.executeQuery();
+			result.next();
+			String username = result.getString("username");
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_READ);
-			preparedStatement.setInt(1, urlId);
+			preparedStatement.setString(1, username);
 			ResultSet resultSet = preparedStatement.executeQuery();
-			resultSet.next();
-			String url;
-			String fk_id_user;
-			
-			url = resultSet.getString("url");
-			fk_id_user = resultSet.getString("fk_user");
-			UrlTable url_tab = new UrlTable(url, fk_id_user);
-			url_tab.setId(resultSet.getInt("id_url"));
-			return url_tab;
+			while(resultSet.next()) {
+				id +=1;
+				String fk = "";
+				String url = resultSet.getString("url");
+				urlTable = new UrlTable(id, url, fk);
+				urlTable.setUrl(url);
+				urlList.add(urlTable);
+			}
+			return urlList;
 		} catch (SQLException e) {
 			return null;
 		}

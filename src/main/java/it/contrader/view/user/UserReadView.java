@@ -1,5 +1,7 @@
 package it.contrader.view.user;
 
+import java.util.List;
+
 import it.contrader.controller.Request;
 import it.contrader.dto.UrlTableDTO;
 import it.contrader.dto.UserDTO;
@@ -33,9 +35,13 @@ public class UserReadView extends AbstractView {
 	public void showResults(Request request) {
 		if (request != null) {
 			UserDTO user = (UserDTO) request.get("user");
-			UrlTableDTO urlTableDto = (UrlTableDTO) request.get("urltable");
-			System.out.println(user);
-			System.out.println(urlTableDto);
+			//UrlTableDTO urlTableDto = (UrlTableDTO) request.get("urltable");
+			System.out.println("\n");
+			@SuppressWarnings("unchecked")
+			List<UrlTableDTO> urlTableDto = (List<UrlTableDTO>) request.get("urltable");
+			for (UrlTableDTO u: urlTableDto)
+				System.out.println(u);
+			System.out.println();
 			MainDispatcher.getInstance().callView("User", null);
 		}
 	}

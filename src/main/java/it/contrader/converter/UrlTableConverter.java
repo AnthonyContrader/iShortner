@@ -27,7 +27,7 @@ public class UrlTableConverter {
 	/**
 	 * Metodo per convertire le liste di url
 	 */
-	public List<UrlTableDTO> toDTOList(List<UrlTable> urlList) {
+	public static List<UrlTableDTO> toDTOList(List<UrlTable> urlList) {
 		
 		//Crea una lista vuota.
 		List<UrlTableDTO> urlDTOList = new ArrayList<UrlTableDTO>();

@@ -60,7 +60,7 @@ public class UserController implements Controller {
 		case "READ":
 			id = Integer.parseInt(request.get("id").toString());
 			UserDTO userDTO = userService.read(id);
-			UrlTableDTO urlTableDto = ShortUrlService.read(id);
+			List<UrlTableDTO> urlTableDto = ShortUrlService.read(id);
 			request.put("user", userDTO);
 			request.put("urltable", urlTableDto);
 			MainDispatcher.getInstance().callView(sub_package + "UserRead", request);
