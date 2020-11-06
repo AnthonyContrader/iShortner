@@ -21,7 +21,7 @@ import it.contrader.model.UrlTable;
 public class UrlTableDAO {
 	
 	private final String QUERY_ALL = "SELECT * FROM url";
-	private final String QUERY_CREATE = "INSERT INTO url (url, fk_user) VALUES (?,?)";
+	private final static String QUERY_CREATE = "INSERT INTO url (url, fk_user) VALUES (?,?)";
 	private final static String QUERY_READ = "SELECT * FROM url WHERE id_url=?";
 	private final String QUERY_UPDATE = "UPDATE url SET url=?, fk_user=?, WHERE id=?";
 	private final String QUERY_DELETE = "DELETE FROM url WHERE id=?";
@@ -52,7 +52,7 @@ public class UrlTableDAO {
 		return urlList;
 	}
 	
-	public boolean insert(UrlTable urlToInsert) {
+	public static boolean insert(UrlTable urlToInsert) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {	
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_CREATE);

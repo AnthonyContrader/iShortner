@@ -1,19 +1,18 @@
 package it.contrader.controller;
 
+import java.net.MalformedURLException;
+
 import it.contrader.main.MainDispatcher;
-import it.contrader.model.User;
 import it.contrader.service.ShortUrlService;
 import it.contrader.view.AbstractView;
 
 public class ShortUrlController extends AbstractView implements Controller{
 	
-	private ShortUrlService shortServ;
-	
-	public void doControl(Request request) {
+	public void doControl(Request request) throws MalformedURLException {
 		System.out.println("Inserisci url: ");
 		String url = this.getInput();	
 		String username = request.get("username").toString();
-		shortServ.createShortUrl(username, url);
+		ShortUrlService.createShortUrl(username, url);
 		request.put("shortUrl", url);
 		MainDispatcher.getInstance().callView("HomeUser", request);
 	}
