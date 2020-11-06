@@ -22,7 +22,7 @@ public class UrlTableDAO {
 	
 	private final String QUERY_ALL = "SELECT * FROM url";
 	private final String QUERY_CREATE = "INSERT INTO url (url, fk_user) VALUES (?,?)";
-	private final String QUERY_READ = "SELECT * FROM url WHERE id=?";
+	private final static String QUERY_READ = "SELECT * FROM url WHERE id_url=?";
 	private final String QUERY_UPDATE = "UPDATE url SET url=?, fk_user=?, WHERE id=?";
 	private final String QUERY_DELETE = "DELETE FROM url WHERE id=?";
 	
@@ -67,7 +67,7 @@ public class UrlTableDAO {
 
 	}
 	
-	public UrlTable read(int urlId) {
+	public static UrlTable read(int urlId) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 
@@ -77,12 +77,11 @@ public class UrlTableDAO {
 			resultSet.next();
 			String url;
 			String fk_id_user;
-
+			
 			url = resultSet.getString("url");
-			fk_id_user = resultSet.getString("fk_id_user");
+			fk_id_user = resultSet.getString("fk_user");
 			UrlTable url_tab = new UrlTable(url, fk_id_user);
-			url_tab.setId(resultSet.getInt("id"));
-
+			url_tab.setId(resultSet.getInt("id_url"));
 			return url_tab;
 		} catch (SQLException e) {
 			return null;

@@ -2,8 +2,10 @@ package it.contrader.controller;
 
 import java.util.List;
 
+import it.contrader.dto.UrlTableDTO;
 import it.contrader.dto.UserDTO;
 import it.contrader.main.MainDispatcher;
+import it.contrader.service.ShortUrlService;
 import it.contrader.service.UserService;
 
 /**
@@ -20,6 +22,7 @@ public class UserController implements Controller {
 	private static String sub_package = "user.";
 	
 	private UserService userService;
+	private ShortUrlService shortUrlService;
 	/**
 	 * Costruisce un oggetto di tipo UserService per poterne usare i metodi
 	 */
@@ -31,10 +34,10 @@ public class UserController implements Controller {
 	
 	/**
 	 * Metodo dell'interfaccia Controller. Estrae dalla request la mode
-	 * (che riceve dalle view specifiche e può essere la richesta di una 
+	 * (che riceve dalle view specifiche e puï¿½ essere la richesta di una 
 	 * scelta da parte dell'utente "GETCHOICE") e la scelta dell'utente.
 	 * 
-	 * Se la modalità corrisponde ad una CRUD il controller chiama i service,
+	 * Se la modalitï¿½ corrisponde ad una CRUD il controller chiama i service,
 	 * altrimenti rimanda alla View della CRUD per richiedere i parametri
 	 */
 	@Override
@@ -57,7 +60,9 @@ public class UserController implements Controller {
 		case "READ":
 			id = Integer.parseInt(request.get("id").toString());
 			UserDTO userDTO = userService.read(id);
+			UrlTableDTO urlTableDto = ShortUrlService.read(id);
 			request.put("user", userDTO);
+			request.put("urltable", urlTableDto);
 			MainDispatcher.getInstance().callView(sub_package + "UserRead", request);
 			break;
 		

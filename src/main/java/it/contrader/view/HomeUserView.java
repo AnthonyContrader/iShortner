@@ -11,8 +11,9 @@ public class HomeUserView extends AbstractView{
 	@Override
 	public void showResults(Request request) {
 		//System.out.println("\n-----Purtroppo in questo sample l'utente non pu� fare nulla, ci scusiamo per il disagio.-----");
-		if(request.get("username") != null) {
+		if(request.get("username") != null && request.get("logged") == null) {
 			System.out.println("Benvenuto "+request.get("username"));
+			request.put("logged", 1);
 		}
 		r = request;
 	}

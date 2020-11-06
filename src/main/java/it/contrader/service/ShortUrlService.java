@@ -10,6 +10,7 @@ public class ShortUrlService {
 
 	private static UrlTable urlTable;
 	private static UrlTableConverter urlTableConverter;
+	private static UrlTableDAO urlTableDao;
 
 	public static String createShortUrl(String username, String url) {	
 		if(checkUrl(url)) {
@@ -18,8 +19,8 @@ public class ShortUrlService {
 			UrlTableDTO urlTableDto = new UrlTableDTO();
 			urlTableDto.setUrl(url);
 			urlTableDto.setFk_id_user(username);
-			UrlTableDAO urlTableDao = new UrlTableDAO();
 			urlTableDao.insert(urlTableConverter.toEntity(urlTableDto));
+			//sdhadhhas
 		}
 		return "";
 	}
@@ -43,5 +44,9 @@ public class ShortUrlService {
 		}
 		System.out.println("Url non valido!");
 		return false;
+	}
+	
+	public static UrlTableDTO read(int id) {
+		return UrlTableConverter.toDTO(urlTableDao.read(id));
 	}
 }

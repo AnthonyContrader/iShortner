@@ -37,7 +37,6 @@ public class LoginView extends AbstractView {
 		request.put("username", username);
 		request.put("password", password);
 		
-		System.out.println(username +' '+ password);
 		
 		User user = new User();
 		user.setUsername(username);
