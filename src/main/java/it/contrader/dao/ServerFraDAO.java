@@ -11,7 +11,7 @@ import it.contrader.model.User;
 public class ServerFraDAO {
 
 	private final String QUERY_ALL = "SELECT * FROM server";
-	private final String QUERY_CREATE = "INSERT INTO server (id, nome_citta, fk_id_url) VALUES (?,?,?)";
+	private final String QUERY_CREATE = "INSERT INTO server (nome_citta, fk_id_url) VALUES (?,?)";
 	private final String QUERY_READ = "SELECT * FROM server WHERE id=?";
 	private final String QUERY_UPDATE = "UPDATE server SET id=?, nome_citta=?";
 	private final String QUERY_DELETE = "DELETE FROM server WHERE id=?";
@@ -44,9 +44,9 @@ public class ServerFraDAO {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {	
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_CREATE);
-			preparedStatement.setInt(1, serverToInsert.getId());
-			preparedStatement.setString(2, serverToInsert.getNomeCitta());
-			//preparedStatement.setString(3, serverToInsert.getUsertype());
+			//preparedStatement.setInt(1, serverToInsert.getId());
+			preparedStatement.setString(1, serverToInsert.getNomeCitta());
+			preparedStatement.setInt(2, serverToInsert.getFk());
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {

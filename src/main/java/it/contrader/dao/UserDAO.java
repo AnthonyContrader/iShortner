@@ -17,6 +17,7 @@ public class UserDAO {
 	private final String QUERY_ALL = "SELECT * FROM user";
 	private final String QUERY_CREATE = "INSERT INTO user (username, password, usertype) VALUES (?,?,?)";
 	private final String QUERY_READ = "SELECT * FROM user WHERE id=?";
+	//select us.id, us.username, us.password, ur.url, se.nome_citta from user us, url ur, server se where us.username=ur.fk_id_user and ur.id_url=se.fk_id_url
 	private final String QUERY_UPDATE = "UPDATE user SET username=?, password=?, usertype=? WHERE id=?";
 	private final String QUERY_DELETE = "DELETE FROM user WHERE id=?";
 
@@ -71,6 +72,7 @@ public class UserDAO {
 			ResultSet resultSet = preparedStatement.executeQuery();
 			resultSet.next();
 			String username, password, usertype;
+			
 
 			username = resultSet.getString("username");
 			password = resultSet.getString("password");
