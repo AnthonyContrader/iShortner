@@ -14,12 +14,12 @@ import it.contrader.model.UrlTable;
 
 public class UrlTableConverter {
 
-	public UrlTableDTO toDTO(UrlTable urlTable){
+	public static UrlTableDTO toDTO(UrlTable urlTable){
 		UrlTableDTO urlTableDto = new UrlTableDTO(urlTable.getId(), urlTable.getUrl(), urlTable.getFk_id_user());
 		return urlTableDto;
 	}
 	
-	public UrlTable toEntity(UrlTableDTO urlTableDTO) {
+	public static UrlTable toEntity(UrlTableDTO urlTableDTO) {
 		UrlTable urlTable = new UrlTable(urlTableDTO.getId(), urlTableDTO.getUrl(), urlTableDTO.getFk_id_user());
 		return urlTable;
 	}

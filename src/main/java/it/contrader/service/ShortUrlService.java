@@ -1,21 +1,25 @@
 package it.contrader.service;
 
+import it.contrader.converter.UrlTableConverter;
 import it.contrader.dao.UrlTableDAO;
+import it.contrader.dto.UrlTableDTO;
 import it.contrader.model.UrlTable;
 import it.contrader.model.User;
 
 public class ShortUrlService {
-	
 
-	public String createShortUrl(String username, String url) {		
+	private static UrlTable urlTable;
+	private static UrlTableConverter urlTableConverter;
+
+	public static String createShortUrl(String username, String url) {	
 		if(checkUrl(url)) {
 			String shortUrl = "iShort.ly/"+generateRndString();
 			System.out.println(shortUrl);
-			UrlTable urlTable = new UrlTable();
-			urlTable.setUrl(url);
-			urlTable.setFk_id_user(username);
+			UrlTableDTO urlTableDto = new UrlTableDTO();
+			urlTableDto.setUrl(url);
+			urlTableDto.setFk_id_user(username);
 			UrlTableDAO urlTableDao = new UrlTableDAO();
-			urlTableDao.insert(urlTable);
+			urlTableDao.insert(urlTableConverter.toEntity(urlTableDto));
 		}
 		return "";
 	}

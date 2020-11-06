@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.contrader.dto.UrlTableDTO;
 import it.contrader.main.ConnectionSingleton;
 import it.contrader.model.UrlTable;
 
@@ -40,7 +41,7 @@ public class UrlTableDAO {
 			while (resultSet.next()) {
 				int id = resultSet.getInt("id");
 				String url = resultSet.getString("url");
-				String id_user = resultSet.getString("fk_id_user");
+				String id_user = resultSet.getString("fk_user");
 				u = new UrlTable(id, url, id_user);
 				u.setId(id);
 				urlList.add(u);
@@ -55,9 +56,9 @@ public class UrlTableDAO {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {	
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_CREATE);
-			preparedStatement.setInt(1, urlToInsert.getId());
-			preparedStatement.setString(2, urlToInsert.getUrl());
-			preparedStatement.setString(3, urlToInsert.getFk_id_user());
+			//preparedStatement con setString id
+			preparedStatement.setString(1, urlToInsert.getUrl());
+			preparedStatement.setString(2, urlToInsert.getFk_id_user());
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {
