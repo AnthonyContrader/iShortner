@@ -6,6 +6,7 @@ import java.net.MalformedURLException;
 import it.contrader.dto.UrlTableDTO;
 import it.contrader.dto.UserDTO;
 import it.contrader.main.MainDispatcher;
+import it.contrader.service.ServerFraService;
 import it.contrader.service.ShortUrlService;
 import it.contrader.view.AbstractView;
 
@@ -21,6 +22,7 @@ public class ShortUrlController extends AbstractView implements Controller{
 			urlTableDto.setUrl(url);		
 			urlTableDto = ShortUrlService.createShortUrl(user, urlTableDto);
 			//serverFraService
+			ServerFraService.generator(urlTableDto);
 			if(urlTableDto == null) { 
 				request.put("username", username);
 				request.put("url", null);

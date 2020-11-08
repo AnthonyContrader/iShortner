@@ -19,7 +19,7 @@ public class ShortUrlService {
 
 	public static UrlTableDTO createShortUrl(UserDTO user, UrlTableDTO url) throws MalformedURLException {	
 		UrlTableDTO urlTableDto = new UrlTableDTO();
-		if(isReachable(url.getUrl()) ) {
+		if(checkUrl(url.getUrl()) ) {
 			String shortUrl = "iShort.ly/"+generateRndString();
 			urlTableDto.setUrl(url.getUrl());
 			urlTableDto.setFk_id_user(user.getUsername());
@@ -45,16 +45,17 @@ public class ShortUrlService {
 		return s;
 	}
 	
-//	public static boolean checkUrl(String url) {
-//		String prot = "http://";
-//		String prot2 = "https://";
-//		if(url.contains(prot) || url.contains(prot2)) {
-//			return true;
-//		}
-//		System.out.println("Url non valido!");
-//		return false;
-//	}
-//	
+	public static boolean checkUrl(UrlTableDTO _url) {
+		String prot = "http://";
+		String prot2 = "https://";
+		String url = _url.getUrl();
+		if(url.contains(prot) || url.contains(prot2)) {
+			return true;
+		}
+		System.out.println("Url non valido!");
+		return false;
+	}
+	
 	
 	public static List<UrlTableDTO> read(int id) {
 		return UrlTableConverter.toDTOList(UrlTableDAO.read(id));

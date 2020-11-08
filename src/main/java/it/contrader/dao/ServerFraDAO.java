@@ -55,30 +55,30 @@ public class ServerFraDAO {
 
 	}
 
-//	public ServerFra read(int serverId) {
-//		Connection connection = ConnectionSingleton.getInstance();
-//		try {
-//
-//
-//			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_READ);
-//			preparedStatement.setInt(1, serverId);
-//			ResultSet resultSet = preparedStatement.executeQuery();
-//			resultSet.next();
-//			int id, fk_id_url;
-//			String nome_citta;
-//
-//			id = resultSet.getInt("id");
-//			nome_citta = resultSet.getString("nome_citta");
-//			fk_id_url = resultSet.getInt("fk_id_url");
-//			ServerFra server = new ServerFra(id, nome_citta, fk_id_url);
-//			server.setId(resultSet.getInt("id"));
-//
-//			return server;
-//		} catch (SQLException e) {
-//			return null;
-//		}
-//
-//	}
+	public static void read(int serverId) {
+		Connection connection = ConnectionSingleton.getInstance();
+		/*try {
+
+
+			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_READ);
+			preparedStatement.setInt(1, serverId);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			resultSet.next();
+			int id, fk_id_url;
+			String nome_citta;
+
+			id = resultSet.getInt("id");
+			nome_citta = resultSet.getString("nome_citta");
+			fk_id_url = resultSet.getInt("fk_id_url");
+			//ServerFra server = new ServerFra(id, nome_citta, fk_id_url);
+			server.setId(resultSet.getInt("id"));
+
+			return server;
+		} catch (SQLException e) {
+			return null;
+		}*/
+
+	}
 
 	/*public boolean update(ServerFra serverToUpdate) {
 		Connection connection = ConnectionSingleton.getInstance();
