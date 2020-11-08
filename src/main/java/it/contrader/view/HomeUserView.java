@@ -15,6 +15,13 @@ public class HomeUserView extends AbstractView{
 			System.out.println("Benvenuto "+request.get("username"));
 			request.put("logged", 1);
 		}
+		if(request.get("shortUrl") != null) {
+			System.out.println(request.get("shortUrl").toString());
+		}
+		
+		if(request.get("wrongUrl") != null) {
+			System.out.println("Url non valida o gia esistente nel database!");
+		}
 		r = request;
 	}
 
@@ -29,7 +36,6 @@ public class HomeUserView extends AbstractView{
 
 	@Override
 	public void submit() {
-		
 		
 		switch (choice.toLowerCase()) {
 		

@@ -1,3 +1,4 @@
+
 package it.contrader.view.user;
 
 import java.util.List;
@@ -35,12 +36,12 @@ public class UserReadView extends AbstractView {
 	public void showResults(Request request) {
 		if (request != null) {
 			UserDTO user = (UserDTO) request.get("user");
-			//UrlTableDTO urlTableDto = (UrlTableDTO) request.get("urltable");
 			System.out.println("\n");
+			System.out.println(user.getUsername()+" "+user.getUsertype());
 			@SuppressWarnings("unchecked")
 			List<UrlTableDTO> urlTableDto = (List<UrlTableDTO>) request.get("urltable");
 			for (UrlTableDTO u: urlTableDto)
-				System.out.println(u);
+				System.out.println(u.getId()+ "\t" +u.getUrl());
 			System.out.println();
 			MainDispatcher.getInstance().callView("User", null);
 		}

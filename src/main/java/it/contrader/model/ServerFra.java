@@ -4,14 +4,14 @@ public class ServerFra {
 	
 	private int id;
 	private String nome_citta;
-	private int fk_id_url;
+	private String fk_id_url;
 	
 	
 	public ServerFra(){
 		
 	}
 	
-	public ServerFra(int id, String nome_citta, int fk_id_url){
+	public ServerFra(int id, String nome_citta, String fk_id_url){
 		this.id=id;
 		this.nome_citta=nome_citta;
 		this.fk_id_url=fk_id_url;
@@ -32,11 +32,11 @@ public class ServerFra {
 		this.nome_citta = nomecitta;
 	}
 	
-	public int getFk() {
+	public String getFk() {
 		return this.fk_id_url;
 	}
 	
-	public void setFK(int fk_id_url) {
+	public void setFK(String fk_id_url) {
 		this.fk_id_url=fk_id_url;
 	}
 

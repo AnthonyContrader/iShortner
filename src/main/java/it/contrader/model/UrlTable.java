@@ -30,7 +30,8 @@ public class UrlTable {
 	 * Costruttori
 	 */
 	
-	public UrlTable(String url) {
+	public UrlTable(int id, String url) {
+		this.id = id;
 		this.url = url;
 	}
 	

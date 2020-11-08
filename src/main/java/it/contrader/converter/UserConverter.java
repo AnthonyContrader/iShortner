@@ -18,6 +18,9 @@ public class UserConverter   {
 	 * Notare l'uso del metodo get() per ottenere il valore dell'attributo-
 	 */
 	public UserDTO toDTO(User user) {
+		if(user == null) {
+			return null;
+		}
 		UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(), user.getPassword(), user.getUsertype());
 		return userDTO;
 	}

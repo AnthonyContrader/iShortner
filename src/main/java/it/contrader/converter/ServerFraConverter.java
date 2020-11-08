@@ -9,12 +9,12 @@ import it.contrader.model.ServerFra;
 
 public class ServerFraConverter {
 
-	public ServerFraDTO toDTO(ServerFra server) {
+	public static ServerFraDTO toDTO(ServerFra server) {
 		ServerFraDTO serverDTO = new ServerFraDTO(server.getId(), server.getNomeCitta(), server.getFk());
 		return serverDTO;
 	}
 	
-	public ServerFra toEntity(ServerFraDTO serverDTO) {
+	public static ServerFra toEntity(ServerFraDTO serverDTO) {
 		ServerFra server = new ServerFra(serverDTO.getId(), serverDTO.getNomeCitta(), serverDTO.getFk());
 		return server;
 	}

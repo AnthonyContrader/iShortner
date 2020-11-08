@@ -10,25 +10,28 @@ import it.contrader.controller.Request;
 import it.contrader.converter.UrlTableConverter;
 import it.contrader.dao.UrlTableDAO;
 import it.contrader.dto.UrlTableDTO;
-import it.contrader.main.MainDispatcher;
-import it.contrader.model.UrlTable;
-import it.contrader.model.User;
+import it.contrader.dto.UserDTO;
 
 public class ShortUrlService {
 
 	static Request request;
+	static ServerFraService servFra;
 
-	public static String createShortUrl(String username, String url) throws MalformedURLException {	
-		if(isReachable(url)) {
+	public static UrlTableDTO createShortUrl(UserDTO user, UrlTableDTO url) throws MalformedURLException {	
+		UrlTableDTO urlTableDto = new UrlTableDTO();
+		if(isReachable(url.getUrl()) ) {
 			String shortUrl = "iShort.ly/"+generateRndString();
-			System.out.println(shortUrl);
-			UrlTableDTO urlTableDto = new UrlTableDTO();
-			urlTableDto.setUrl(url);
-			urlTableDto.setFk_id_user(username);
-			UrlTableDAO.insert(UrlTableConverter.toEntity(urlTableDto));
-			//sdhadhhas
+			urlTableDto.setUrl(url.getUrl());
+			urlTableDto.setFk_id_user(user.getUsername());
+			urlTableDto.setShortUrl(shortUrl);
+			if(UrlTableDAO.insert(UrlTableConverter.toEntity(urlTableDto)) == false) {
+				urlTableDto.setUrl(null);
+				return urlTableDto;
+			}else {
+				return urlTableDto;
+			}
 		}
-		return "";
+		return null;
 	}
 	
 	public static String generateRndString() {
@@ -74,7 +77,6 @@ public class ShortUrlService {
                     return true;
                 }
             }
-            System.out.println("Url non valido!");
             return false;
         } catch (Exception e) {
             e.printStackTrace();

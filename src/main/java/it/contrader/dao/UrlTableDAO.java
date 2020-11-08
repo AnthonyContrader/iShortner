@@ -57,11 +57,12 @@ public class UrlTableDAO {
 	public static boolean insert(UrlTable urlToInsert) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {	
+			
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_CREATE);
 			//preparedStatement con setString id
 			preparedStatement.setString(1, urlToInsert.getUrl());
-			preparedStatement.setString(2, urlToInsert.getFk_id_user());
-			preparedStatement.execute();
+			preparedStatement.setString(2, urlToInsert.getFk_id_user());	
+			preparedStatement.execute();		
 			return true;
 		} catch (SQLException e) {
 			return false;
@@ -72,23 +73,21 @@ public class UrlTableDAO {
 	public static List<UrlTable> read(int urlId) {
 		List<UrlTable> urlList = new ArrayList<>();
 		Connection connection = ConnectionSingleton.getInstance();
-		Connection conn = ConnectionSingleton.getInstance();
 		UrlTable urlTable;
 		int id = 0;
 		try {
-			PreparedStatement prepStat = conn.prepareStatement(QUERY_READ2);
+			PreparedStatement prepStat = connection.prepareStatement(QUERY_READ2);
 			prepStat.setInt(1, urlId);
 			ResultSet result = prepStat.executeQuery();
 			result.next();
 			String username = result.getString("username");
-			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_READ);
-			preparedStatement.setString(1, username);
-			ResultSet resultSet = preparedStatement.executeQuery();
+			prepStat = connection.prepareStatement(QUERY_READ);
+			prepStat.setString(1, username);
+			ResultSet resultSet = prepStat.executeQuery();
 			while(resultSet.next()) {
 				id +=1;
-				String fk = "";
 				String url = resultSet.getString("url");
-				urlTable = new UrlTable(id, url, fk);
+				urlTable = new UrlTable(id, url);
 				urlTable.setUrl(url);
 				urlList.add(urlTable);
 			}

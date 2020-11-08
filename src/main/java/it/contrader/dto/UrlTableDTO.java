@@ -11,6 +11,9 @@ public class UrlTableDTO {
 	
 	private int id;
 	private String url;
+	private String shortUrl;
+
+
 	private String fk_id_user;
 	
 	public UrlTableDTO() {
@@ -49,6 +52,14 @@ public class UrlTableDTO {
 
 	public void setFk_id_user(String fk_id_user) {
 		this.fk_id_user = fk_id_user;
+	}
+	
+	public String getShortUrl() {
+		return shortUrl;
+	}
+
+	public void setShortUrl(String shortUrl) {
+		this.shortUrl = shortUrl;
 	}
 	
 	@Override

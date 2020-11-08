@@ -1,3 +1,4 @@
+
 package it.contrader.controller;
 
 import java.util.List;
@@ -60,6 +61,9 @@ public class UserController implements Controller {
 		case "READ":
 			id = Integer.parseInt(request.get("id").toString());
 			UserDTO userDTO = userService.read(id);
+			if(userDTO == null) {
+				MainDispatcher.getInstance().callView(sub_package + "UserRead", null);
+			}
 			List<UrlTableDTO> urlTableDto = ShortUrlService.read(id);
 			request.put("user", userDTO);
 			request.put("urltable", urlTableDto);
