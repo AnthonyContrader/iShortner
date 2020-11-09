@@ -3,9 +3,11 @@ package it.contrader.controller;
 
 import java.util.List;
 
+import it.contrader.dto.ServerFraDTO;
 import it.contrader.dto.UrlTableDTO;
 import it.contrader.dto.UserDTO;
 import it.contrader.main.MainDispatcher;
+import it.contrader.service.ServerFraService;
 import it.contrader.service.ShortUrlService;
 import it.contrader.service.UserService;
 
@@ -23,7 +25,6 @@ public class UserController implements Controller {
 	private static String sub_package = "user.";
 	
 	private UserService userService;
-	private ShortUrlService shortUrlService;
 	/**
 	 * Costruisce un oggetto di tipo UserService per poterne usare i metodi
 	 */
@@ -64,7 +65,9 @@ public class UserController implements Controller {
 			if(userDTO == null) {
 				MainDispatcher.getInstance().callView(sub_package + "UserRead", null);
 			}
+			List<ServerFraDTO> serverFraDto = ServerFraService.read(id);
 			List<UrlTableDTO> urlTableDto = ShortUrlService.read(id);
+			request.put("serverList", serverFraDto);
 			request.put("user", userDTO);
 			request.put("urltable", urlTableDto);
 			MainDispatcher.getInstance().callView(sub_package + "UserRead", request);

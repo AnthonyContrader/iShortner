@@ -38,6 +38,7 @@ public class UserView extends AbstractView {
 				System.out.println(u);
 			System.out.println();
 		}
+		request = null;
 	}
 
 	/**

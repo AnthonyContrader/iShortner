@@ -11,7 +11,7 @@ public class UserUrlView extends AbstractView {
 
 	@Override
 	public void showResults(Request request) {
-		// TODO Auto-generated method stub
+		
 		r = request;
 	}
 
@@ -24,7 +24,7 @@ public class UserUrlView extends AbstractView {
 
 	@Override
 	public void submit() {
-		// TODO Auto-generated method stub
+		
 		r.put("url", url);
 		MainDispatcher.getInstance().callAction("ShortUrl", "doControl", r);
 	}

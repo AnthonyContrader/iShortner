@@ -6,15 +6,17 @@ import java.util.List;
 
 import it.contrader.main.ConnectionSingleton;
 import it.contrader.model.ServerFra;
+import it.contrader.model.UrlTable;
 import it.contrader.model.User;
 
 public class ServerFraDAO {
 
 	private final String QUERY_ALL = "SELECT * FROM server";
 	private final static String QUERY_CREATE = "INSERT INTO server (nome_citta, fk_id_url) VALUES (?,?)";
-	private final String QUERY_READ = "SELECT * FROM server WHERE id=?";
+	private final static String QUERY_READ = "SELECT * FROM server WHERE fk_id_url=?";
 	private final String QUERY_UPDATE = "UPDATE server SET id=?, nome_citta=?";
 	private final String QUERY_DELETE = "DELETE FROM server WHERE id=?";
+	private final static String QUERY_READ2 = "SELECT * FROM url WHERE fk_id_user=?";
 
 	public ServerFraDAO() {
 
@@ -44,9 +46,8 @@ public class ServerFraDAO {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {	
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_CREATE);
-			//preparedStatement.setInt(1, serverToInsert.getId());
 			preparedStatement.setString(1, serverToInsert.getNomeCitta());
-			preparedStatement.setString(2, serverToInsert.getFk());
+			preparedStatement.setInt(2, serverToInsert.getFk());
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {
@@ -55,28 +56,28 @@ public class ServerFraDAO {
 
 	}
 
-	public static void read(int serverId) {
+	public static List<ServerFra> read(int serverId) {
 		Connection connection = ConnectionSingleton.getInstance();
-		/*try {
-
-
-			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_READ);
+		List<ServerFra>  serverList = new ArrayList<ServerFra>();
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_READ2);
 			preparedStatement.setInt(1, serverId);
 			ResultSet resultSet = preparedStatement.executeQuery();
-			resultSet.next();
-			int id, fk_id_url;
-			String nome_citta;
-
-			id = resultSet.getInt("id");
-			nome_citta = resultSet.getString("nome_citta");
-			fk_id_url = resultSet.getInt("fk_id_url");
-			//ServerFra server = new ServerFra(id, nome_citta, fk_id_url);
-			server.setId(resultSet.getInt("id"));
-
-			return server;
+			PreparedStatement prep = connection.prepareStatement(QUERY_READ);
+			while(resultSet.next()) {
+				ServerFra server = new ServerFra();
+				int id = resultSet.getInt("id_url");
+				prep.setInt(1, id);
+				ResultSet result = prep.executeQuery();
+				result.next();
+				String città = result.getString("nome_citta");
+				server.setNomeCitta(città);
+				serverList.add(server);
+			}
+			return serverList;
 		} catch (SQLException e) {
 			return null;
-		}*/
+		}
 
 	}
 

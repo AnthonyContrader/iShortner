@@ -1,6 +1,7 @@
 package it.contrader.controller;
 
 import it.contrader.main.MainDispatcher;
+import it.contrader.model.User;
 import it.contrader.service.LoginService;
 
 public class HomeController implements Controller {
@@ -24,10 +25,15 @@ public class HomeController implements Controller {
 			String password = request.get("password").toString();
 
 			// Qui invoca il Login Service
-			String usertype= loginService.login(username, password);
-
+			User user = loginService.login(username, password);
+			
+			request.put("id", user.getId());
+			if(user.getId() == 0 && user.getUsername() == null && user.getPassword() == null){
+				request.put("logFail", 1);
+				MainDispatcher.getInstance().callView("Login", request);
+			}
 			// Reindirizza alla giusta view in base allo usertype
-			switch(usertype) {
+			switch(user.getUsertype()) {
 			
 				case "ADMIN":
 					MainDispatcher.getInstance().callView("HomeAdmin", request);
@@ -38,7 +44,6 @@ public class HomeController implements Controller {
 					break;
 				
 				default:
-					System.out.println(request);
 					 MainDispatcher.getInstance().callView("Login", null);
 					 break;
 			}

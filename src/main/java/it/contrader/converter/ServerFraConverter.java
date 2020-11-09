@@ -19,7 +19,7 @@ public class ServerFraConverter {
 		return server;
 	}
 	
-	public List<ServerFraDTO> toDTOList(List<ServerFra> serverList) {
+	public static List<ServerFraDTO> toDTOList(List<ServerFra> serverList) {
 		List<ServerFraDTO> serverDTOList = new ArrayList<ServerFraDTO>();
 		for(ServerFra server : serverList) {
 			serverDTOList.add(toDTO(server));

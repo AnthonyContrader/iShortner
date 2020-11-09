@@ -3,12 +3,9 @@ package it.contrader.service;
 import java.util.List;
 
 import it.contrader.converter.ServerFraConverter;
-import it.contrader.converter.UserConverter;
 import it.contrader.dao.ServerFraDAO;
-import it.contrader.dao.UserDAO;
 import it.contrader.dto.ServerFraDTO;
 import it.contrader.dto.UrlTableDTO;
-import it.contrader.dto.UserDTO;
 
 public class ServerFraService {
 	
@@ -16,32 +13,25 @@ public class ServerFraService {
 
 	
 	public static void generator(UrlTableDTO url) {
-		
 		ServerFraDTO server = new ServerFraDTO();
-		
-		int index = (int)(countries.length*Math.random());
-		String s= countries[index];
+		int min = 0;
+		int max = countries.length;
+		int index = (int)(Math.random() * (max - min));
+		String s = countries[index];
 		server.setNomeCitta(s);
-		
+		server.setFK(url.getId());
 		insert(server);
-		
-		
-		
 	}
+		
 	
-	private static ServerFraDAO serverDAO;
-	private static ServerFraConverter serverConverter;
-	
-	
-	/*public static ServerFraDTO read(int id) {
-		// Ottiene un'entit� e la restituisce convertendola in DTO
-		return serverConverter.toDTO(serverDAO.read(id));
-	}*/
+	public static List<ServerFraDTO> read(int id) {
+		return ServerFraConverter.toDTOList(ServerFraDAO.read(id));
+	}
 
 
 	public static boolean insert(ServerFraDTO dto) {
 		// Converte un DTO in entit� e lo passa al DAO per l'inserimento
-		return serverDAO.insert(serverConverter.toEntity(dto));
+		return ServerFraDAO.insert(ServerFraConverter.toEntity(dto));
 	}
 
 

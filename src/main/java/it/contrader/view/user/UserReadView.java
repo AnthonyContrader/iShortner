@@ -4,6 +4,7 @@ package it.contrader.view.user;
 import java.util.List;
 
 import it.contrader.controller.Request;
+import it.contrader.dto.ServerFraDTO;
 import it.contrader.dto.UrlTableDTO;
 import it.contrader.dto.UserDTO;
 import it.contrader.main.MainDispatcher;
@@ -37,12 +38,21 @@ public class UserReadView extends AbstractView {
 		if (request != null) {
 			UserDTO user = (UserDTO) request.get("user");
 			System.out.println("\n");
-			System.out.println(user.getUsername()+" "+user.getUsertype());
+			@SuppressWarnings("unchecked")
+			List<ServerFraDTO> serverList = (List<ServerFraDTO>) request.get("serverList");
 			@SuppressWarnings("unchecked")
 			List<UrlTableDTO> urlTableDto = (List<UrlTableDTO>) request.get("urltable");
-			for (UrlTableDTO u: urlTableDto)
-				System.out.println(u.getId()+ "\t" +u.getUrl());
-			System.out.println();
+			String u = "";
+			String s = "";
+			String h = user.getUsername() + "\t" + "Url\t\tPosizione";
+			System.out.println("\tLista url\n----------------------------");
+			System.out.println(h);
+			for(int i=0; i<urlTableDto.size(); i++) {
+				u = urlTableDto.get(i).getId() + "\t" + urlTableDto.get(i).getUrl() + "\t";
+				s = serverList.get(i).getNomeCitta();
+				System.out.println(u+s);
+			}
+
 			MainDispatcher.getInstance().callView("User", null);
 		}
 	}

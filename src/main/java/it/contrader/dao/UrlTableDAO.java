@@ -43,7 +43,7 @@ public class UrlTableDAO {
 			while (resultSet.next()) {
 				int id = resultSet.getInt("id");
 				String url = resultSet.getString("url");
-				String id_user = resultSet.getString("fk_user");
+				int id_user = resultSet.getInt("fk_user");
 				u = new UrlTable(id, url, id_user);
 				u.setId(id);
 				urlList.add(u);
@@ -54,40 +54,43 @@ public class UrlTableDAO {
 		return urlList;
 	}
 	
-	public static boolean insert(UrlTable urlToInsert) {
+	public static UrlTable insert(UrlTable urlToInsert) {
 		Connection connection = ConnectionSingleton.getInstance();
+		UrlTable urlTable = new UrlTable();
 		try {	
 			
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_CREATE);
 			//preparedStatement con setString id
 			preparedStatement.setString(1, urlToInsert.getUrl());
-			preparedStatement.setString(2, urlToInsert.getFk_id_user());	
-			preparedStatement.execute();		
-			return true;
+			preparedStatement.setInt(2, urlToInsert.getFk_id_user());	
+			preparedStatement.execute();
+			connection = ConnectionSingleton.getInstance();
+			preparedStatement = connection.prepareStatement("select *from url ORDER BY id_url DESC LIMIT 1");
+			ResultSet resultSet = preparedStatement.executeQuery();
+			resultSet.next();
+			int id = resultSet.getInt("id_url");	
+			urlTable.setId(id);
+			return urlTable;
 		} catch (SQLException e) {
-			return false;
+			return urlTable;
 		}
 
 	}
-	
+	//todo
 	public static List<UrlTable> read(int urlId) {
 		List<UrlTable> urlList = new ArrayList<>();
 		Connection connection = ConnectionSingleton.getInstance();
-		UrlTable urlTable;
 		int id = 0;
 		try {
-			PreparedStatement prepStat = connection.prepareStatement(QUERY_READ2);
+			PreparedStatement prepStat = connection.prepareStatement(QUERY_READ);
 			prepStat.setInt(1, urlId);
-			ResultSet result = prepStat.executeQuery();
-			result.next();
-			String username = result.getString("username");
-			prepStat = connection.prepareStatement(QUERY_READ);
-			prepStat.setString(1, username);
 			ResultSet resultSet = prepStat.executeQuery();
+
 			while(resultSet.next()) {
 				id +=1;
 				String url = resultSet.getString("url");
-				urlTable = new UrlTable(id, url);
+				UrlTable urlTable = new UrlTable();
+				urlTable.setId(id);
 				urlTable.setUrl(url);
 				urlList.add(urlTable);
 			}
@@ -96,63 +99,6 @@ public class UrlTableDAO {
 			return null;
 		}
 
-	}
-
-	/*
-	public boolean update(Url_Table urlToUpdate) {
-		Connection connection = ConnectionSingleton.getInstance();
-
-		// Controlla se l'id è presente
-		if (urlToUpdate.getId() == 0)
-			return false;
-
-		Url_Table urlRead = read(urlToUpdate.getId());
-		if (!urlRead.equals(urlToUpdate)) {
-			try {
-				// Fill the userToUpdate object
-				if (urlToUpdate.getUrl() == null || urlToUpdate.getUrl().equals("")) {
-					urlToUpdate.setUrl(urlRead.getUrl());
-				}
-
-				//Ho dubbi su questo controllo!
-				if (urlToUpdate.getFk_id_user() == 0) {
-					urlToUpdate.setFk_id_user(urlRead.getFk_id_user());
-				}
-
-
-				// Update the user
-				PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE);
-				preparedStatement.setInt(1, urlToUpdate.getId());
-				preparedStatement.setString(2, urlToUpdate.getUrl());
-				preparedStatement.setInt(3, urlToUpdate.getFk_id_user());
-				int a = preparedStatement.executeUpdate();
-				if (a > 0)
-					return true;
-				else
-					return false;
-
-			} catch (SQLException e) {
-				return false;
-			}
-		}
-
-		return false;
-
-	}
-	*/
-
-	public boolean delete(int idUrl) {
-		Connection connection = ConnectionSingleton.getInstance();
-		try {
-			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_DELETE);
-			preparedStatement.setInt(1, idUrl);
-			int n = preparedStatement.executeUpdate();
-			if (n != 0)
-				return true;
-
-		} catch (SQLException e) {
-		}
-		return false;
 	}
 
 }

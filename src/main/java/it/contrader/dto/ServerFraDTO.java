@@ -35,8 +35,8 @@ public class ServerFraDTO {
 		return this.fk_id_url;
 	}
 	
-	public void setFK(int fk_id_url) {
-		this.fk_id_url=fk_id_url;
+	public void setFK(int i) {
+		this.fk_id_url=i;
 	}
 
 	
