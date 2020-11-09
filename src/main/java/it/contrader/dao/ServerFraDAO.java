@@ -70,8 +70,8 @@ public class ServerFraDAO {
 				prep.setInt(1, id);
 				ResultSet result = prep.executeQuery();
 				result.next();
-				String città = result.getString("nome_citta");
-				server.setNomeCitta(città);
+				String citta = result.getString("nome_citta");
+				server.setNomeCitta(citta);
 				serverList.add(server);
 			}
 			return serverList;

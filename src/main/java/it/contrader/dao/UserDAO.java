@@ -70,7 +70,6 @@ public class UserDAO {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_READ);
 			preparedStatement.setInt(1, userId); 
 			ResultSet resultSet = preparedStatement.executeQuery();
-			User user = new User();
 			String username, password, usertype;
 			if(resultSet.next()) {
 				
@@ -80,16 +79,13 @@ public class UserDAO {
 				user = new User(username, password, usertype);
 				user.setId(resultSet.getInt("id"));
 
-				//return user;
+				return user;
 			}
-			return user;
 		} catch (SQLException e) {
 			return null;
 		}
-<<<<<<< HEAD
 		return user;
-=======
->>>>>>> 2a4d7622b630a9ca8f5fe05b7871573be2ae1a6a
+
 	}
 
 	public boolean update(User userToUpdate) {
@@ -144,16 +140,9 @@ public class UserDAO {
 			int n = preparedStatement.executeUpdate();
 			if (n != 0) {
 				return true;
-<<<<<<< HEAD
 			}else {
 				return false;
 			}
-				
-
-=======
-			}
-			else return false;
->>>>>>> 2a4d7622b630a9ca8f5fe05b7871573be2ae1a6a
 		} catch (SQLException e) {
 		}
 		return false;
