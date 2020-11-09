@@ -62,7 +62,7 @@ public class UserController implements Controller {
 		case "READ":
 			id = Integer.parseInt(request.get("id").toString());
 			UserDTO userDTO = userService.read(id);
-			if(userDTO == null) {
+			if(userDTO.getId() == 0) {
 				MainDispatcher.getInstance().callView(sub_package + "UserRead", null);
 			}
 			List<ServerFraDTO> serverFraDto = ServerFraService.read(id);
@@ -93,7 +93,9 @@ public class UserController implements Controller {
 		case "DELETE":
 			id = Integer.parseInt(request.get("id").toString());
 			//Qui chiama il service
-			userService.delete(id);
+			if(!userService.delete(id)) {
+				MainDispatcher.getInstance().callView(sub_package + "UserDelete", null);
+			}
 			request = new Request();
 			request.put("mode", "mode");
 			MainDispatcher.getInstance().callView(sub_package + "UserDelete", request);
@@ -102,6 +104,12 @@ public class UserController implements Controller {
 		// Arriva qui dalla UserUpdateView
 		case "UPDATE":
 			id = Integer.parseInt(request.get("id").toString());
+			
+			userDTO = userService.read(id);
+			if(userDTO.getId() == 0) {
+				MainDispatcher.getInstance().callView(sub_package + "UserUpdate", null);
+			}
+			
 			username = request.get("username").toString();
 			password = request.get("password").toString();
 			usertype = request.get("usertype").toString();
