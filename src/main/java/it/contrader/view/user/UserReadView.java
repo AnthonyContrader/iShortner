@@ -52,7 +52,6 @@ public class UserReadView extends AbstractView {
 				s = serverList.get(i).getNomeCitta();
 				System.out.println(u+s);
 			}
-
 			MainDispatcher.getInstance().callView("User", null);
 		}
 	}

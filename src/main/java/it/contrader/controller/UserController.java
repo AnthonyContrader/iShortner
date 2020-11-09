@@ -62,7 +62,11 @@ public class UserController implements Controller {
 		case "READ":
 			id = Integer.parseInt(request.get("id").toString());
 			UserDTO userDTO = userService.read(id);
+<<<<<<< HEAD
+			if(userDTO.getUsername() == null && userDTO.getPassword() == null && userDTO.getId() == 0) {
+=======
 			if(userDTO.getId() == 0) {
+>>>>>>> 2a4d7622b630a9ca8f5fe05b7871573be2ae1a6a
 				MainDispatcher.getInstance().callView(sub_package + "UserRead", null);
 			}
 			List<ServerFraDTO> serverFraDto = ServerFraService.read(id);

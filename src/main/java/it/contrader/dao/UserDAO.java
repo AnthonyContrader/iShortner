@@ -64,6 +64,7 @@ public class UserDAO {
 
 	public User read(int userId) {
 		Connection connection = ConnectionSingleton.getInstance();
+		User user = new User();
 		try {
 
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_READ);
@@ -85,6 +86,10 @@ public class UserDAO {
 		} catch (SQLException e) {
 			return null;
 		}
+<<<<<<< HEAD
+		return user;
+=======
+>>>>>>> 2a4d7622b630a9ca8f5fe05b7871573be2ae1a6a
 	}
 
 	public boolean update(User userToUpdate) {
@@ -139,8 +144,16 @@ public class UserDAO {
 			int n = preparedStatement.executeUpdate();
 			if (n != 0) {
 				return true;
+<<<<<<< HEAD
+			}else {
+				return false;
+			}
+				
+
+=======
 			}
 			else return false;
+>>>>>>> 2a4d7622b630a9ca8f5fe05b7871573be2ae1a6a
 		} catch (SQLException e) {
 		}
 		return false;

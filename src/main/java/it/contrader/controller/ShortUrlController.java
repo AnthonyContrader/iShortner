@@ -22,7 +22,14 @@ public class ShortUrlController extends AbstractView implements Controller{
 			UrlTableDTO urlTableDto = new UrlTableDTO();
 			urlTableDto.setUrl(url);
 			urlTableDto = ShortUrlService.createShortUrl(user, urlTableDto);
-			if(urlTableDto.getId() == 0) {
+			if(urlTableDto == null) {
+				request.put("wrongUrl", "No");
+				request.put("username", username);
+				request.put("url", null);
+				request.put("shortUrl", null);
+				MainDispatcher.getInstance().callView("HomeUser", request);
+			}
+			else if(urlTableDto.getId() == 0 && urlTableDto.getUrl() == null && urlTableDto.getFk_id_user() == 0) {
 				request.put("wrongUrl", "No");
 				request.put("username", username);
 				request.put("url", null);

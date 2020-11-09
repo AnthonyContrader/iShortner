@@ -19,7 +19,7 @@ public class ShortUrlService {
 
 	public static UrlTableDTO createShortUrl(UserDTO user, UrlTableDTO url) throws MalformedURLException {	
 		UrlTableDTO urlTableDto = new UrlTableDTO();
-		if(isReachable(url.getUrl()) ) {
+		if(isReachable(url.getUrl()) ) { 
 			String shortUrl = "iShort.ly/"+generateRndString();
 			urlTableDto.setUrl(url.getUrl());
 			urlTableDto.setFk_id_user(user.getId());
