@@ -12,10 +12,6 @@ import it.contrader.dto.UrlTableDTO;
 import it.contrader.dto.UserDTO;
 import it.contrader.service.ShortUrlService;
 
-import it.contrader.dto.UrlTableDTO;
-import it.contrader.dto.UserDTO;
-import it.contrader.service.ShortUrlService;
-
 public class UrlServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
