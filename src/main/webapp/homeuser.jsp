@@ -30,7 +30,7 @@
 		      <input type="text" id="input" name="url" placeholder="Insert url">
 		    </div>
 		  </div>
-		      <button class="2" type="submit" >Convert</button>
+		      <button type="submit" >Convert</button>
 		</form>
 	</div>
 </div>
