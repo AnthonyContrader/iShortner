@@ -67,7 +67,7 @@ h2 {
 }
 .login{
 	position:fixed;
-	heigth:50%;
+	height:50%;
 	width:20%;
 	margin-left:35.6%;
 	margin-right:44.4%;
@@ -124,7 +124,7 @@ table {
 	width: 50%;
 	float:left;
 	border-radius:4px;
-    -moz-border-radius:4px;
+	-moz-border-radius:4px;
 }
 
 
@@ -140,7 +140,6 @@ tr:nth-child(even) {
 th {
 	background-color: #00a990;
 	color: #ffffff;
-	
 }
 
 a:hover {
@@ -219,9 +218,9 @@ form {
 
 .col-26 {
 	float: left;
-  	width: 20%;
-  	margin-top: 12px;
-  	margin-left: 5%;
+	width: 20%;
+	margin-top: 12px;
+	margin-left: 5%;
 }
 
 .col-75 {
@@ -233,17 +232,17 @@ form {
 .col-76 {
 	float: left;
 	width: 70%;
-  	margin-top: 6px;
+	margin-top: 6px;
 }
 
 /*
 * Placeholder cross browser
 * */
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
-color: green;
+color: grey;
 }
 input:-moz-placeholder, textarea:-moz-placeholder {
-color: green;
+color: grey;
 }
 input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 color: grey;
@@ -341,6 +340,14 @@ div.navbar a:hover {
 div.navbar a.active {
 	background: #00ccad;
 	color: #ffffff;
+}
+
+div.url {
+	color: #00c400;
+}
+
+div.urlerr {
+	color: #c90c0c;
 }
 
 /*Images*/

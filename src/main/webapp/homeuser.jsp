@@ -1,9 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="java.util.List"
-	import="it.contrader.dto.UserDTO"%>
+	import="it.contrader.dto.UserDTO"
+	import="it.contrader.dto.UrlTableDTO"%>
 <!DOCTYPE html>
 <html>
 <head>
+
+<%
+	UrlTableDTO url = (UrlTableDTO)request.getAttribute("url"); 
+	String urlShort = "";
+	String urlError = "";
+	if(url != null) {
+		urlShort = url.getShortUrl();
+		if(urlShort == null) {
+			urlShort = "";
+			urlError = "URL non valido!";
+		}
+	}
+%>
+
 <meta charset="ISO-8859-1">
 <title>Home User</title>
 <link href="css/vittoriostyle.css" rel="stylesheet">
@@ -27,10 +42,13 @@
 		      <label>Insert URL</label>
 		    </div>
 		    <div class="col-76">
-		      <input type="text" id="input" name="url" placeholder="Insert url">
+		      <input type="text" id="input" name="url" placeholder="www.sample.com">
 		    </div>
 		  </div>
-		      <button type="submit" >Convert</button>
+		<%-- <%=urlError?"<p>true</p>":"<p>false</p>"%> --%>
+		  <div class="url"><a target="_blank" href=<%=urlShort%>><%=urlShort%></a></div>
+		  <div class="urlerr"><%=urlError%></div>
+		    <button type="submit">Convert</button>
 		</form>
 	</div>
 </div>
