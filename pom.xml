@@ -53,21 +53,17 @@
             <version>5.0.2.RELEASE</version>
         </dependency>
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.44</version>
-        </dependency>
-        <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-csv</artifactId>
             <version>1.4</version>
         </dependency>
-        <dependency>
+		<dependency>
 		    <groupId>mysql</groupId>
 		    <artifactId>mysql-connector-java</artifactId>
 		    <version>8.0.22</version>
 		</dependency>
     </dependencies>
+        
     <build>
         <finalName>JspApp</finalName>
         <plugins>
