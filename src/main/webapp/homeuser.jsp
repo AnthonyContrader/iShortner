@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Home Admin</title>
+<title>Home User</title>
 <link href="css/vittoriostyle.css" rel="stylesheet">
 </head>
 <body>
@@ -13,15 +13,26 @@
 
 
 <div class="navbar">
-  <a class="active" href="homeadmin.jsp">Home</a>
-  <a href="UserServlet?mode=userlist">Users</a>
+  <a class="active" href="homeuser.jsp">Home</a>
   <a href="LogoutServlet" id="logout">Logout</a>
 </div>
 
 <div class="main">
 <h1>Welcome ${user.getUsername()}</h1>
 
-In quanto amministratore puoi visualizzare le informazioni sugli utenti!
+<div align="center">
+<form action="" method="post">
+  <div class="row">
+    <div class="col-26">
+      <label>Insert URL</label>
+    </div>
+    <div class="col-76">
+      <input type="text" placeholder="http://example.com">
+    </div>
+  </div>
+      <button class="2" type="submit" >Convert</button>
+</form>
+</div>
 
 </div>
 

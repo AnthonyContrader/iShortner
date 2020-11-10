@@ -21,7 +21,7 @@ public class ConnectionSingleton {
             try {
                 String vendor="mysql";
                 String driver="com.mysql.cj.jdbc.Driver";
-                String host="127.0.0.1";
+                String host="localhost";
                 String port="3306";
                 String dbName="sampledb";
                 String username="root";
