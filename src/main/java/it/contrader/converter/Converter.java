@@ -9,7 +9,7 @@ import java.util.List;
  * @param <Entity>
  * @param <DTO>
  * 
- * Questa interfaccia firma i metodi dei converter (vedi guida JavaCOnsolePro, sez Interfacce e Clasi Astratte)
+ * Questa interfaccia firma i metodi dei converter (vedi guida JavaCOnsolePro, sez Interfacce e Classi Astratte)
  */
 public interface Converter<Entity, DTO> {
 

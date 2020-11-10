@@ -3,6 +3,8 @@ package it.contrader.utils;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+
 
 public class ConnectionSingleton {
 
@@ -19,7 +21,7 @@ public class ConnectionSingleton {
             try {
                 String vendor="mysql";
                 String driver="com.mysql.cj.jdbc.Driver";
-                String host="127.0.0.1";
+                String host="localhost";
                 String port="3306";
                 String dbName="sampledb";
                 String username="root";
@@ -29,9 +31,9 @@ public class ConnectionSingleton {
                 System.out.println("Ho caricato: " + c.getName());
                 String url = "jdbc:" + vendor + "://" + host + ":" + port + "/" + dbName+"?"+jdbcAdditionalParams;
                 connection = (Connection) DriverManager.getConnection(url, username, password);
-               // DriverManagerDataSource dataSource = new DriverManagerDataSource(myUrl, username, password);
-                //dataSource.setDriverClassName(driver);
-                //connection = dataSource.getConnection();
+                DriverManagerDataSource dataSource = new DriverManagerDataSource(url, username, password);
+                dataSource.setDriverClassName(driver);
+                connection = dataSource.getConnection();
             } catch (Exception e) {
                 e.printStackTrace();
             }
