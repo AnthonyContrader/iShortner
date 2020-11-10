@@ -190,7 +190,7 @@ input {
 }
 
 input:hover {
-  background-color:  #00ccad;
+  border: 2px solid #00ccad;
 }
 
 
@@ -217,10 +217,36 @@ form {
   margin-top: 6px;
 }
 
+.col-26 {
+	float: left;
+  	width: 20%;
+  	margin-top: 12px;
+  	margin-left: 5%;
+}
+
 .col-75 {
   float: left;
   width: 75%;
   margin-top: 6px;
+}
+
+.col-76 {
+	float: left;
+	width: 70%;
+  	margin-top: 6px;
+}
+
+/*
+* Placeholder cross browser
+* */
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+color: green;
+}
+input:-moz-placeholder, textarea:-moz-placeholder {
+color: green;
+}
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+color: grey;
 }
 
 /* Clear floats after the columns */

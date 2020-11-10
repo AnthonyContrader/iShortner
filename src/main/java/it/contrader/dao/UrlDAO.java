@@ -73,11 +73,10 @@ public class UrlDAO {
 		}
 
 		
-	public UrlTable insert(UrlTable urlToInsert) {
+	public static UrlTable insert(UrlTable urlToInsert) {
 		Connection connection = ConnectionSingleton.getInstance();
-		UrlTable urlTable = new UrlTable();
+		UrlTable urlTable = new UrlTable();	
 		try {	
-			
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_CREATE);
 			preparedStatement.setString(1, urlToInsert.getLongUrl());
 			preparedStatement.setString(2, urlToInsert.getShortUrl());
@@ -89,7 +88,9 @@ public class UrlDAO {
 			ResultSet resultSet = preparedStatement.executeQuery();
 			resultSet.next();
 			int id = resultSet.getInt("id");	
-			urlTable.setId(id);
+			urlTable.setId(id);	
+			urlTable.setLongUrl(urlToInsert.getLongUrl());
+			urlTable.setShortUrl(urlToInsert.getShortUrl());
 			return urlTable;
 			
 		} catch (SQLException e) {

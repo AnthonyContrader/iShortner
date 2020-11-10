@@ -10,7 +10,7 @@ import it.contrader.model.User;
  * 
  * @author Vittorio
  * 
- * Implementando questa l'interfaccia converter la classe UserConverter è OBBLIGATA ad implementarne i metodi
+ * Implementando questa l'interfaccia converter la classe UserConverter ï¿½ OBBLIGATA ad implementarne i metodi
  *
  */
 public class UserConverter  implements Converter<User, UserDTO> {

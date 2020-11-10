@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import it.contrader.dto.UrlTableDTO;
 import it.contrader.dto.UserDTO;
 import it.contrader.service.LoginService;
 
@@ -26,7 +28,6 @@ public class LoginServlet extends HttpServlet {
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		final HttpSession session = request.getSession();
 		session.setAttribute("utente", null);
-
 		LoginService service = new LoginService();
 
 		if (request != null) {
@@ -34,22 +35,30 @@ public class LoginServlet extends HttpServlet {
 			String password = request.getParameter("password").toString();
 			//come nei vecchi controller, invoca il service
 			UserDTO dto = service.login(username, password);
-			if (dto != null)
+			UrlTableDTO url = new UrlTableDTO();
+			
+			//Aggiunto controllo login, se service torna un oggetto vuoto la view rimane nel login
+			
+			if (dto.getUsertype() != null && dto.getUsername() != null && dto.getPassword() != null && dto.getId() != 0) {
 				//se il login ha funzionato, salva l'utente nella sessione
 				session.setAttribute("user", dto);
-			else
+			}else {
 				//altrimenti torna alla pagina di login
 				getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+			}
 			
 			//esegue una switch cae in base allo usertype per il reindirizzamento
 			switch (dto.getUsertype().toUpperCase()) {
+			
 			case "ADMIN":
 				//questo metodo reindirizza alla JSP tramite URL con una request e una response
 				getServletContext().getRequestDispatcher("/homeadmin.jsp").forward(request, response);
 				break;
 				
 			case "USER":
-				getServletContext().getRequestDispatcher("/homeadmin.jsp").forward(request, response);
+
+				getServletContext().getRequestDispatcher("/homeuser.jsp").forward(request, response);
+
 				break;
 				
 			default:

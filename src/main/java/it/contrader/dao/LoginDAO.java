@@ -21,7 +21,7 @@ public class LoginDAO {
 
 	
 	public User login (String username, String password) {
-
+		User user = new User();
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement statement = connection.prepareStatement(QUERY_LOGIN);
@@ -37,12 +37,12 @@ public class LoginDAO {
 				resultSet.next();
 				String usertype = resultSet.getString("usertype");
 				int id = resultSet.getInt("id");
-				User user = new User(id, username, password, usertype);
+				user = new User(id, username, password, usertype);
 				
 				return user;
 			}
-
-			return null;
+			//aggiunto return user vuoto cosi che torni un oggetto null
+			return user;
 		}
 		
 		catch (SQLException e) {
