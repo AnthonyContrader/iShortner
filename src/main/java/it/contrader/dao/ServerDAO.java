@@ -13,18 +13,13 @@ import it.contrader.utils.ConnectionSingleton;
 
 public class ServerDAO {
 
-
-
+	
 	private final static String QUERY_CREATE = "INSERT INTO server (posizione, tipologia, date, fk_idurl) VALUES (?,?,?,?)";
 	private final static String QUERY_READ = "SELECT * FROM server WHERE fk_idurl=?";
 	private final static String QUERY_SUPPORT_READ = "SELECT * FROM url WHERE fk_iduser=?";
 
-	public ServerDAO() {
 
-	}
-	
-
-	public static boolean insert(Server server) {
+	public static void insert(Server server) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {	
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_CREATE);
@@ -33,9 +28,8 @@ public class ServerDAO {
 			preparedStatement.setString(3, server.getData());
 			preparedStatement.setInt(4, server.getFkIdUrl());
 			preparedStatement.execute();
-			return true;
 		} catch (SQLException e) {
-			return false;
+			e.printStackTrace();
 		}
 
 	}

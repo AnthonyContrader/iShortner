@@ -13,22 +13,21 @@ import it.contrader.model.Server;
  *
  */
 
-public class ServerConverter implements Converter<Server, ServerDTO> {
+public class ServerConverter {
 
-	@Override
-	public ServerDTO toDTO(Server server) {
+	
+	public static ServerDTO toDTO(Server server) {
 		ServerDTO serverDTO = new ServerDTO(server.getId(), server.getPosizione(), server.getTipologia(),server.getData(),server.getFkIdUrl());
 		return serverDTO;
 	}
 
-	@Override
-	public Server toEntity(ServerDTO serverDTO) {
+
+	public static Server toEntity(ServerDTO serverDTO) {
 		Server server = new Server(serverDTO.getId(),serverDTO.getPosizione(),serverDTO.getTipologia(),serverDTO.getData(),serverDTO.getFkIdUrl());
 		return server;
 	}
 
-	@Override
-	public List<ServerDTO> toDTOList(List<Server> serverList) {
+	public static List<ServerDTO> toDTOList(List<Server> serverList) {
 		List<ServerDTO> serverDTOList = new ArrayList<ServerDTO>();
 		
 		for (Server server : serverList) {
