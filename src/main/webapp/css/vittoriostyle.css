@@ -281,25 +281,6 @@ button {
   border-radius: 7px;
   width:80%;
 }
-button.2 {
-  -webkit-transition-duration: 0.1s; /* Safari */
-  transition-duration: 0.1s;
-  background-color:  #ff8000;
-  border: none;
-  color: white;
-  padding: 3% 3%;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 130%;
-  margin-left: 10%;
-  margin-right: 10%;
-  margin-top: 5%;
-  margin-bottom: 5%;
-  cursor: pointer;
-  border-radius: 7px;
-  width:10%;
-}
 
 button:hover {
   background-color:  #00ccad; 
