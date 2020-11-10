@@ -12,15 +12,15 @@ import it.contrader.dto.UrlTableDTO;
 import it.contrader.dto.UserDTO;
 import it.contrader.service.ShortUrlService;
 
-/**
- * @author angelarusso
- */
+import it.contrader.dto.UrlTableDTO;
+import it.contrader.dto.UserDTO;
+import it.contrader.service.ShortUrlService;
 
 public class UrlServlet extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
 
-	
-	@Override
+
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		final HttpSession session = request.getSession();
 		
@@ -36,5 +36,4 @@ public class UrlServlet extends HttpServlet {
 			getServletContext().getRequestDispatcher("/homeuser.jsp").forward(request, response);
 		}
 	}
-	
 }

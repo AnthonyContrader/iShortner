@@ -12,8 +12,6 @@ import it.contrader.dto.UserDTO;
 
 public class ShortUrlService {
 
-//	static Request request;
-//	static ServerFraService servFra;
 
 	public static UrlTableDTO createShortUrl(UserDTO user, UrlTableDTO url) throws MalformedURLException {	
 		UrlTableDTO urlTableDto = new UrlTableDTO();
