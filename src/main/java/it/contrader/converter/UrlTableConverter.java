@@ -12,22 +12,20 @@ import it.contrader.model.UrlTable;
  *
  */
 
-public class UrlTableConverter implements Converter<UrlTable, UrlTableDTO>{
+public class UrlTableConverter {
 	
-	@Override
-	public UrlTableDTO toDTO(UrlTable url) {
+	public static UrlTableDTO toDTO(UrlTable url) {
 		UrlTableDTO urlTableDTO = new UrlTableDTO(url.getId(), url.getLongUrl(), url.getShortUrl(), url.getFkIdUser());
 		return urlTableDTO;
 	}
 
-	@Override
-	public UrlTable toEntity(UrlTableDTO urlDTO) {
+
+	public static UrlTable toEntity(UrlTableDTO urlDTO) {
 		UrlTable url = new UrlTable(urlDTO.getId(), urlDTO.getLongUrl(), urlDTO.getShortUrl(), urlDTO.getFkIDUser());
 		return url;
 	}
 	
 	
-	@Override
 	public List<UrlTableDTO> toDTOList(List<UrlTable> urlList) {
 		//Crea una lista vuota.
 		List<UrlTableDTO> urlDTOList = new ArrayList<UrlTableDTO>();

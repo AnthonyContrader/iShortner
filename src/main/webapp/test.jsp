@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="it.contrader.dto.UrlDTO"%>
+    pageEncoding="UTF-8" import="it.contrader.dto.UrlTableDTO"%>
 <!DOCTYPE html>
 <html>
 <head>
 
 <%
-	UrlDTO url = (UrlDTO)request.getAttribute("url"); 
+	UrlTableDTO url = (UrlTableDTO)request.getAttribute("url"); 
 	String urlShort = "";
 	if(url != null){
 		urlShort = url.getShortUrl();

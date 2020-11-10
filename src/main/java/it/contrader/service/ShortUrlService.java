@@ -5,7 +5,9 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import it.contrader.dto.UrlDTO;
+import it.contrader.converter.UrlTableConverter;
+import it.contrader.dao.UrlDAO;
+import it.contrader.dto.UrlTableDTO;
 import it.contrader.dto.UserDTO;
 
 public class ShortUrlService {
@@ -13,17 +15,17 @@ public class ShortUrlService {
 //	static Request request;
 //	static ServerFraService servFra;
 
-	public static UrlDTO createShortUrl(UserDTO user, UrlDTO url) throws MalformedURLException {	
-		UrlDTO urlTableDto = new UrlDTO();
-		if(isReachable(url.getUrl()) ) { 
+	public static UrlTableDTO createShortUrl(UserDTO user, UrlTableDTO url) throws MalformedURLException {	
+		UrlTableDTO urlTableDto = new UrlTableDTO();
+		if(isReachable(url.getLongUrl()) ) { 
 			String shortUrl = "iShort.ly/"+generateRndString();
-			urlTableDto.setUrl(url.getUrl());
-			urlTableDto.setFk_id_user(user.getId());
-			//urlTableDto = UrlTableConverter.toDTO(UrlTableDAO.insert(UrlTableConverter.toEntity(urlTableDto)));
+			urlTableDto.setLongUrl(url.getLongUrl());
+			urlTableDto.setFkIdUser(user.getId());
 			urlTableDto.setShortUrl(shortUrl);
-//			if(urlTableDto.getId() == 0 && urlTableDto.getUrl() == null) {
-//				return urlTableDto;
-//			}
+			urlTableDto = UrlTableConverter.toDTO(UrlDAO.insert(UrlTableConverter.toEntity(urlTableDto)));
+			if(urlTableDto.getId() == 0 && urlTableDto.getLongUrl() == null) {
+				return urlTableDto;
+			}
 			return urlTableDto;
 		}
 		return null;

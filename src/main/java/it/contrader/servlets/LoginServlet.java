@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import it.contrader.dto.UrlDTO;
+import it.contrader.dto.UrlTableDTO;
 import it.contrader.dto.UserDTO;
 import it.contrader.service.LoginService;
 
@@ -35,7 +35,7 @@ public class LoginServlet extends HttpServlet {
 			String password = request.getParameter("password").toString();
 			//come nei vecchi controller, invoca il service
 			UserDTO dto = service.login(username, password);
-			UrlDTO url = new UrlDTO();
+			UrlTableDTO url = new UrlTableDTO();
 			
 			//Aggiunto controllo login, se service torna un oggetto vuoto la view rimane nel login
 			
@@ -56,8 +56,6 @@ public class LoginServlet extends HttpServlet {
 				break;
 				
 			case "USER":
-
-				getServletContext().getRequestDispatcher("/test.jsp").forward(request, response);
 
 				getServletContext().getRequestDispatcher("/homeuser.jsp").forward(request, response);
 

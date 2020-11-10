@@ -33,11 +33,11 @@
     <url-pattern>/UserServlet</url-pattern>
   </servlet-mapping>
   <servlet>
-  	<servlet-name>Test</servlet-name>
-  	<servlet-class>it.contrader.servlets.Test</servlet-class>
+  	<servlet-name>UrlServlet</servlet-name>
+  	<servlet-class>it.contrader.servlets.UrlServlet</servlet-class>
   </servlet>
     <servlet-mapping>
-    <servlet-name>Test</servlet-name>
-    <url-pattern>/Test</url-pattern>
+    <servlet-name>UrlServlet</servlet-name>
+    <url-pattern>/UrlServlet</url-pattern>
   </servlet-mapping>
 </web-app>
