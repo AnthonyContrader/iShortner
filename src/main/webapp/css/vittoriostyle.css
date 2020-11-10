@@ -190,7 +190,7 @@ input {
 }
 
 input:hover {
-  background-color:  #00ccad;
+  border: 2px solid #00ccad;
 }
 
 
