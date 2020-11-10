@@ -21,7 +21,7 @@
 	<h1>Welcome ${user.getUsername()}</h1>
 	
 	<div align="center">
-		<form action="Test" method="post">
+		<form action="UrlServlet" method="post">
 		  <div class="row">
 		    <div class="col-26">
 		      <label>Insert URL</label>
@@ -30,7 +30,7 @@
 		      <input type="text" id="input" name="url" placeholder="Insert url">
 		    </div>
 		  </div>
-		      <button class="2" type="submit" >Convert</button>
+		      <button type="submit" >Convert</button>
 		</form>
 	</div>
 </div>

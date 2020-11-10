@@ -69,9 +69,11 @@ public class ShortUrlService {
                     new InputStreamReader(p.getInputStream()));
             String s = "";
             while ((s = inputStream.readLine()) != null) {
-                if (s.contains("Packets: Sent") || s.contains("bytes of data")) {
+            	System.out.println("6");
+                if (s.contains("Packets: Sent") || s.contains("bytes of data") || s.contains("data bytes")) {
                     return true;
                 }
+                System.out.println("7");
             }
             return false;
         } catch (Exception e) {
