@@ -10,11 +10,8 @@ import javax.servlet.http.HttpSession;
 
 import it.contrader.dao.UrlDAO;
 import it.contrader.dto.UrlTableDTO;
-import it.contrader.dto.UserDTO;
-import it.contrader.service.ServerService;
-import it.contrader.service.ShortUrlService;
 
-public class Test extends HttpServlet {
+public class RedirectServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
@@ -27,9 +24,10 @@ public class Test extends HttpServlet {
 			String urlShort = request.getParameter("keywords");
 			UrlTableDTO urlDTO = new UrlTableDTO();
 			urlDTO.setShortUrl(urlShort);
-			String urlOriginale = UrlDAO.findLongUrl(urlDTO);
+			urlDTO = UrlDAO.findLongUrl(urlDTO);
+			String fullUrl = urlDTO.getLongUrl();
 			response.setStatus(response.SC_MOVED_TEMPORARILY);
-			response.setHeader("Location", urlOriginale);
+			response.setHeader("Location", fullUrl);
 		}
 	
 	}

@@ -26,12 +26,11 @@ public class ServerService {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		Date date = new Date();
 		String d = dateFormat.format(date);
-		System.out.println(dateFormat.format(date)); 
-//		server.setPosizione(pos);
-//		server.setTipologia(bro);
-//		server.setData(d);
-//		server.setFkIdUrl(url.getId());
-		//insert(server);
+		server.setPosizione(pos);
+		server.setTipologia(bro);
+		server.setData(d);
+		server.setFkIdUrl(url.getId());
+		insert(server);
 	}
 		
 	

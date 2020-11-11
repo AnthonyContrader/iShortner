@@ -103,9 +103,10 @@ public class UrlDAO {
 
 	}
 	
-	public static String findLongUrl(UrlTableDTO urlDAO) {
+	public static UrlTableDTO findLongUrl(UrlTableDTO urlDAO) {
 		
 		Connection connection = ConnectionSingleton.getInstance();
+		UrlTableDTO urlTable = new UrlTableDTO();
 		try {
 			PreparedStatement prepStat = connection.prepareStatement(QUERY_GET_LONG);
 			prepStat.setString(1, urlDAO.getShortUrl());
@@ -114,9 +115,9 @@ public class UrlDAO {
 			System.out.println(prepStat);
 			resultSet.next();
 			String longUrl = resultSet.getString("long_url");
-			System.out.println(longUrl);
+			urlTable.setLongUrl(longUrl);
 			
-			return longUrl;
+			return urlTable;
 		} catch (SQLException e) {
 			return null;
 		}

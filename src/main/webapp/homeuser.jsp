@@ -51,7 +51,7 @@
 		    <button type="submit">Convert</button>
 		</form>
 		<br><br>
-		<form action="Test" method="post">
+		<form action="RedirectServlet" method="post">
 			<div class="row">
 				<div class="col-26">
 					<button type="submit" name="pulsante" value="urlLong">Go</button>

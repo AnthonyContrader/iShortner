@@ -17,10 +17,13 @@ public class ShortUrlService {
 
 	public static UrlTableDTO createShortUrl(UserDTO user, UrlTableDTO url) throws MalformedURLException {	
 		UrlTableDTO urlTableDto = new UrlTableDTO();
-		System.out.println(isReachable(url.getLongUrl()));
 		if(isReachable(url.getLongUrl()) ) { 
 			String shortUrl = "iShort.ly/"+generateRndString();
-			urlTableDto.setLongUrl(url.getLongUrl());
+			String longUrl = url.getLongUrl();
+			if(!longUrl.contains("http") && !longUrl.contains("https")) {
+				longUrl = "http://" + longUrl;
+			}
+			urlTableDto.setLongUrl(longUrl);
 			urlTableDto.setFkIdUser(user.getId());
 			urlTableDto.setShortUrl(shortUrl);
 			urlTableDto = UrlTableConverter.toDTO(UrlDAO.insert(UrlTableConverter.toEntity(urlTableDto)));
@@ -70,7 +73,7 @@ public class ShortUrlService {
                     new InputStreamReader(p.getInputStream()));
             String s = "";
             while ((s = inputStream.readLine()) != null) {
-        		Pattern pat = Pattern.compile("\\(([0-9]{1,3}\\.){3}[0-9]{1,3}\\)");
+        		Pattern pat = Pattern.compile("\\(([0-9]{1,3}\\.){3}[0-9]{1,3}\\) | ([01]?[0-9]{1,2}|2[0-4][0-9]|25[0-5])");
         		Matcher m = pat.matcher(s);
         		if (m.find()) {
         			return true;
