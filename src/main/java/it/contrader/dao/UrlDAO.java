@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import it.contrader.dto.UrlTableDTO;
 import it.contrader.model.UrlTable;
 import it.contrader.utils.ConnectionSingleton;
 
@@ -19,6 +21,8 @@ public class UrlDAO {
 	//private final String QUERY_UPDATE = "UPDATE url SET shot_url=?, fk_iduser=?, WHERE id=?";
 	//private final String QUERY_DELETE = "DELETE FROM url WHERE id=?";
 	private final static String QUERY_SUPPORT_CREATE = "SELECT * FROM url ORDER BY id DESC LIMIT 1";
+	
+	private final static String QUERY_GET_LONG = "SELECT * FROM url WHERE short_url=?";
 	
 	public UrlDAO() {
 		
@@ -97,6 +101,25 @@ public class UrlDAO {
 			return urlTable;
 		}
 
+	}
+	
+	public static String findLongUrl(UrlTableDTO urlDAO) {
+		
+		Connection connection = ConnectionSingleton.getInstance();
+		try {
+			PreparedStatement prepStat = connection.prepareStatement(QUERY_GET_LONG);
+			prepStat.setString(1, urlDAO.getShortUrl());
+			ResultSet resultSet = prepStat.executeQuery();
+			System.out.println("1");
+			System.out.println(prepStat);
+			resultSet.next();
+			String longUrl = resultSet.getString("long_url");
+			System.out.println(longUrl);
+			
+			return longUrl;
+		} catch (SQLException e) {
+			return null;
+		}
 	}
 	
 

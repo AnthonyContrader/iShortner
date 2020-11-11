@@ -9,7 +9,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>Test</servlet-name>
-    <url-pattern>/iShort.ly/*</url-pattern>
+    <url-pattern>/Test</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>LoginServlet</servlet-name>

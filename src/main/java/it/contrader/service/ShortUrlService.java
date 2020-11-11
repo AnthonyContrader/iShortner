@@ -18,18 +18,18 @@ public class ShortUrlService {
 	public static UrlTableDTO createShortUrl(UserDTO user, UrlTableDTO url) throws MalformedURLException {	
 		UrlTableDTO urlTableDto = new UrlTableDTO();
 		System.out.println(isReachable(url.getLongUrl()));
-//		if(isReachable(url.getLongUrl()) ) { 
+		if(isReachable(url.getLongUrl()) ) { 
 			String shortUrl = "iShort.ly/"+generateRndString();
-//			urlTableDto.setLongUrl(url.getLongUrl());
-//			urlTableDto.setFkIdUser(user.getId());
+			urlTableDto.setLongUrl(url.getLongUrl());
+			urlTableDto.setFkIdUser(user.getId());
 			urlTableDto.setShortUrl(shortUrl);
-//			urlTableDto = UrlTableConverter.toDTO(UrlDAO.insert(UrlTableConverter.toEntity(urlTableDto)));
-//			if(urlTableDto.getId() == 0 && urlTableDto.getLongUrl() == null) {
-//				return urlTableDto;
-//			}
+			urlTableDto = UrlTableConverter.toDTO(UrlDAO.insert(UrlTableConverter.toEntity(urlTableDto)));
+			if(urlTableDto.getId() == 0 && urlTableDto.getLongUrl() == null) {
+				return urlTableDto;
+			}
 			return urlTableDto;
-//		}
-		//return null;
+		}
+		return null;
 	}
 	
 	public static String generateRndString() {

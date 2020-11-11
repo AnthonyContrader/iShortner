@@ -9,9 +9,11 @@
 <%
 	UrlTableDTO url = (UrlTableDTO)request.getAttribute("url"); 
 	String urlShort = "";
+	//String urlLong = "";
 	String urlError = "";
 	if(url != null) {
 		urlShort = url.getShortUrl();
+		//urlLong = url.getLongUrl();
 		if(urlShort == null) {
 			urlShort = "";
 			urlError = "URL non valido!";
@@ -48,10 +50,17 @@
 		<%-- <%=urlError?"<p>true</p>":"<p>false</p>"%> --%>
 		    <button type="submit">Convert</button>
 		</form>
+		<br><br>
 		<form action="Test" method="post">
-					  <div class="url"><a type="submit" href=<%=urlShort%>><%=urlShort%></a></div>
-		  <div class="urlerr"><%=urlError%></div>
-		</form>
+			<div class="row">
+				<div class="col-26">
+					<button type="submit" name="pulsante" value="urlLong">Go</button>
+				</div>
+				<div class="col-76">
+					<input type="text" name="keywords" value="<%=urlShort%>"/>
+				</div>
+			</div>
+        </form>
 	</div>
 </div>
 
