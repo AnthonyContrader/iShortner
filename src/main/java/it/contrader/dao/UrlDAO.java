@@ -51,7 +51,7 @@ public class UrlDAO {
 	}
 	
 	
-		public List<UrlTable> read(int urlId) {
+		public static List<UrlTable> read(int urlId) {
 			List<UrlTable> urlList = new ArrayList<>();
 			Connection connection = ConnectionSingleton.getInstance();
 			int id = 0;

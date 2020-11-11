@@ -23,13 +23,13 @@
 
 <br>
 
-	<table>
+	<table class="tableManager">
 		<tr>
 			<th>Username</th>
 			<th>Password</th>
-			<th>Usertype</th>
-			<th></th>
-			<th></th>
+			<th>Tipologia</th>
+			<th>Modifica</th>
+			<th>Elimina</th>
 		</tr>
 		<%
 			for (UserDTO u : list) {

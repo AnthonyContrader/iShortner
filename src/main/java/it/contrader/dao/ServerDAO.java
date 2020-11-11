@@ -27,7 +27,9 @@ public class ServerDAO {
 			preparedStatement.setString(2, server.getTipologia());
 			preparedStatement.setString(3, server.getData());
 			preparedStatement.setInt(4, server.getFkIdUrl());
+			System.out.println("1");
 			preparedStatement.execute();
+			System.out.println("2");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

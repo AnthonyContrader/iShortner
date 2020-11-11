@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -56,9 +57,9 @@ public class ShortUrlService {
 //	}
 	
 	
-//	public static List<UrlTableDTO> read(int id) {
-//		return UrlTableConverter.toDTOList(UrlTableDAO.read(id));
-//	}
+	public static List<UrlTableDTO> read(int id) {
+		return UrlTableConverter.toDTOList(UrlDAO.read(id));
+	}
 	
 	public static boolean isReachable(String url) throws MalformedURLException {
         if (!url.contains("http") && !url.contains("https")) {

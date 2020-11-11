@@ -10,8 +10,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import it.contrader.dto.ServerDTO;
+import it.contrader.dto.UrlTableDTO;
 import it.contrader.dto.UserDTO;
+import it.contrader.service.ServerService;
 import it.contrader.service.Service;
+import it.contrader.service.ShortUrlService;
 import it.contrader.service.UserService;
 
 /*
@@ -34,6 +38,9 @@ public class UserServlet extends HttpServlet {
 		Service<UserDTO> service = new UserService();
 		String mode = request.getParameter("mode");
 		UserDTO dto;
+		List<UrlTableDTO> urlDto;
+		List<ServerDTO> serverDto;
+		
 		int id;
 		boolean ans;
 
@@ -47,11 +54,14 @@ public class UserServlet extends HttpServlet {
 		case "READ":
 			id = Integer.parseInt(request.getParameter("id"));
 			dto = service.read(id);
+			urlDto = ShortUrlService.read(id);
+			serverDto = ServerService.read(id);
 			request.setAttribute("dto", dto);
+			request.setAttribute("urlDTO", urlDto);
+			request.setAttribute("serverDTO", serverDto);
 			
 			if (request.getParameter("update") == null) {
 				 getServletContext().getRequestDispatcher("/user/readuser.jsp").forward(request, response);
-				
 			}
 			
 			else getServletContext().getRequestDispatcher("/user/updateuser.jsp").forward(request, response);
