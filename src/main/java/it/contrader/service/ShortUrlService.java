@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import it.contrader.converter.UrlTableConverter;
 import it.contrader.dao.UrlDAO;
@@ -15,18 +17,19 @@ public class ShortUrlService {
 
 	public static UrlTableDTO createShortUrl(UserDTO user, UrlTableDTO url) throws MalformedURLException {	
 		UrlTableDTO urlTableDto = new UrlTableDTO();
-		if(isReachable(url.getLongUrl()) ) { 
+		System.out.println(isReachable(url.getLongUrl()));
+//		if(isReachable(url.getLongUrl()) ) { 
 			String shortUrl = "iShort.ly/"+generateRndString();
-			urlTableDto.setLongUrl(url.getLongUrl());
-			urlTableDto.setFkIdUser(user.getId());
+//			urlTableDto.setLongUrl(url.getLongUrl());
+//			urlTableDto.setFkIdUser(user.getId());
 			urlTableDto.setShortUrl(shortUrl);
-			urlTableDto = UrlTableConverter.toDTO(UrlDAO.insert(UrlTableConverter.toEntity(urlTableDto)));
-			if(urlTableDto.getId() == 0 && urlTableDto.getLongUrl() == null) {
-				return urlTableDto;
-			}
+//			urlTableDto = UrlTableConverter.toDTO(UrlDAO.insert(UrlTableConverter.toEntity(urlTableDto)));
+//			if(urlTableDto.getId() == 0 && urlTableDto.getLongUrl() == null) {
+//				return urlTableDto;
+//			}
 			return urlTableDto;
-		}
-		return null;
+//		}
+		//return null;
 	}
 	
 	public static String generateRndString() {
@@ -67,10 +70,11 @@ public class ShortUrlService {
                     new InputStreamReader(p.getInputStream()));
             String s = "";
             while ((s = inputStream.readLine()) != null) {
-
-                if (s.contains("byte")) {
-                    return true;
-                }
+        		Pattern pat = Pattern.compile("\\(([0-9]{1,3}\\.){3}[0-9]{1,3}\\)");
+        		Matcher m = pat.matcher(s);
+        		if (m.find()) {
+        			return true;
+        		}
             }
             return false;
         } catch (Exception e) {

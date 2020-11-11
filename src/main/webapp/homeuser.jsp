@@ -42,13 +42,15 @@
 		      <label>Insert URL</label>
 		    </div>
 		    <div class="col-76">
-		      <input type="text" id="input" name="url" placeholder="www.sample.com">
+		     <input pattern="(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)|[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)" type="text" id="input" name="url" placeholder="www.sample.com">
 		    </div>
 		  </div>
 		<%-- <%=urlError?"<p>true</p>":"<p>false</p>"%> --%>
-		  <div class="url"><a target="_blank" href=<%=urlShort%>><%=urlShort%></a></div>
-		  <div class="urlerr"><%=urlError%></div>
 		    <button type="submit">Convert</button>
+		</form>
+		<form action="Test" method="post">
+					  <div class="url"><a type="submit" href=<%=urlShort%>><%=urlShort%></a></div>
+		  <div class="urlerr"><%=urlError%></div>
 		</form>
 	</div>
 </div>
