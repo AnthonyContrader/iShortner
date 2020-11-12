@@ -20,6 +20,7 @@ public class UserDAO implements DAO<User> {
 	private final String QUERY_READ = "SELECT * FROM user WHERE id=?";
 	private final String QUERY_UPDATE = "UPDATE user SET username=?, password=?, usertype=? WHERE id=?";
 	private final String QUERY_DELETE = "DELETE FROM user WHERE id=?";
+	private final String QUERY_CONTROL = "SELECT * FROM user WHERE username=?";
 
 	public UserDAO() {
 
@@ -49,8 +50,14 @@ public class UserDAO implements DAO<User> {
 
 	public boolean insert(User userToInsert) {
 		Connection connection = ConnectionSingleton.getInstance();
-		try {	
-			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_CREATE);
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_CONTROL);
+			preparedStatement.setString(1, userToInsert.getUsername());
+			ResultSet resultSet = preparedStatement.executeQuery();			
+			if(resultSet.next()) {
+				return false;
+			}
+			preparedStatement = connection.prepareStatement(QUERY_CREATE);
 			preparedStatement.setString(1, userToInsert.getUsername());
 			preparedStatement.setString(2, userToInsert.getPassword());
 			preparedStatement.setString(3, userToInsert.getUsertype());
