@@ -23,6 +23,8 @@ import it.contrader.service.UserService;
  */
 public class UserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private boolean ans = false;
+	private int inserito;
 
 	public UserServlet() {
 	}
@@ -40,9 +42,9 @@ public class UserServlet extends HttpServlet {
 		UserDTO dto;
 		List<UrlTableDTO> urlDto;
 		List<ServerDTO> serverDto;
-		
+		inserito = 0;
+		request.setAttribute("inserito", inserito);
 		int id;
-		boolean ans;
 
 		switch (mode.toUpperCase()) {
 
@@ -74,7 +76,13 @@ public class UserServlet extends HttpServlet {
 			String usertype = request.getParameter("usertype").toString();
 			dto = new UserDTO (username,password,usertype);
 			ans = service.insert(dto);
-			request.setAttribute("ans", ans);
+			if(ans) {
+				inserito = 1;
+			}
+			else {
+				inserito = 2;
+			}
+			request.setAttribute("inserito", inserito);
 			updateList(request);
 			getServletContext().getRequestDispatcher("/user/usermanager.jsp").forward(request, response);
 			break;
