@@ -35,9 +35,9 @@ div.text{
 	width: 100%;
 	border-radius: 7px;
 	position: relative;
-	padding: 3px;
+	padding: 15px;
 	clear:both;
-	margin-top: 5%;
+	margin-top: 30%;
 	margin-bottom: 1%;
 }
 
@@ -151,7 +151,8 @@ th {
 }
 
 a:hover {
-	color: #999999;
+	color: #2f93d7;
+	text-decoration: underline;
 }
 
 
@@ -272,7 +273,7 @@ label {
 button {
   -webkit-transition-duration: 0.1s; /* Safari */
   transition-duration: 0.1s;
-  background-color:  #00a990;
+  background-color:  #2674a9;
   border: none;
   color: white;
   padding: 3% 3%;
@@ -290,7 +291,7 @@ button {
 }
 
 button:hover {
-  background-color:  #2674a9; 
+  background-color:  #329ce4; 
   color: white;
 }
 
@@ -300,6 +301,12 @@ button:hover {
 #logout {
 	float: right;
 	color: #ffffff;
+}
+
+#logout:hover {
+	float: right;
+	color: #ffffff;
+	text-decoration: underline;
 }
 
 #floatleft {
@@ -343,10 +350,11 @@ div.navbar a {
 div.navbar a:hover {
 	background: #2674a9;
 	color: #ffffff;
+	text-decoration: underline;
 }
 
 div.navbar a.active {
-	background: #2674a9;
+	background: #339ee7;
 	color: #ffffff;
 }
 
