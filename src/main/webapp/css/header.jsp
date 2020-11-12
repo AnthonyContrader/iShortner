@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<div class="header">iShortner Project
+<div class="header">iShortner
 </div>
 
 
