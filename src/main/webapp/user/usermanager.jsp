@@ -19,6 +19,9 @@
 <div class="main">
 	<%
 		List<UserDTO> list = (List<UserDTO>) request.getAttribute("list");
+		int inserito = (int) request.getAttribute("inserito");
+		
+		
 	%>
 
 <br>
@@ -54,6 +57,12 @@
 
 
 <form id="floatright" action="UserServlet?mode=insert" method="post">
+	<div class="row">
+		<div class="col-50 message">
+			<p style="color: green"><%if(inserito == 1)%> Inserito correttamente!</p>
+			<p style="color: red"><%if(inserito == 2)%> Utente già presente!</p>
+		</div>
+	</div>
   <div class="row">
     <div class="col-25">
       <label for="user">Username</label>
@@ -78,12 +87,15 @@
  			<select id="type" name="usertype">
   				<option value="ADMIN">ADMIN</option>
   				<option value="USER">USER</option>
- 
+				
 			</select>
     	</div>
   </div>
+  
       <button type="submit" >Insert</button>
 </form>
+
+
 
 </div>
 <br>
