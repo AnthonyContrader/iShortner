@@ -56,9 +56,8 @@ public class LoginServlet extends HttpServlet {
 				break;
 				
 			case "USER":
-
+				request.setAttribute("url", 1);
 				getServletContext().getRequestDispatcher("/homeuser.jsp").forward(request, response);
-
 				break;
 				
 			default:

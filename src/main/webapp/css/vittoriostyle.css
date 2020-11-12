@@ -5,6 +5,7 @@ html {
 * {
 	font-family: sans-serif;
 }
+
 div.text{
 	clear:both;
 	margin-top: 3%;
@@ -35,13 +36,23 @@ div.text{
 	width: 100%;
 	border-radius: 7px;
 	position: relative;
-	padding: 15px;
-	clear:both;
+	padding: 15px 0;
+	clear: both;
 	margin-top: 30%;
 	margin-bottom: 1%;
 }
 
-/* headers */
+.url {
+	margin: auto;
+	width: 60%;
+	height: 100%;
+	text-align: center;
+	background-color: #f2f2f2;
+	border-radius: 7px;
+}
+
+
+/*Headers*/
 h1 {
 	position: center;
 	text-align: center;
@@ -55,16 +66,15 @@ h2 {
 	color: #000000;
 }
 
-/*Login*/
 
+/*Login*/
 .log{
 	width:95%;
 	z-index:-1;
 	opacity:0.4;
 	position:absolute;
-
-	
 }
+
 .login{
 	position:fixed;
 	height:50%;
@@ -92,7 +102,8 @@ h2 {
 	text-align: center;
 }
 
-/* Anchors */
+
+/*Anchors*/
 a {
 	text-decoration: none;
 }
@@ -118,6 +129,7 @@ a:visited {
 	color: #000000;
 }
 
+
 /*Tables*/
 .tableManager{
 	border-collapse: collapse;
@@ -134,7 +146,6 @@ a:visited {
 	border-radius: 15px;
 	-moz-border-radius:4px;
 }
-
 
 th, td {
 	text-align: center;
@@ -157,7 +168,6 @@ a:hover {
 
 
 /*Forms*/
-
 select {
   width: 100%;
   padding: 14px 20px;
@@ -166,6 +176,7 @@ select {
   background-color: #f2f2f2;
   margin: 8px 0;
 }
+
 select:hover {
   background-color:  #2674a9;
 }
@@ -182,11 +193,8 @@ width: 100%;
 	
 }
 
-
-
-
 input {
-  width: 80%;
+  width: 85%;
   background-color: #ffff;
   color: #000000;
   padding: 14px 20px;
@@ -194,13 +202,23 @@ input {
   border: 1px solid #ccc;
   border-radius: 4px;
   cursor: pointer;
-  float:right;
 }
 
 input:hover {
-  border: 2px solid #2674a9;
+  border: 1px solid #2674a9;
 }
 
+.urlErr {
+	width: 80%;
+	background-color: #fff;
+	color: #d72424;
+	text-align: center;
+	padding: 13px 20px;
+	margin: 8px 0;
+	border: 2px solid #d72424;
+	cursor: pointer;
+	float:right;
+}
 
 res {
 	float: left;
@@ -227,9 +245,7 @@ form {
 
 .col-26 {
 	float: left;
-	width: 20%;
-	margin-top: 12px;
-	margin-left: 5%;
+	width: 30%;
 }
 
 .col-75 {
@@ -241,12 +257,9 @@ form {
 .col-76 {
 	float: left;
 	width: 70%;
-	margin-top: 6px;
 }
 
-/*
-* Placeholder cross browser
-* */
+/* Placeholder cross browser */
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
 color: grey;
 }
@@ -269,7 +282,6 @@ label {
   display: inline-block;
 }
 
-
 button {
   -webkit-transition-duration: 0.1s; /* Safari */
   transition-duration: 0.1s;
@@ -279,7 +291,6 @@ button {
   padding: 3% 3%;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
   font-size: 130%;
   margin-left: 10%;
   margin-right: 10%;
@@ -290,11 +301,18 @@ button {
   width:80%;
 }
 
+button.url {
+	background-color:  #2674a9;
+	width: 100%;
+	padding: 8% 0;
+	margin-left: 15%;
+	margin-top: 5%;
+}
+
 button:hover {
   background-color:  #329ce4; 
   color: white;
 }
-
 
 
 /*IDs*/
@@ -358,12 +376,8 @@ div.navbar a.active {
 	color: #ffffff;
 }
 
-div.url {
-	color: #00c400;
-}
-
-div.urlerr {
-	color: #c90c0c;
+.message {
+	text-align: center;
 }
 
 /*Images*/

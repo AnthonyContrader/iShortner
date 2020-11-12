@@ -26,11 +26,15 @@ public class UrlServlet extends HttpServlet {
 			UrlTableDTO urlDto = new UrlTableDTO();
 			urlDto.setLongUrl(url);
 			UserDTO user = (UserDTO) session.getAttribute("user");
-
 			urlDto = ShortUrlService.createShortUrl(user, urlDto);
-			ServerService.generator(urlDto);
-			request.setAttribute("url", urlDto);
-			getServletContext().getRequestDispatcher("/homeuser.jsp").forward(request, response);
+			if(urlDto != null) {
+				ServerService.generator(urlDto);
+				request.setAttribute("url", urlDto);
+				getServletContext().getRequestDispatcher("/homeuser.jsp").forward(request, response);
+			} else {
+				request.setAttribute("url", null);
+				getServletContext().getRequestDispatcher("/homeuser.jsp").forward(request, response);
+			}
 		}
 	}
 }

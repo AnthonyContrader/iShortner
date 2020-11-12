@@ -111,8 +111,6 @@ public class UrlDAO {
 			PreparedStatement prepStat = connection.prepareStatement(QUERY_GET_LONG);
 			prepStat.setString(1, urlDAO.getShortUrl());
 			ResultSet resultSet = prepStat.executeQuery();
-			System.out.println("1");
-			System.out.println(prepStat);
 			resultSet.next();
 			String longUrl = resultSet.getString("long_url");
 			urlTable.setLongUrl(longUrl);
