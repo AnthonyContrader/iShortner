@@ -190,7 +190,6 @@ width: 100%;
   border: 1px solid #ccc;
   border-radius: 4px;
   cursor: pointer;
-	
 }
 
 input {
@@ -214,10 +213,9 @@ input:hover {
 	color: #d72424;
 	text-align: center;
 	padding: 13px 20px;
-	margin: 8px 0;
+	margin: 8px auto;
 	border: 2px solid #d72424;
 	cursor: pointer;
-	float:right;
 }
 
 res {
