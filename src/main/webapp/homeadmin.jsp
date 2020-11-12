@@ -21,7 +21,7 @@
 <div class="main">
 <h1>Welcome ${user.getUsername()}</h1>
 
-In quanto amministratore puoi visualizzare le informazioni sugli utenti!
+<h3>In quanto amministratore puoi visualizzare le informazioni sugli utenti</h3>
 
 </div>
 

@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="footer">
-Stuff about copyright, legal notes and other useless informations...
+Copyleft Contrader S.r.l. 2020 | All right reserved
 </div>
 </body>
 </html>
