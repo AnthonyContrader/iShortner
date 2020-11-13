@@ -10,11 +10,11 @@
 		<form class="login" action="LoginServlet" method="post">
 			<label for="user">Username: </label>
 			
-			<input type="text" id="user" name="username" placeholder="Insert username">
+			<input required type="text" id="user" name="username" placeholder="Insert username">
 		
 			<label for="pass">Password: </label>
 			
-			<input type="password" id="pass" name="password" placeholder="Insert password">
+			<input required type="password" id="pass" name="password" placeholder="Insert password">
 			
 			<button type="submit" value="Login" name="pulsante">Login</button>
 		</form>
