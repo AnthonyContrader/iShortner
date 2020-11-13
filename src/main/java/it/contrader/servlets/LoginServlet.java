@@ -35,7 +35,6 @@ public class LoginServlet extends HttpServlet {
 			String password = request.getParameter("password").toString();
 			//come nei vecchi controller, invoca il service
 			UserDTO dto = service.login(username, password);
-			UrlTableDTO url = new UrlTableDTO();
 			
 			//Aggiunto controllo login, se service torna un oggetto vuoto la view rimane nel login
 			

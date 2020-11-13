@@ -34,6 +34,10 @@ public class UserServlet extends HttpServlet {
 		List<UserDTO>listDTO = service.getAll();
 		request.setAttribute("list", listDTO);
 	}
+	
+	/**
+	 * EntryPoint della classe HttpServlet
+	 */
 
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
