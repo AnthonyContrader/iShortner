@@ -12,7 +12,7 @@ public class ServerConverter extends AbstractConverter<Server, ServerDTO>{
 	public Server toEntity(ServerDTO serverDto) {
 		Server server = null;
 		if (serverDto != null) {
-			server = new Server(serverDto.getServerId(), serverDto.getFk_id_url(), serverDto.getPosizione(), serverDto.getTipologia());
+			server = new Server(serverDto.getServerId(), serverDto.getFk_id_url(), serverDto.getPosizione(), serverDto.getTipologia(), serverDto.getData());
 		}
 		return server;
 	}
@@ -21,7 +21,7 @@ public class ServerConverter extends AbstractConverter<Server, ServerDTO>{
 	public ServerDTO toDTO(Server server) {
 		ServerDTO serverDto = null;
 		if(server != null) {
-			serverDto = new ServerDTO(server.getServerId(), server.getPosizione(), server.getFk_id_url(), server.getTipologia());
+			serverDto = new ServerDTO(server.getServerId(), server.getPosizione(), server.getFk_id_url(), server.getTipologia(), server.getData());
 		}
 		
 		return serverDto;

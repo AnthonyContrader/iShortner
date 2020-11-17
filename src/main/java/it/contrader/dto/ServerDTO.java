@@ -18,4 +18,6 @@ public class ServerDTO {
 		private Long fk_id_url; 
 		
 		private String tipologia;
+		
+		private String data;
 }

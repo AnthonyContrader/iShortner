@@ -22,31 +22,24 @@ public class ShortUrlService extends AbstractService<ShortUrl, ShortUrlDTO> {
 	@Autowired
 	private ShortUrlRepository repo;
 	
-	public void createShortUrl(UserDTO user, ShortUrlDTO url) throws MalformedURLException {	
+	public ShortUrlDTO createShortUrl(UserDTO user, ShortUrlDTO url) throws MalformedURLException {	
 		ShortUrlDTO urlTableDto = new ShortUrlDTO();
-		if(isReachable(url.getLongurl()) ) { 
+		if(isReachable(url.getLongurl()) ) {
+			String shortUrl = "iShort.ly/"+generateRndString();
 			String longUrl = url.getLongurl();
-			System.out.println(longUrl);
-			ShortUrl url1 = new ShortUrl();
-			url1 = repo.findByLongurl(longUrl);
-			if(url1 == null) {
-				System.out.println("sdasda");
+			if(!longUrl.contains("http") && !longUrl.contains("https")) {
+				longUrl = "http://" + longUrl;
 			}
-//			String shortUrl = "iShort.ly/"+generateRndString();
-//			String longUrl = url.getLongurl();
-//			if(!longUrl.contains("http") && !longUrl.contains("https")) {
-//				longUrl = "http://" + longUrl;
-//			}
-//			urlTableDto.setLongurl(longUrl);
-//			urlTableDto.setFk_url(user.getId());
-//			urlTableDto.setShorturl(shortUrl);
-//			urlTableDto = insert(urlTableDto);
-//			if(urlTableDto.getId() == 0 && urlTableDto.getLongurl() == null) {
-//				return urlTableDto;
-//			}
-			//return urlTableDto;
+			urlTableDto.setLongurl(longUrl);
+			urlTableDto.setFk_url(user.getId());
+			urlTableDto.setShorturl(shortUrl);
+			urlTableDto = insert(urlTableDto);
+			if(urlTableDto.getId() == 0 && urlTableDto.getLongurl() == null) {
+				return urlTableDto;
+			}
+			return urlTableDto;
 		}
-		//return null;
+		return null;
 	}
 	
 	public String generateRndString() {

@@ -25,5 +25,6 @@ public class Server {
 	private Long fk_id_url;
 	private String posizione;
 	private String tipologia;
+	private String data;
 	
 }
