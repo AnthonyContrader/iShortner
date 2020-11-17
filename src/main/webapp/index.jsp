@@ -29,8 +29,10 @@
 			class="form-control" placeholder="Password" required> <input
 			type="hidden" name="richiesta" value="login">
 
-		<button class="btn btn-lg btn-primary btn-block" type="submit">Log
-			in</button>
+		<button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+		
+			<button  href="/register.jsp">Registrati</button>
+
 	</form>
 
 </body>
