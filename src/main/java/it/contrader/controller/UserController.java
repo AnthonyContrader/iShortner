@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import it.contrader.dto.ShortUrlDTO;
 import it.contrader.dto.UserDTO;
 import it.contrader.model.User.Usertype;
 import it.contrader.service.UserService;
@@ -26,6 +27,9 @@ public class UserController {
 
 		UserDTO userDTO = service.findByUsernameAndPassword(username, password);
 		request.getSession().setAttribute("user", userDTO);
+		ShortUrlDTO url = new ShortUrlDTO();
+		url.setShorturl("");
+		request.getSession().setAttribute("shortUrl", url);
 
 		switch (userDTO.getUsertype()) {
 
@@ -72,6 +76,17 @@ public class UserController {
 		setAll(request);
 		return "users";
 
+	}
+	
+	@PostMapping("/register")
+	public String register(HttpServletRequest request, @RequestParam("username") String username, @RequestParam("password") String password) {
+		UserDTO user = new UserDTO();
+		user.setUsername(username);
+		user.setPassword(password);
+		Usertype usertype = null;
+		user.setUsertype(usertype.USER);
+		service.insert(user);
+		return "index";
 	}
 
 	@PostMapping("/insert")
