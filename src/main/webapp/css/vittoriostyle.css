@@ -5,6 +5,7 @@ html {
 * {
 	font-family: sans-serif;
 }
+
 div.text{
 	clear:both;
 	margin-top: 3%;
@@ -62,12 +63,11 @@ h2 {
 	z-index:-1;
 	opacity:0.4;
 	position:absolute;
-
-	
 }
+
 .login{
 	position:fixed;
-	heigth:50%;
+	height:60%;
 	width:20%;
 	margin-left:35.6%;
 	margin-right:44.4%;
@@ -109,6 +109,10 @@ a:link {
 	color: #000000;
 }
 
+.register {
+	color: #00ccad !important;
+}
+
 /* visited link */
 a:visited {
 	color: #000000;
@@ -124,7 +128,7 @@ table {
 	width: 50%;
 	float:left;
 	border-radius:4px;
-    -moz-border-radius:4px;
+	-moz-border-radius:4px;
 }
 
 
@@ -145,11 +149,11 @@ th {
 
 a:hover {
 	color: #999999;
+	text-decoration: underline;
 }
 
 
 /*Forms*/
-
 select {
   width: 100%;
   padding: 14px 20px;
@@ -173,8 +177,6 @@ width: 100%;
   cursor: pointer;
 	
 }
-
-
 
 
 input {
@@ -217,10 +219,31 @@ form {
   margin-top: 6px;
 }
 
+.col-26 {
+	float: left;
+	width: 30%;
+}
+
 .col-75 {
   float: left;
   width: 75%;
   margin-top: 6px;
+}
+
+.col-76 {
+	float: left;
+	width: 70%;
+}
+
+/* Placeholder cross browser */
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+	color: grey;
+}
+input:-moz-placeholder, textarea:-moz-placeholder {
+	color: grey;
+}
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+	color: grey;
 }
 
 /* Clear floats after the columns */
@@ -261,6 +284,16 @@ button:hover {
   color: white;
 }
 
+.urlErr {
+	width: 70%;
+	background-color: #fff;
+	color: #d72424;
+	text-align: center;
+	margin: 8px auto;
+	padding: 13px 20px;
+	border: 2px solid #d72424;
+	cursor: pointer;
+}
 
 
 /*IDs*/
@@ -323,5 +356,4 @@ div.navbar a.active {
 	opacity: .9;
 	z-index: -1; opacity : .9;
 	width: 8%;
-}
 }

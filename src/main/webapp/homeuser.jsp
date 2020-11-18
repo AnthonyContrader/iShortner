@@ -18,7 +18,8 @@
 <link href="/css/vittoriostyle.css" rel="stylesheet">
 </head>
 
-<% //ShortUrlDTO url = (ShortUrlDTO) request.getSession().getAttribute("shortUrl"); %>
+<% ShortUrlDTO url = (ShortUrlDTO) request.getSession().getAttribute("shortUrl"); %>
+
 <body>
 	<%@include file="css/header.jsp"%>
 
@@ -35,7 +36,7 @@
 		<br><form action="/user/create" method="post" class="url">
 			<div class="row">
 				<div class="col-76">
-					<input 	required="required" pattern="(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)|[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)" 
+					<input 	required pattern="(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)|[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)" 
 							title="www.sample.com"
 							type="text" id="input" name="url" placeholder="Insert URL"/>
 				</div>
@@ -44,10 +45,14 @@
 				</div>
 			</div>
 		</form>
-		<form action="" method="post" class="url"> 
+		<form action="/user/redirect" method="post" class="url"> 
 			<div class="row">
 				<div class="col-76">
-					<input type="text" name="shortUrl" value="">
+				<% if(url.getShorturl().equals("err")) {%>
+					<div class="urlErr">URL non valido o già utilizzato</div>
+				<% }  else {%>
+					<input type="text" name="shortUrl" value="<%=url.getShorturl()%>" placeholder="iShort.ly/sample">
+				<% }%>
 				</div>
 				<div class="col-26">
 					<button class="url" type="submit" name="pulsante" value="urlLong">Go</button>

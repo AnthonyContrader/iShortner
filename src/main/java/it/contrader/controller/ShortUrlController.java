@@ -9,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import it.contrader.dto.ShortUrlDTO;
 import it.contrader.dto.UserDTO;
@@ -29,14 +27,17 @@ public class ShortUrlController {
 		
 		UserDTO user = new UserDTO();
 		user = (UserDTO) request.getSession().getAttribute("user");
-		ShortUrlDTO	url = new ShortUrlDTO();
+		ShortUrlDTO url = new ShortUrlDTO();
 		url.setLongurl(longUrl);
 		url = service.createShortUrl(user, url);
+
+		// messaggio di errore per la view
 		if(url.getId() == null && url.getLongurl() == null && url.getShorturl() == null && url.getFk_url() == null) {
-			//il messaggio di errore per la view 
-			//request 
+			url.setShorturl("err");
+			request.getSession().setAttribute("shortUrl", url);
 			return "homeuser";
 		}
+
 		request.getSession().setAttribute("shortUrl", url);
 		return "homeuser";
 	}
