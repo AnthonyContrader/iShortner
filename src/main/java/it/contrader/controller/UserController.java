@@ -115,7 +115,7 @@ public class UserController {
 		dto = service.read(id);
 		request.getSession().setAttribute("dto", dto);
 		List<ShortUrlDTO> urlList = new ArrayList<>();
-		urlList = (List<ShortUrlDTO>) shortUrlService.read(id);
+		urlList = (List<ShortUrlDTO>) shortUrlService.readList(id);
 		request.getSession().setAttribute("urlDto", urlList);		
 		return "readuser";
 	}

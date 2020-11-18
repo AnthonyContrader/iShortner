@@ -1,5 +1,7 @@
 package it.contrader.dao;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.data.repository.CrudRepository;
@@ -15,4 +17,5 @@ public interface ShortUrlRepository  extends CrudRepository<ShortUrl, Long> {
 	
 	ShortUrl findByShorturl(String shorturl);
 	
+	List<ShortUrl> findAllByFkurl(Long id);
 }
