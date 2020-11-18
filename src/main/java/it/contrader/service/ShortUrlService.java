@@ -21,25 +21,26 @@ public class ShortUrlService extends AbstractService<ShortUrl, ShortUrlDTO> {
 
 	@Autowired
 	private ShortUrlRepository repo;
+
 	
 	public ShortUrlDTO createShortUrl(UserDTO user, ShortUrlDTO url) throws MalformedURLException {	
 		ShortUrlDTO urlTableDto = new ShortUrlDTO();
-		if(isReachable(url.getLongurl()) ) {
+		if(isReachable(url.getLongurl()) ) { 
 			String shortUrl = "iShort.ly/"+generateRndString();
 			String longUrl = url.getLongurl();
 			if(!longUrl.contains("http") && !longUrl.contains("https")) {
 				longUrl = "http://" + longUrl;
 			}
-			urlTableDto.setLongurl(longUrl);
-			urlTableDto.setFk_url(user.getId());
-			urlTableDto.setShorturl(shortUrl);
-			urlTableDto = insert(urlTableDto);
-			if(urlTableDto.getId() == 0 && urlTableDto.getLongurl() == null) {
+			boolean a = (Boolean) repo.existsByLongurl(longUrl);
+			if(!a) {
+				urlTableDto.setLongurl(longUrl);
+				urlTableDto.setFk_url(user.getId());
+				urlTableDto.setShorturl(shortUrl);
+				urlTableDto = insert(urlTableDto);
 				return urlTableDto;
 			}
-			return urlTableDto;
 		}
-		return null;
+		return urlTableDto;
 	}
 	
 	public String generateRndString() {
