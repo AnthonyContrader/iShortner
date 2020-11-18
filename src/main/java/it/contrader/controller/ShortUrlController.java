@@ -3,12 +3,15 @@ package it.contrader.controller;
 import java.net.MalformedURLException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import it.contrader.dto.ShortUrlDTO;
 import it.contrader.dto.UserDTO;
@@ -34,7 +37,18 @@ public class ShortUrlController {
 			//request 
 			return "homeuser";
 		}
-//		request.getSession().setAttribute("shortUrl", url);
+		request.getSession().setAttribute("shortUrl", url);
 		return "homeuser";
 	}
+	
+	@PostMapping("/redirect")
+	public void redirectUrl(HttpServletRequest request, @RequestParam(value = "shortUrl", required = true) String shortUrl, HttpServletResponse response) {	
+		ShortUrlDTO url = new ShortUrlDTO();
+		url.setShorturl(shortUrl);
+		url = service.getLongUrl(url);
+		String fullUrl = url.getLongurl();	
+		response.setHeader("Location", fullUrl);
+		response.setStatus(302);	
+	}
+	
 }
