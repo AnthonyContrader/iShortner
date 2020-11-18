@@ -1,5 +1,8 @@
 package it.contrader.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import it.contrader.dto.ShortUrlDTO;
 import it.contrader.dto.UserDTO;
 import it.contrader.model.User.Usertype;
+import it.contrader.service.ShortUrlService;
 import it.contrader.service.UserService;
 
 @Controller
@@ -20,6 +24,10 @@ public class UserController {
 
 	@Autowired
 	private UserService service;
+	
+	@Autowired
+	private ShortUrlService shortUrlService;
+	
 
 	@PostMapping("/login")
 	public String login(HttpServletRequest request, @RequestParam(value = "username", required = true) String username,
@@ -103,7 +111,12 @@ public class UserController {
 
 	@GetMapping("/read")
 	public String read(HttpServletRequest request, @RequestParam("id") Long id) {
-		request.getSession().setAttribute("dto", service.read(id));
+		UserDTO dto = new UserDTO();
+		dto = service.read(id);
+		request.getSession().setAttribute("dto", dto);
+		List<ShortUrlDTO> urlList = new ArrayList<>();
+		urlList = shortUrlService.read(id);
+		request.getSession().setAttribute("urlDto", urlList);		
 		return "readuser";
 	}
 

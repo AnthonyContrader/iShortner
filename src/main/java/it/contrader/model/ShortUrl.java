@@ -20,6 +20,6 @@ public class ShortUrl {
 	private Long id;
 	private String longurl;
 	private String shorturl;
-	private Long fk_url;
+	private Long fkurl;
 	
 }

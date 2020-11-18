@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" import="it.contrader.dto.UserDTO"%>
+	pageEncoding="ISO-8859-1" import="it.contrader.dto.UserDTO" import="it.contrader.dto.ShortUrlDTO"  import="java.util.List"%>
+	
+	
 <html>
 <head>
 <meta charset="utf-8">
@@ -21,6 +23,7 @@
 	<div class="main">
 		<%
 			UserDTO u = (UserDTO) request.getSession().getAttribute("dto");
+			List<ShortUrlDTO> listUrl = (List<ShortUrlDTO>) request.getSession().getAttribute("urlDto");
 		%>
 
 
@@ -38,6 +41,28 @@
 				<td><%=u.getUsertype()%></td>
 			</tr>
 		</table>
+		
+		<table>
+			<tr>
+				<th>#</th>
+				<th>Url originale</th>
+				<th>url generato</th>
+				
+			</tr>
+			<% 
+			for (int i= 0; i<listUrl.size(); i++) {
+				%>
+			<tr>
+				<td><%=i + 1%></td>
+				<td><%=listUrl.get(i).getLongurl()%></td>
+				<td><%=listUrl.get(i).getShorturl()%></td>
+				
+			</tr>
+			<% } %>
+			
+		</table>
+		
+		
 
 		<br> <br> <br> <br> <br> <br> <br>
 		<br> <br> <br> <br> <br> <br> <br>

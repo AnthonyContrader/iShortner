@@ -23,7 +23,7 @@ public class ShortUrlConverter extends AbstractConverter<ShortUrl, ShortUrlDTO>{
 	public ShortUrlDTO toDTO(ShortUrl entity) {
 		ShortUrlDTO urlDTO = null;
 		if (entity != null) {
-			urlDTO = new ShortUrlDTO(entity.getId(), entity.getLongurl(), entity.getShorturl(), entity.getFk_url());
+			urlDTO = new ShortUrlDTO(entity.getId(), entity.getLongurl(), entity.getShorturl(), entity.getFkurl());
 
 		}
 		return urlDTO;
