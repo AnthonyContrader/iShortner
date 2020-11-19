@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import it.contrader.dto.ServerDTO;
 import it.contrader.dto.ShortUrlDTO;
 import it.contrader.dto.UserDTO;
 import it.contrader.model.User.Usertype;
+import it.contrader.service.ServerService;
 import it.contrader.service.ShortUrlService;
 import it.contrader.service.UserService;
 
@@ -28,6 +30,9 @@ public class UserController {
 	@Autowired
 	private ShortUrlService shortUrlService;
 	
+	@Autowired
+	private ServerService servService;
+	
 
 	@PostMapping("/login")
 	public String login(HttpServletRequest request, @RequestParam(value = "username", required = true) String username,
@@ -38,6 +43,7 @@ public class UserController {
 		ShortUrlDTO url = new ShortUrlDTO();
 		url.setShorturl("");
 		request.getSession().setAttribute("shortUrl", url);
+		request.getSession().setAttribute("chkUser", 0);
 
 		switch (userDTO.getUsertype()) {
 
@@ -54,7 +60,8 @@ public class UserController {
 
 	@GetMapping("/getall")
 	public String getAll(HttpServletRequest request) {
-		setAll(request);
+		request.getSession().setAttribute("chkUser", 0);
+		setAll(request);	
 		return "users";
 	}
 
@@ -101,11 +108,19 @@ public class UserController {
 	public String insert(HttpServletRequest request, @RequestParam("username") String username,
 			@RequestParam("password") String password, @RequestParam("usertype") Usertype usertype) {
 		UserDTO dto = new UserDTO();
-		dto.setUsername(username);
-		dto.setPassword(password);
-		dto.setUsertype(usertype);
-		service.insert(dto);
-		setAll(request);
+		boolean chkUser = service.chkUser(username);
+		if(!chkUser) {
+			dto.setUsername(username);
+			dto.setPassword(password);
+			dto.setUsertype(usertype);
+			service.insert(dto);
+			setAll(request);
+			request.getSession().setAttribute("chkUser", 2);
+		}else {
+			setAll(request);
+			request.getSession().setAttribute("chkUser", 1);
+		}
+
 		return "users";
 	}
 
@@ -116,7 +131,10 @@ public class UserController {
 		request.getSession().setAttribute("dto", dto);
 		List<ShortUrlDTO> urlList = new ArrayList<>();
 		urlList = (List<ShortUrlDTO>) shortUrlService.readList(id);
-		request.getSession().setAttribute("urlDto", urlList);		
+		request.getSession().setAttribute("urlDto", urlList);
+		List<ServerDTO> serverList = new ArrayList<>();
+		serverList = servService.searchList(urlList.get(0).getFk_url());
+		request.getSession().setAttribute("server", serverList);
 		return "readuser";
 	}
 

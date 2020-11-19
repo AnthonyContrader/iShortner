@@ -21,7 +21,7 @@ public class ServerConverter extends AbstractConverter<Server, ServerDTO>{
 	public ServerDTO toDTO(Server server) {
 		ServerDTO serverDto = null;
 		if(server != null) {
-			serverDto = new ServerDTO(server.getServerId(), server.getPosizione(), server.getFk_id_url(), server.getTipologia(), server.getData());
+			serverDto = new ServerDTO(server.getServerId(), server.getPosizione(), server.getFkidurl(), server.getTipologia(), server.getData());
 		}
 		
 		return serverDto;

@@ -13,7 +13,7 @@ import it.contrader.model.ShortUrl;
 @Transactional
 public interface ShortUrlRepository  extends CrudRepository<ShortUrl, Long> {
 	
-	boolean existsByLongurl(String longurl);
+	boolean existsByLongurlAndFkurl(String longurl, Long id);
 	
 	ShortUrl findByShorturl(String shorturl);
 	

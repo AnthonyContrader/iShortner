@@ -20,6 +20,7 @@
 	<div class="main">
 		<%
 			List<UserDTO> list = (List<UserDTO>) request.getSession().getAttribute("list");
+			int chkUser = (int)request.getSession().getAttribute("chkUser");
 		%>
 
 		<br>
@@ -54,6 +55,10 @@
 
 
 		<form id="floatright" action="/user/insert" method="post">
+			<div>
+				<p style="color: green"><%if(chkUser == 2) %>Inserito correttamente</p>
+				<p style="color: red"><%if(chkUser == 1) %>Gia presente nel database</p>
+			</div>
 			<div class="row">
 				<div class="col-25">
 					<label for="user">Username</label>

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import it.contrader.dto.ShortUrlDTO;
 import it.contrader.dto.UserDTO;
+import it.contrader.service.ServerService;
 import it.contrader.service.ShortUrlService;
 
 @Controller
@@ -21,6 +22,8 @@ public class ShortUrlController {
 
 	@Autowired
 	private ShortUrlService service;
+	@Autowired
+	private ServerService serv;
 
 	@PostMapping("/create")
 	public String createUrl(HttpServletRequest request, @RequestParam(value = "url", required = true) String longUrl) throws MalformedURLException {
@@ -30,7 +33,7 @@ public class ShortUrlController {
 		ShortUrlDTO url = new ShortUrlDTO();
 		url.setLongurl(longUrl);
 		url = service.createShortUrl(user, url);
-
+		serv.generator(url);
 		// messaggio di errore per la view
 		if(url.getId() == null && url.getLongurl() == null && url.getShorturl() == null && url.getFk_url() == null) {
 			url.setShorturl("err");

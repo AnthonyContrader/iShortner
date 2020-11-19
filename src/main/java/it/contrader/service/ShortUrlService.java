@@ -34,7 +34,7 @@ public class ShortUrlService extends AbstractService<ShortUrl, ShortUrlDTO> {
 			if(!longUrl.contains("http") && !longUrl.contains("https")) {
 				longUrl = "http://" + longUrl;
 			}
-			boolean a = (Boolean) repo.existsByLongurl(longUrl);
+			boolean a = (Boolean) repo.existsByLongurlAndFkurl(longUrl, user.getId());
 			if(!a) {
 				urlTableDto.setLongurl(longUrl);
 				urlTableDto.setFk_url(user.getId());

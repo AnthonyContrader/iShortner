@@ -22,7 +22,7 @@ public class Server {
 	private Long serverId;
 	
 	@Column
-	private Long fk_id_url;
+	private Long fkidurl;
 	private String posizione;
 	private String tipologia;
 	private String data;
