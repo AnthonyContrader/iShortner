@@ -40,8 +40,7 @@ public class UserController {
 
 		UserDTO userDTO = service.findByUsernameAndPassword(username, password);
 		request.getSession().setAttribute("user", userDTO);
-		ShortUrlDTO url = new ShortUrlDTO();
-		System.out.println(userDTO.getId());
+		ShortUrlDTO url = new ShortUrlDTO();		
 		url.setShorturl("");
 		request.getSession().setAttribute("shortUrl", url);
 		request.getSession().setAttribute("chkUser", 0);
@@ -131,12 +130,29 @@ public class UserController {
 		urlList = (List<ShortUrlDTO>) shortUrlService.readList(id);
 		request.getSession().setAttribute("urlDto", urlList);
 		List<ServerDTO> serverList = new ArrayList<>();
-		if(urlList.size() == 1) {
+		if(urlList.size() >= 1) {
 			serverList = servService.searchList(urlList.get(0).getFk_url());
 		}
 		request.getSession().setAttribute("server", serverList);
 		return "readuser";
 	}
+	
+	
+	@PostMapping("/edituser")
+	public String edit(HttpServletRequest request,  @RequestParam("id") Long id, @RequestParam("username") String username, @RequestParam("password") String password) {
+		UserDTO userDto = new UserDTO();
+		userDto.setId(id);
+		userDto.setUsername(username);
+		userDto.setPassword(password);
+		Usertype usertype = null;
+		userDto.setUsertype(usertype.USER);
+		service.update(userDto);
+		request.getSession().setAttribute("user", userDto);
+		
+		return "edituser";
+		
+	}
+	
 
 	@GetMapping("/logout")
 	public String logout(HttpServletRequest request) {

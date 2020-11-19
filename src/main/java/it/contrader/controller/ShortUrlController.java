@@ -60,8 +60,7 @@ public class ShortUrlController {
 	}
 
 	@GetMapping("/readurl")
-	public String readUrl(HttpServletRequest request) {
-		System.out.println("ci arrivo?");
+	public String readUrl(HttpServletRequest request) {	
 		UserDTO dto = (UserDTO) request.getSession().getAttribute("user");
 		Long id = dto.getId();
 		List<ShortUrlDTO> urlList = new ArrayList<>();

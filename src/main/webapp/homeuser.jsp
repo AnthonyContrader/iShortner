@@ -23,6 +23,7 @@
 	<div class="navbar">
 		<a class="active" href="/homeuser.jsp">Home</a> 
 		<a href="/user/readurl">ShortURLs</a>
+		<a href="/edituser.jsp">Edit</a>
 		<a href="/user/logout" id="logout">Logout</a>
 	</div>
 
