@@ -37,12 +37,10 @@
 				for (UserDTO u : list) {
 			%>
 			<tr>
-				<td><a href="/user/read?id=<%=u.getId()%>"> <%=u.getUsername()%>
-				</a></td>
+				<td><a href="/user/read?id=<%=u.getId()%>"> <%=u.getUsername()%></a></td>
 				<td><%=u.getPassword()%></td>
 				<td><%=u.getUsertype()%></td>
 				<td><a href="/user/preupdate?id=<%=u.getId()%>">Edit</a></td>
-
 
 				<td><a href="/user/delete?id=<%=u.getId()%>">Delete</a></td>
 
@@ -64,8 +62,7 @@
 					<label for="user">Username</label>
 				</div>
 				<div class="col-75">
-					<input type="text" id="user" name="username"
-						placeholder="inserisci username">
+					<input type="text" id="user" name="username" placeholder="inserisci username" required>
 				</div>
 			</div>
 			<div class="row">
@@ -73,8 +70,7 @@
 					<label for="pass">Password</label>
 				</div>
 				<div class="col-75">
-					<input type="text" id="pass" name="password"
-						placeholder="inserisci password">
+					<input type="text" id="pass" name="password" placeholder="inserisci password" required>
 				</div>
 			</div>
 			<div class="row">

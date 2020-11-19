@@ -41,6 +41,7 @@ public class UserController {
 		UserDTO userDTO = service.findByUsernameAndPassword(username, password);
 		request.getSession().setAttribute("user", userDTO);
 		ShortUrlDTO url = new ShortUrlDTO();
+		System.out.println(userDTO.getId());
 		url.setShorturl("");
 		request.getSession().setAttribute("shortUrl", url);
 		request.getSession().setAttribute("chkUser", 0);
@@ -81,7 +82,6 @@ public class UserController {
 	@PostMapping("/update")
 	public String update(HttpServletRequest request, @RequestParam("id") Long id, @RequestParam("username") String username,
 			@RequestParam("password") String password, @RequestParam("usertype") Usertype usertype) {
-
 		UserDTO dto = new UserDTO();
 		dto.setId(id);
 		dto.setUsername(username);
@@ -90,9 +90,8 @@ public class UserController {
 		service.update(dto);
 		setAll(request);
 		return "users";
-
 	}
-	
+
 	@PostMapping("/register")
 	public String register(HttpServletRequest request, @RequestParam("username") String username, @RequestParam("password") String password) {
 		UserDTO user = new UserDTO();
@@ -120,7 +119,6 @@ public class UserController {
 			setAll(request);
 			request.getSession().setAttribute("chkUser", 1);
 		}
-
 		return "users";
 	}
 
@@ -133,7 +131,9 @@ public class UserController {
 		urlList = (List<ShortUrlDTO>) shortUrlService.readList(id);
 		request.getSession().setAttribute("urlDto", urlList);
 		List<ServerDTO> serverList = new ArrayList<>();
-		serverList = servService.searchList(urlList.get(0).getFk_url());
+		if(urlList.size() == 1) {
+			serverList = servService.searchList(urlList.get(0).getFk_url());
+		}
 		request.getSession().setAttribute("server", serverList);
 		return "readuser";
 	}

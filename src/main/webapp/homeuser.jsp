@@ -1,18 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"  import="it.contrader.dto.ShortUrlDTO" %>
+    pageEncoding="ISO-8859-1"  import="it.contrader.dto.ShortUrlDTO" import="it.contrader.dto.UserDTO" %>
 
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Homepage for Admin ">
+<meta name="description" content="Homepage for User">
 <meta name="author" content="Vittorio Valent">
 
 <title>Home</title>
-
-<!-- Bootstrap core CSS -->
-<link href="/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Custom styles for this template -->
 <link href="/css/vittoriostyle.css" rel="stylesheet">
@@ -23,9 +20,9 @@
 <body>
 	<%@include file="css/header.jsp"%>
 
-
 	<div class="navbar">
 		<a class="active" href="/homeuser.jsp">Home</a> 
+		<a href="/user/readurl">ShortURLs</a>
 		<a href="/user/logout" id="logout">Logout</a>
 	</div>
 
@@ -38,10 +35,10 @@
 				<div class="col-76">
 					<input 	required pattern="(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)|[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)" 
 							title="www.sample.com"
-							type="text" id="input" name="url" placeholder="Insert URL"/>
+							type="text" id="shorturl" name="url" placeholder="Insert URL"/>
 				</div>
 				<div class="col-26">
-					<button class="url" type="submit">Generate</button>
+					<button type="submit" id="shorturlbutt">Generate</button>
 				</div>
 			</div>
 		</form>
@@ -51,21 +48,17 @@
 				<% if(url.getShorturl().equals("err")) {%>
 					<div class="urlErr">URL non valido o già utilizzato</div>
 				<% }  else {%>
-					<input type="text" name="shortUrl" value="<%=url.getShorturl()%>" placeholder="iShort.ly/sample">
+					<input type="text" id="shorturl" name="shortUrl" value="<%=url.getShorturl()%>" placeholder="iShort.ly/sample">
 				<% }%>
 				</div>
 				<div class="col-26">
-					<button class="url" type="submit" name="pulsante" value="urlLong">Go</button>
+					<button type="submit" id="shorturlbutt" name="pulsante" value="urlLong">Go</button>
 				</div>
 			</div>
 		</form><br>
+		</div>
 	</div>
-
-
-	</div>
-
 
 	<%@ include file="css/footer.jsp"%>
-
 </body>
 </html>

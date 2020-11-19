@@ -22,7 +22,7 @@
 <br>
 <div class="main">
 
-<%UserDTO u = (UserDTO) request.getSession().getAttribute("dto");%>
+<% UserDTO u = (UserDTO) request.getSession().getAttribute("dto"); %>
 
 
 <form id="floatleft" action="/user/update" method="post">
@@ -31,7 +31,7 @@
       <label for="user">Username</label>
     </div>
     <div class="col-75">
-      <input type="text" id="user" name="username" value=<%=u.getUsername()%>>
+      <input type="text" required id="user" name="username" value=<%=u.getUsername()%>>
     </div>
   </div>
   <div class="row">
@@ -39,8 +39,7 @@
      <label for="pass">Password</label>
     </div>
     <div class="col-75">
-      <input
-			type="text" id="pass" name="password" value=<%=u.getPassword()%>> 
+      <input type="text" required id="pass" name="password" value=<%=u.getPassword()%>> 
     </div>
   </div>
   <div class="row">

@@ -42,6 +42,14 @@ div.text{
 	margin-bottom: 1%;
 }
 
+.url {
+	margin: auto;
+	width: 50%;
+	text-align: center;
+	background-color: #f2f2f2;
+	border-radius: 7px;
+}
+
 /* headers */
 h1 {
 	position: center;
@@ -56,8 +64,12 @@ h2 {
 	color: #000000;
 }
 
-/*Login*/
+h3 {
+	color: #df1313 !important;
+	size: 150%;
+}
 
+/*Login*/
 .log{
 	width:95%;
 	z-index:-1;
@@ -131,6 +143,13 @@ table {
 	-moz-border-radius:4px;
 }
 
+table.info {
+	border-collapse: collapse;
+	width: 90%;
+	float:left;
+	border-radius:4px;
+	-moz-border-radius:4px;
+}
 
 th, td {
 	text-align: center;
@@ -144,7 +163,6 @@ tr:nth-child(even) {
 th {
 	background-color: #00a990;
 	color: #ffffff;
-	
 }
 
 a:hover {
@@ -246,6 +264,16 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 	color: grey;
 }
 
+#shorturl {
+	width: 130%;
+}
+
+#shorturlbutt {
+	width: 100%;
+	height: 6%;
+	margin-top: 9%;
+}
+
 /* Clear floats after the columns */
 .row:after {
   content: "";
@@ -280,7 +308,7 @@ button {
 }
 
 button:hover {
-  background-color:  #00ccad; 
+  border: 1px solid #00ccad; 
   color: white;
 }
 

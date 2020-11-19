@@ -14,8 +14,8 @@ import it.contrader.model.Server;
 @Repository
 @Transactional
 public interface ServerRepository extends CrudRepository<Server, Long>{
-	
-	@Query(value= "SELECT * FROM server WHERE fk_id_url IN(SELECT id FROM short_url WHERE fkurl = :idx)", nativeQuery = true)
+
+	@Query(value= "SELECT * FROM server WHERE fkidurl IN(SELECT id FROM short_url WHERE fkurl = :idx)", nativeQuery = true)
 	public List<Server> searchList(Long idx);
 
 }
