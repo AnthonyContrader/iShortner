@@ -55,13 +55,14 @@ public class ShortUrlController {
 	}
 
 	@GetMapping("/readurl")
-	public String readUrl(HttpServletRequest request) {	
-		UserDTO dto = (UserDTO) request.getSession().getAttribute("user");
-		Long id = dto.getId();
+	public List<UrlDTO> readUrl(HttpServletRequest request, @RequestParam("id") Long id) {	
 		List<UrlDTO> urlList = new ArrayList<>();
 		urlList = (List<UrlDTO>) urlService.readList(id);
-		request.getSession().setAttribute("urlDto", urlList);
-		return "readurl";
+		if(urlList.isEmpty()) {
+			System.out.println("Lista vuota"+urlList.size());
+			return null;
+		}
+		return urlList;
 	}
 
 }
