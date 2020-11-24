@@ -1,3 +1,4 @@
+import { EditComponent } from './edit/edit.component';
 import { UserInfoUrlComponent } from './user-info-url/user-info-url.component';
 import { UserLayoutComponent } from './../layout/user-layout/user-layout.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
@@ -9,6 +10,7 @@ import { NgModule } from '@angular/core';
 const routes: Routes = [
   {path:'user-dashboard', component: UserLayoutComponent, children: [
     {path: '', component: UserDashboardComponent},
+    {path: 'edit', component: EditComponent},
     {path: 'user-info-url', component: UserInfoUrlComponent}
   ]}
 ]

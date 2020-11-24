@@ -1,3 +1,4 @@
+import { EditComponent } from './edit/edit.component';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -6,7 +7,7 @@ import { UserRoutingModule } from './user-routing.module';
 import { UserInfoUrlComponent } from './user-info-url/user-info-url.component';
 
 @NgModule({
-  declarations: [UserDashboardComponent, UserInfoUrlComponent],
+  declarations: [UserDashboardComponent, EditComponent, UserInfoUrlComponent],
   imports: [
     CommonModule,
     UserRoutingModule,
