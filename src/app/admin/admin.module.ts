@@ -11,7 +11,7 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
  * l'admin. Questo modulo importa AdminRoutingModule.
  * 
  * @author Vittorio Valent
- * 
+ *  
  * @see AdminRoutingModule
  */
 @NgModule({

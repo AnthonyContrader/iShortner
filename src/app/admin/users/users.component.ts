@@ -27,11 +27,11 @@ export class UsersComponent implements OnInit {
   }
 
   update(user: UserDTO) {
-    this.service.update(user).subscribe(() => this.getUsers());
+    this.service.update(user).subscribe(() => {console.log("sda"); this.getUsers()});
   }
 
   insert(user: UserDTO) {
-    this.service.insert(user).subscribe(() => this.getUsers());
+    this.service.insert(user).subscribe((res) => {res == null ? console.log("User esistente"): this.getUsers()});
   }
 
   clear(){
