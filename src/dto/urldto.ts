@@ -10,5 +10,5 @@
     
     shorturl: string;
     
-	fk_url: number;
+	fkurl: number;
 }

@@ -8,11 +8,13 @@ import { UrlDTO } from 'src/dto/urldto';
 @Injectable({
     providedIn: 'root'
   })
-  export class UrlService {
+  export class UrlService extends AbstractService<UrlDTO>{
   
-    type = 'user'
+    
 
     constructor(protected http: HttpClient) {
+      super(http);
+      this.type = 'user';
     }
 
     create(url: UrlDTO): Observable<UrlDTO> {
