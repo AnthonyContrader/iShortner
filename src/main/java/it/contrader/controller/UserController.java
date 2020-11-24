@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.contrader.dto.ServerDTO;
-import it.contrader.dto.ShortUrlDTO;
+import it.contrader.dto.UrlDTO;
 import it.contrader.dto.UserDTO;
 import it.contrader.model.User.Usertype;
 import it.contrader.service.ServerService;
@@ -87,8 +87,8 @@ public class UserController {
 		UserDTO dto = new UserDTO();
 		dto = service.read(id);
 		request.getSession().setAttribute("dto", dto);
-		List<ShortUrlDTO> urlList = new ArrayList<>();
-		urlList = (List<ShortUrlDTO>) shortUrlService.readList(id);
+		List<UrlDTO> urlList = new ArrayList<>();
+		urlList = (List<UrlDTO>) shortUrlService.readList(id);
 		request.getSession().setAttribute("urlDto", urlList);
 		List<ServerDTO> serverList = new ArrayList<>();
 		if(urlList.size() >= 1) {
