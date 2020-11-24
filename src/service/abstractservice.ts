@@ -44,4 +44,11 @@ export abstract class AbstractService<DTO> implements Service<DTO> {
         return this.http.post('http://localhost:' + this.port + '/user/insert', dto);
     }
 
+    getUrlFromUser(id: number): Observable<DTO[]>{
+        return this.http.get<DTO[]>('http://localhost:' + this.port + '/user/readurl?id=' +id);
+    }
+
+    getInfoUrl(id: number): Observable<DTO>{
+        return this.http.get<DTO>('http://localhost:' + this.port + '/user/readurl?id=' +id);
+    }
 }
