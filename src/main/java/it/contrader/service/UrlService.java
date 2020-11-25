@@ -28,7 +28,7 @@ public class UrlService extends AbstractService<Url, UrlDTO> {
 	public UrlDTO createShortUrl(UrlDTO url) throws MalformedURLException {	
 		UrlDTO urlTableDto = new UrlDTO();
 		if(isReachable(url.getLongurl()) ) { 
-			String shortUrl = "iShort.ly/" + generateRndString();
+			String shortUrl = "iShort.ner/" + generateRndString();
 			boolean a = chkShort(shortUrl);
 			if(!a) {
 				String longUrl = url.getLongurl();
