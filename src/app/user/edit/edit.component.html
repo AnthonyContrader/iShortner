@@ -2,11 +2,15 @@
    <form #f="ngForm">
      <p>Insert new Username and Password</p>
      <div class="form-group">
-       <input class="form-control" type="text" id="user" name="username" placeholder="{{username}}" ngModel>
+       <input required class="form-control" type="text" id="user" name="username" [(ngModel)]="username" ngModel>
      </div>
      <div class="form-group">
-       <input class="form-control" type="password" id="pass" name="password" placeholder="{{password}}" ngModel>
+       <input required class="form-control" type="password" id="pass" name="password" [(ngModel)]="password" ngModel>
      </div>
-     <button type="submit" (click)="edit(f)">Edit</button>
+     <button [disabled]="f.invalid" type="submit" (click)="edit(f)">Edit</button>
    </form>
+   <!-- modificare a proprio piacimento-->
+   <div *ngIf="err">
+      <h1 class="red">USERNAME GIÀ PRESENTE NEL DATABASE</h1>
+   </div>
   </div>
