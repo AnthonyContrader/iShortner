@@ -4,7 +4,7 @@ h2 {
 form{
     margin-top:270px;
     width: 50%;
-    height: 50%;
+    height: 55%;
     padding: 10px;
     border-radius: 10px;
     border-color: rgb(214, 214, 214);
@@ -14,8 +14,8 @@ form{
 
 img{
     position: inherit;
-    width:15%;
-    margin: 12%;
+    width:45%;
+    margin: -2%;
 }
 
 input, input:hover, input::selection, input:checked, input:focus{
@@ -24,7 +24,10 @@ input, input:hover, input::selection, input:checked, input:focus{
     border-radius: 10px;
     color: white;
     border-bottom: 1px solid crimson;
-    margin: 0px; 
+    margin-left: 22%; 
+    width: 57%;
+    height: 5%;
+    font-size: 1.2em
 }
 
 .container-fluid{
@@ -55,5 +58,14 @@ padding-left: auto;
 
 p{
 font-size: 14px;
-color: white;
+color: rgb(243, 10, 10);
+}
+
+button {
+    width: 7em;
+    height: 3em;
+}
+
+a {
+    font-size: 1.2em;
 }

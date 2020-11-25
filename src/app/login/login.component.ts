@@ -15,18 +15,20 @@ export class LoginComponent implements OnInit {
 
   loginDTO: LoginDTO;
   userDTO: UserDTO;
+  err = false;
 
   constructor(private service: UserService, private router: Router) { }
 
   ngOnInit() {
+    this.err = false;
   }
 
  
 
   login(f: NgForm): void {
     this.loginDTO = new LoginDTO(f.value.username, f.value.password);
-    this.service.login(this.loginDTO).subscribe((user) => {
-
+    this.service.login(this.loginDTO).subscribe((user) => { 
+ 
       if (user != null) {
 
         localStorage.setItem('currentUser', JSON.stringify(user));
@@ -43,7 +45,7 @@ export class LoginComponent implements OnInit {
           default:
             this.router.navigate(['/login']);
         }
-      }
-    });
+      }else {this.err = true}
+    });  
   }
 }

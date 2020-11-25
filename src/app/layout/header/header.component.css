@@ -1,4 +1,7 @@
-
+.ishort {
+  width: 37% !important;
+  height: 94% !important;
+}
 #header{
     background-color: darkorange;
 }

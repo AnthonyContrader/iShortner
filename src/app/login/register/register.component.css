@@ -14,8 +14,8 @@ form{
 
 img{
     position: inherit;
-    width:15%;
-    margin: 12%;
+    width:45%;
+    margin: -2%;
 }
 
 input, input:hover, input::selection, input:checked, input:focus{
