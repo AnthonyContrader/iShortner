@@ -22,16 +22,28 @@ input {
 button {
     width: 6em;
 }
-
-.error {
-    margin: 1em auto;
-    text-align: center;
-    color: darkred;
-    width: 25%;
-    padding: 2px;
-    border: 1px solid darkred;
+button:disabled {
+    background: rgb(210, 125, 20);
 }
 
+.war {
+    width: 26%;
+    margin: auto;
+}
 .warning {
-    margin-right: 20%;
+    text-align: left;
+    margin-right: 7em;
+    padding: 1px 3px;
+    color: darkred;
+    background: rgb(240, 185, 185);
+}
+
+.error {
+    display: inline-block;
+    width: 20%;
+    margin-top: 1em;
+    margin-right: 1em;
+    padding: 2px;
+    color: darkred;
+    background: rgb(240, 185, 185);
 }
