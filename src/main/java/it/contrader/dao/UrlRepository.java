@@ -7,15 +7,17 @@ import javax.transaction.Transactional;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import it.contrader.model.ShortUrl;
+import it.contrader.model.Url;
 
 @Repository
 @Transactional
-public interface ShortUrlRepository  extends CrudRepository<ShortUrl, Long> {
+public interface UrlRepository  extends CrudRepository<Url, Long> {
 	
 	boolean existsByLongurlAndFkurl(String longurl, Long id);
 	
-	ShortUrl findByShorturl(String shorturl);
+	boolean existsByShorturl(String shortUrl);
 	
-	List<ShortUrl> findAllByFkurl(Long id);
+	Url findByShorturl(String shorturl);
+	
+	List<Url> findAllByFkurl(Long id);
 }

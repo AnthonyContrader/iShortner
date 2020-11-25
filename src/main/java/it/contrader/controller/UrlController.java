@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,18 +17,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.contrader.dto.UrlDTO;
-import it.contrader.dto.UserDTO;
 import it.contrader.service.ServerService;
-import it.contrader.service.ShortUrlService;
-import it.contrader.service.UserService;
+import it.contrader.service.UrlService;
 
 @RestController
 @RequestMapping("/user")
 @CrossOrigin(origins = "http://localhost:4200")
-public class ShortUrlController {
+public class UrlController {
 
 	@Autowired
-	private ShortUrlService urlService;
+	private UrlService urlService;
 	@Autowired
 	private ServerService serverService;
 
@@ -40,18 +37,13 @@ public class ShortUrlController {
 		if(url == null) {
 			return null;
 		}
-		//serverService.generator(url);
+		serverService.generator(url);
 		return url;
 	}
 
 	@PostMapping("/redirect")
-	public void redirectUrl(HttpServletRequest request, @RequestParam(value = "shortUrl", required = true) String shortUrl, HttpServletResponse response) {	
-		UrlDTO url = new UrlDTO();
-		url.setShorturl(shortUrl);
-		url = urlService.getLongUrl(url);
-		String fullUrl = url.getLongurl();	
-		response.setHeader("Location", fullUrl);
-		response.setStatus(302);	
+	public UrlDTO redirectUrl(@RequestBody UrlDTO url, HttpServletResponse response) {	
+		return urlService.getLongUrl(url);
 	}
 
 	@GetMapping("/readurl")
@@ -59,7 +51,6 @@ public class ShortUrlController {
 		List<UrlDTO> urlList = new ArrayList<>();
 		urlList = (List<UrlDTO>) urlService.readList(id);
 		if(urlList.isEmpty()) {
-			System.out.println("Lista vuota"+urlList.size());
 			return null;
 		}
 		return urlList;

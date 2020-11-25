@@ -21,7 +21,7 @@ import it.contrader.dto.UrlDTO;
 import it.contrader.dto.UserDTO;
 import it.contrader.model.User.Usertype;
 import it.contrader.service.ServerService;
-import it.contrader.service.ShortUrlService;
+import it.contrader.service.UrlService;
 import it.contrader.service.UserService;
 
 @RestController
@@ -33,7 +33,7 @@ public class UserController {
 	@Autowired
 	private UserService service;
 	@Autowired
-	private ShortUrlService shortUrlService;
+	private UrlService shortUrlService;
 	@Autowired
 	private ServerService servService;
 	
@@ -92,7 +92,7 @@ public class UserController {
 		request.getSession().setAttribute("urlDto", urlList);
 		List<ServerDTO> serverList = new ArrayList<>();
 		if(urlList.size() >= 1) {
-			serverList = servService.searchList(urlList.get(0).getFk_url());
+			serverList = servService.searchList(urlList.get(0).getFkurl());
 		}
 		request.getSession().setAttribute("server", serverList);
 		return "readuser";

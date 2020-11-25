@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-public class ShortUrl {
+public class Url {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

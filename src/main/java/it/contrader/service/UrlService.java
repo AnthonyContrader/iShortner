@@ -11,35 +11,44 @@ import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import it.contrader.converter.ShortUrlConverter;
-import it.contrader.dao.ShortUrlRepository;
+import it.contrader.converter.UrlConverter;
+import it.contrader.dao.UrlRepository;
 import it.contrader.dto.UrlDTO;
 import it.contrader.dto.UserDTO;
-import it.contrader.model.ShortUrl;
+import it.contrader.model.Url;
 
 @Service
-public class ShortUrlService extends AbstractService<ShortUrl, UrlDTO> {
+public class UrlService extends AbstractService<Url, UrlDTO> {
 
 	@Autowired
-	private ShortUrlRepository repo;
+	private UrlRepository repo;
 	@Autowired 
-	private ShortUrlConverter conv; 
-
+	private UrlConverter conv; 
+	
 	public UrlDTO createShortUrl(UrlDTO url) throws MalformedURLException {	
 		UrlDTO urlTableDto = new UrlDTO();
 		if(isReachable(url.getLongurl()) ) { 
 			String shortUrl = "iShort.ly/" + generateRndString();
-			String longUrl = url.getLongurl();
-			if(!longUrl.contains("http") && !longUrl.contains("https")) {
-				longUrl = "http://" + longUrl;
+			boolean a = chkShort(shortUrl);
+			if(!a) {
+				String longUrl = url.getLongurl();
+				if(!longUrl.contains("http") && !longUrl.contains("https")) {
+					longUrl = "http://" + longUrl;
+				}
+				urlTableDto.setLongurl(longUrl);
+				urlTableDto.setShorturl(shortUrl);
+				urlTableDto.setFkurl(url.getFkurl());
+				urlTableDto = insert(urlTableDto);
+				return urlTableDto;
+			}else {
+				createShortUrl(url);			
 			}
-			urlTableDto.setLongurl(longUrl);
-			urlTableDto.setShorturl(shortUrl);
-			urlTableDto.setFk_url(url.getFk_url());
-			urlTableDto = insert(urlTableDto);
-			return urlTableDto;
 		}
 		return null;
+	}
+	
+	public boolean chkShort(String shortUrl) {
+		return repo.existsByShorturl(shortUrl);
 	}
 
 	public String generateRndString() {
