@@ -21,6 +21,9 @@
           <th>
             User
           </th>
+          <th>
+            InfoUser
+          </th>
         </tr>
         <tr>
           <td>
@@ -41,8 +44,13 @@
           <td>
             <button (click)="clear()">Clear</button>
           </td>
+          <td>            
+          </td>
         </tr>
         <tr *ngFor="let user of users">
+            
+                     
+          
           <td>
             <input [(ngModel)]="user.username">
           </td>
@@ -61,11 +69,19 @@
           <td>
             <button (click)="delete(user)">Delete</button>
           </td>
+          <td>
+            
+            <a (click)= "visualizza()">
+            <img src="../../../../assets/infoUser.png" alt="header" style="width:20%; height: 20%;">
+            </a>
+          </td>
         </tr>
+        <div id= "user.id"></div>
+       
       </table>
     </div>
     <div class="col-md-1">
-
+      
     </div>
   </div>
 </div>

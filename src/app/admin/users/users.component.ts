@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/service/user.service';
 import { UserDTO } from 'src/dto/userdto';
@@ -8,11 +9,10 @@ import { UserDTO } from 'src/dto/userdto';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-
   users: UserDTO[];
   usertoinsert: UserDTO = new UserDTO();
-
-  constructor(private service: UserService) { }
+ 
+  constructor(private service: UserService, private router : Router) { }
 
   ngOnInit() {
     this.getUsers();
@@ -32,6 +32,11 @@ export class UsersComponent implements OnInit {
 
   insert(user: UserDTO) {
     this.service.insert(user).subscribe((res) => {res == null ? console.log("User esistente"): this.getUsers()});
+  }
+
+  
+  visualizza(){
+    
   }
 
   clear(){
