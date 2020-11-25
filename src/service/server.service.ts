@@ -19,11 +19,15 @@ import { Injectable } from '@angular/core';
   
     constructor(http: HttpClient) {
       super(http);
-      this.type = 'server';
+      this.type = 'user';
     }
   
     getUrl(serverDTO: ServerDTO): Observable<ServerDTO> {
       return this.http.post<any>('http://localhost:8080/' + this.type + '/server', serverDTO);
     }
+
+    getInfoUrl(id: number): Observable<ServerDTO>{
+      return this.http.get<ServerDTO>('http://localhost:8080/' + this.port + 'readurl?id=' +id);
+  }
   
   }
