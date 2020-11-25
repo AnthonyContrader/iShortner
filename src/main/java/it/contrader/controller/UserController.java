@@ -67,8 +67,8 @@ public class UserController {
 	
 	//manca controllo registrazione utente
 	@PostMapping("/register")
-	public void register(@RequestBody UserDTO dto) {
-		service.insert(dto);
+	public UserDTO register(@RequestBody UserDTO dto) {
+		return service.insert(dto);	
 	}
 
 	@PostMapping("/insert")
