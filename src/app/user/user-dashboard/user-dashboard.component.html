@@ -1,12 +1,12 @@
 <div class="container">
   <h1>Welcome {{user.username}}!</h1>
-
+  <br><br>
   <p>Do you want your ShortUrl?<br>Use this form &#9759;</p>
   
-    <!-- form per generare short url // autocomplete off togli i suggerimenti dall'input ma impedisce che tornando indietro si mantengano i dati del form-->
-		<form #f="ngForm" autocomplete="off"> 
-        <input ngModel name="longurl" placeholder="Insert URL" #war="ngModel" required pattern="(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)|[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)"/> 
-        <button type="submit" (click)="getUrl(f)" [disabled]="f.invalid">Generate</button>
+  <!-- form per generare short url // autocomplete off togli i suggerimenti dall'input ma impedisce che tornando indietro si mantengano i dati del form-->
+    <form #f="ngForm" autocomplete="off"> 
+      <input ngModel name="longurl" placeholder="Insert URL" #war="ngModel" required pattern="(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)|[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)"/> 
+      <button type="submit" (click)="getUrl(f)" [disabled]="f.invalid">Generate</button>
 
       <!-- controllo errori su url inserito -->
       <div *ngIf="war.invalid && (war.dirty || war.touched)" class="war">
@@ -18,6 +18,7 @@
         </div>
       </div>
     </form> 
+		
 
     <form #g="ngForm" autocomplete="off"> <!-- form per redirect -->
 

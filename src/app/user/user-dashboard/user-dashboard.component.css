@@ -2,48 +2,65 @@
     text-align: center;
 }
 
+h1{
+    font-size: 50px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
 .container {
     margin-top: 2%;
 }
 
 p {
-    font-size: 1.5em;
+    font-size: 2.0em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 input {
-    width: 20%;
-    margin-top: 1em;
+    width: 50%;
+    margin-top: 2em;
     margin-right: 1em;
     text-align: left;
     padding-left: 0.5em;
-    font-size: 1.1em;
+    font-size: 3.1em;
+    border-radius: 15px;
 }
 
 button {
     width: 6em;
+    font-size: 3.1em;
+    border-radius: 15px;
+    background-color: darkorange;
+    color: black;
 }
 button:disabled {
-    background: rgb(210, 125, 20);
+    background: rgb(223, 160, 83);
+    color: rgb(59, 59, 59);
 }
 
 .war {
-    width: 26%;
+    width: 70%;
     margin: auto;
 }
 .warning {
+    width: 72%;
     text-align: left;
-    margin-right: 7em;
+    margin-right: 10em;
     padding: 1px 3px;
     color: darkred;
     background: rgb(240, 185, 185);
+    font-size: 3.1em;
+    border-radius: 15px;
 }
 
 .error {
     display: inline-block;
-    width: 20%;
+    width: 50%;
     margin-top: 1em;
     margin-right: 1em;
     padding: 2px;
     color: darkred;
     background: rgb(240, 185, 185);
+    font-size: 3.1em;
+    border-radius: 15px;
 }
