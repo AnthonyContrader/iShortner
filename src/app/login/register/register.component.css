@@ -1,0 +1,64 @@
+h2 {
+    font-size: 30px;
+}
+form{
+    margin-top:270px;
+    width: 50%;
+    height: 50%;
+    padding: 10px;
+    border-radius: 10px;
+    border-color: rgb(214, 214, 214);
+    background-color: white;
+    border-style: solid;
+}
+
+img{
+    position: inherit;
+    width:15%;
+    margin: 12%;
+}
+
+input, input:hover, input::selection, input:checked, input:focus{
+    border: 0;
+    background-color: darkorange;
+    border-radius: 10px;
+    color: white;
+    border-bottom: 1px solid crimson;
+    margin: 0px; 
+}
+
+.container-fluid{
+    background-color: rgb(251, 160, 49);
+    height: 100vh;
+}
+input::placeholder{
+    color: white;
+}
+.form-control{
+border: none;
+background-color: rgba(255, 140, 0, 0.678);
+color: white;
+border-bottom: 1px solid white;
+}
+
+.login{
+border: none;
+background-color: darkorange;
+color: white;
+border: 1px solid white;
+border-radius: 2px;
+padding-top: 10px;
+padding-right: auto;
+padding-bottom: 10px;
+padding-left: auto;
+}
+
+p{
+font-size: 14px;
+color: white;
+}
+
+.red {
+    font-size: 14px;
+    color: rgb(224, 5, 5);
+}

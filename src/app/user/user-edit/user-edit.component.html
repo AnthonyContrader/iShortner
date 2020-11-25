@@ -1,0 +1,15 @@
+ <div class="col-md-7">
+      <form #f="ngForm">
+        <p>Modifica le tue credenziali</p>
+        <div class="form-group">
+          <input class="form-control" type="text" id="user" name="username" placeholder= "{{username}}" ngModel>
+        </div>
+        <div class="form-group">
+          <input class="form-control" type="password" id="pass" name="password" placeholder="{{password}}" ngModel>
+        </div>
+        <button type="submit" (click)="modifica(f)">Modifica</button>
+        <!-- <div>MODIFICA EFFETTUATA</div> -->
+      
+      </form>
+ </div>
+

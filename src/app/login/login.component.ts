@@ -21,13 +21,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  register(f: NgForm): void{
-    this.userDTO = new UserDTO();
-    this.userDTO.username = f.value.username;
-    this.userDTO.password = f.value.password;
-    this.userDTO.usertype = Usertype.USER;
-    this.service.register(this.userDTO).subscribe(() =>  console.log("User registrato"));
-  }
+ 
 
   login(f: NgForm): void {
     this.loginDTO = new LoginDTO(f.value.username, f.value.password);
