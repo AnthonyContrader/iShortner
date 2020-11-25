@@ -23,13 +23,14 @@ input {
     text-align: left;
     padding-left: 0.5em;
     font-size: 3.1em;
-    border-radius: 15px;
+    border-radius: 7px ;
+    border: solid 1px ;
 }
 
 button {
     width: 6em;
     font-size: 3.1em;
-    border-radius: 15px;
+    border-radius: 7px;
     background-color: darkorange;
     color: black;
 }
