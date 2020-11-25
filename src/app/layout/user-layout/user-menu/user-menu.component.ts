@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 })
 export class UserMenuComponent implements OnInit {
 
+  collapsed = false;
+
   constructor(private router: Router) { }
 
   ngOnInit() {
@@ -18,4 +20,7 @@ export class UserMenuComponent implements OnInit {
     this.router.navigateByUrl('');
   }
 
+  isCollapsed(){
+    this.collapsed = !this.collapsed;
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { UrlService } from 'src/service/url.service';
 import { UserDTO } from 'src/dto/userdto';
 import { UrlDTO } from 'src/dto/urldto';
@@ -29,7 +29,8 @@ export class UserDashboardComponent implements OnInit {
 
   getUrl(f: NgForm): void {
     this.url.fkurl = this.user.id;
-    this.url.longurl = f.value.longurl,
+    this.url.longurl = f.value.longurl;
+    console.log(this.url.longurl)
     this.service.create(this.url).subscribe((res) => {
       (res == null)? (
         this.err = true
@@ -38,4 +39,10 @@ export class UserDashboardComponent implements OnInit {
       )})
   }
 
+  redirect(g: NgForm): void{
+    console.log(this.url.longurl)
+    this.service.redirect(this.url).subscribe((url) => this.url = url);
+    window.location.href = this.url.longurl
+  }
+  
 }

@@ -21,4 +21,7 @@ import { UrlDTO } from 'src/dto/urldto';
         return this.http.post<any>('http://localhost:8080/' + this.type + '/create', url)
     }
 
+    redirect(url: UrlDTO): Observable<UrlDTO>{
+        return this.http.post<UrlDTO>('http://localhost:8080/' + this.type + '/redirect', url);
+    }
 }

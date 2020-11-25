@@ -2,8 +2,8 @@
   <h1>Welcome {{user.username}}!</h1>
 
   <p>Do you want your ShortUrl?<br>Use this form &#9759;</p>
-
-		<form #f="ngForm"> <!-- form per generare short url -->
+    <!-- form per generare short url // autocomplete off togli i suggerimenti dall'input ma impedisce che tornando indietro si mantengano i dati del form-->
+		<form #f="ngForm" autocomplete="off"> 
       <input ngModel name="longurl" placeholder="Insert URL" #war="ngModel" required pattern="(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)|[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)"/> 
       <button *ngIf="!(war.invalid && (war.dirty || war.touched))" type="submit" (click)="getUrl(f)">Generate</button>
       <button *ngIf="(war.invalid && (war.dirty || war.touched))">Generate</button>
@@ -19,12 +19,12 @@
       </div>
     </form> 
 
-    <form> <!-- form per redirect -->
+    <form #g="ngForm" autocomplete="off"> <!-- form per redirect -->
 
       <!-- controllo errore su short url generato -->
       <div *ngIf="!err">  
-			  <input value="{{this.url.shorturl}}" placeholder="iShort.ly/sample">
-        <button>Go</button>
+			  <input ngModel type="text" name ="shorturl" [(ngModel)]="url.shorturl" placeholder="iShort.ly/sample">
+        <button type="submit" (click)="redirect();">Go</button>
       </div>
       <div *ngIf="err">
         <div class="error">Invalid URL !</div>
