@@ -8,11 +8,9 @@
   </div>
   <br><br>
 
-  <div *ngIf = "empty" class="mt-5">
-    <h2>Non ci sono URL da mostrare!</h2>
-  </div>
+  <a [routerLink]="['/admin-dashboard/users']"><h3>Torna indietro</h3></a>
 
-  <div *ngIf = "!empty"  class="row">
+  <div class="row">
     <div class="col-12">
       <table class="table">
         <thead>
@@ -20,18 +18,24 @@
             <th>#</th>
             <th>Url originale</th>
             <th>Url Short</th>
+            <th>Data</th>
+            <th>Posizione</th>
+            <th>Tipologia</th>
           </tr>
         </thead>
-
+        
         <tbody id="table-url">
-          <tr *ngFor = "let info of urlDto; let i = index;">
+          <tr *ngFor = "let info of url; let i = index;" >
             <td>{{i+1}}</td>
             <td>{{info.longurl}}</td>
-            <td>{{info.shorturl}}</td>`
+            <td>{{info.shorturl}}</td>
+            <td>{{server[i].data}}</td>
+            <td>{{server[i].posizione}}</td>
+            <td>{{server[i].tipologia}}</td>
           </tr>
-        </tbody>
-        
+        </tbody>   
       </table>
+      <div *ngIf="noData"><h1>Nessun dato da mostrare</h1></div> 
     </div>
   </div>
 </div>

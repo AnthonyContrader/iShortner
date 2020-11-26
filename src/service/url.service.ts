@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { AbstractService } from './abstractservice';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { UserDTO } from 'src/dto/userdto';
 import { UrlDTO } from 'src/dto/urldto';
 
 @Injectable({
@@ -26,6 +25,6 @@ import { UrlDTO } from 'src/dto/urldto';
     }
 
     getUrlFromUser(id: number): Observable<UrlDTO[]>{
-      return this.http.get<UrlDTO[]>('http://localhost:8080/' + this.type + '/readurl?id=' +id);
+      return this.http.get<UrlDTO[]>('http://localhost:8080/' + this.type + '/readinfourl?id=' +id);
   }
 }

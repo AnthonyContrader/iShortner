@@ -3,7 +3,7 @@
     <div class="col-md-1">
 
     </div>
-    <div class="col-md-10">
+    <div class="col-md-10" *ngIf="!show">
       <table>
         <tr>
           <th>
@@ -47,10 +47,7 @@
           <td>            
           </td>
         </tr>
-        <tr *ngFor="let user of users">
-            
-                     
-          
+        <tr *ngFor="let user of users">                            
           <td>
             <input [(ngModel)]="user.username">
           </td>
@@ -70,18 +67,32 @@
             <button (click)="delete(user)">Delete</button>
           </td>
           <td>
-            
-            <a (click)= "visualizza()">
+             <a [routerLink]="['/admin-dashboard/test', user.id]"> 
             <img src="../../../../assets/infoUser.png" alt="header" style="width:20%; height: 20%;">
             </a>
           </td>
         </tr>
-        <div id= "user.id"></div>
-       
+        <div id= "user.id"></div>      
+      </table>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Url</th>
+            <th>Conteggio generati</th>
+          </tr>
+        </thead>
+        
+        <tbody id="table-url">
+          <tr *ngFor = "let stat of stats; let i = index;" >
+            <td>{{i+1}}</td>
+            <td>{{stat.url}}</td>
+            <td>{{stat.count}}</td>
+          </tr>
+        </tbody>   
       </table>
     </div>
     <div class="col-md-1">
       
     </div>
-  </div>
 </div>

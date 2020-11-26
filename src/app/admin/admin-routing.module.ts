@@ -1,9 +1,11 @@
+import { UserInfoUrlComponent } from './../user/user-info-url/user-info-url.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminLayoutComponent } from '../layout/admin-layout/admin-layout.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { UsersComponent } from './users/users.component';
 import { WorkInProgressComponent } from './work-in-progress/work-in-progress.component';
+import { InfoUrlComponent } from './info-url/info-url.component';
 
 /**
  * Modulo di routing dell'admin. Qui ci sono i percorsi che un admin può seguire:
@@ -21,7 +23,8 @@ const routes: Routes = [
   { path: 'admin-dashboard', component: AdminLayoutComponent, children:[
     { path: '', component: AdminDashboardComponent},
     { path: 'users', component: UsersComponent},
-    { path: 'work-in-progress', component: WorkInProgressComponent}
+    { path: 'work-in-progress', component: WorkInProgressComponent},
+    { path: 'test/:id', component: InfoUrlComponent }
     
 
   ]}
