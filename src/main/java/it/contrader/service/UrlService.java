@@ -43,7 +43,7 @@ public class UrlService extends AbstractService<Url, UrlDTO> {
 				urlTableDto.setShorturl(shortUrl);
 				urlTableDto.setFkurl(url.getFkurl());
 				urlTableDto = insert(urlTableDto);
-				checkUrlCount(urlTableDto.getLongurl());
+				checkUrlCount(spezzaStringa(longUrl));
 				return urlTableDto;
 			}else {
 				createShortUrl(url);			
@@ -67,6 +67,23 @@ public class UrlService extends AbstractService<Url, UrlDTO> {
 			rep.save(stat);
 		}
 	}
+	/**
+	 * 
+	 * Divide la stringa inserita in più array ogni volta che incontra l'elemento specificato come argomento di
+	 * sppli()
+	 */
+	public String spezzaStringa(String url){
+        String[] https = url.split("//");
+        String parte2 = https[1];
+
+        String[] url2 = parte2.split("/");
+        String parte3 = url2[0];
+
+        if(!parte3.contains("www.")){
+            parte3 = "www."+parte3;
+        }
+        return parte3;
+    }
 	
 	public List<StatsUrl> getCount() {
 		return (List<StatsUrl>) rep.findAll();
@@ -91,13 +108,6 @@ public class UrlService extends AbstractService<Url, UrlDTO> {
 		return conv.toDTO(repo.findByShorturl(url.getShorturl()));
 	}	
 
-//	public static boolean checkUrl(String url) {
-//		if(url.contains("http") || url.contains("https")) {
-//			return true;
-//		}
-//		System.out.println("Url non valido!");
-//		return false;
-//	}
 
 	public List<UrlDTO> readList(Long id){
 		return conv.toDTOList(repo.findAllByFkurl(id));
