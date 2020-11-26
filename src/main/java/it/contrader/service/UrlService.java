@@ -11,9 +11,11 @@ import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import it.contrader.converter.StatsConverter;
 import it.contrader.converter.UrlConverter;
 import it.contrader.dao.StatsRepository;
 import it.contrader.dao.UrlRepository;
+import it.contrader.dto.StatsUrlDTO;
 import it.contrader.dto.UrlDTO;
 import it.contrader.dto.UserDTO;
 import it.contrader.model.StatsUrl;
@@ -28,6 +30,8 @@ public class UrlService extends AbstractService<Url, UrlDTO> {
 	private StatsRepository rep;
 	@Autowired 
 	private UrlConverter conv; 
+	@Autowired
+	private StatsConverter statConv;
 	
 	public UrlDTO createShortUrl(UrlDTO url) throws MalformedURLException {	
 		UrlDTO urlTableDto = new UrlDTO();
@@ -54,17 +58,17 @@ public class UrlService extends AbstractService<Url, UrlDTO> {
 	
 	public void checkUrlCount(String url) {
 		boolean a = rep.existsByUrl(url);
-		StatsUrl stat = new StatsUrl();
+		StatsUrlDTO stat = new StatsUrlDTO();
 		if(!a) {
 			stat.setUrl(url);
 			stat.setCount((long) 1);
-			rep.save(stat);
+			rep.save(statConv.toEntity(stat));
 		}else {
-			stat = rep.findByUrl(url);
+			stat = statConv.toDTO(rep.findByUrl(url));
 			stat.setId(stat.getId());
 			stat.setUrl(stat.getUrl());
 			stat.setCount(stat.getCount()+1);
-			rep.save(stat);
+			rep.save(statConv.toEntity(stat));
 		}
 	}
 	/**
