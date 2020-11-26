@@ -1,0 +1,39 @@
+*{
+    text-align: center;
+}
+
+h1 {
+	margin-top: 4%;
+}
+
+.container {
+	margin-top: 1%;
+	overflow-y: auto;
+    max-height: 85%;
+}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+	float: left;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+}
+
+th, td {
+	text-align: center;
+	padding: 2px;
+}
+
+td{
+    font-size: 16px;
+}
+
+tr:nth-child(even) {
+	background-color: #ffdb99;
+}
+
+th {
+	background-color: darkorange;
+	color: #ffffff;
+}

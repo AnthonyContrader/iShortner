@@ -6,7 +6,6 @@ import { UrlService } from 'src/service/url.service';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/service/user.service';
 import { UserDTO } from 'src/dto/userdto';
-import { StatsService } from 'src/service/stats.service';
 
 @Component({
   selector: 'app-users',
@@ -18,13 +17,12 @@ export class UsersComponent implements OnInit {
   usertoinsert: UserDTO = new UserDTO();
   url: UrlDTO[];
   server: ServerDTO[];
-  stats: StatsDTO[];
- 
-  constructor(private service: UserService, private serv: UrlService, private servServer: ServerService, private stat: StatsService) { }
+  err = false;
+
+  constructor(private service: UserService, private serv: UrlService, private servServer: ServerService) { }
 
   ngOnInit() {
     this.getUsers();
-    this.getStats();
   }
 
   getUsers() {
@@ -40,11 +38,20 @@ export class UsersComponent implements OnInit {
   }
 
   insert(user: UserDTO) {
-    this.service.insert(user).subscribe((res) => {res == null ? console.log("User esistente"): this.getUsers()});
-  }
-
-  getStats(){
-    this.stat.getStats().subscribe((res) => this.stats = res);
+    if(user.username === undefined || user.password === undefined || user.usertype === undefined) {
+      this.err = true;
+    } else {
+      this.service.insert(user).subscribe((res) => {
+      (res == null)? (
+          console.warn("User esistente"),
+          this.err = true
+        ):( 
+          this.err = false,
+          this.url = res,
+          this.getUsers()
+        )
+      });
+    }
   }
 
   clear(){

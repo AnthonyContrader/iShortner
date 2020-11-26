@@ -2,6 +2,15 @@
     text-align: center;
 }
 
+h2 {
+	margin-top: 10%;
+	margin-right: 15%;
+}
+
+.new {
+	margin-top: 1%;
+}
+
 /*Tables*/
 table {
 	border-collapse: collapse;
@@ -30,8 +39,9 @@ th {
 	color: #ffffff;
 }
 
-a:hover {
-	color: #999999;
+a, a:hover, a:visited {
+	text-decoration: none;
+	color: #000000;
 }
 
 input, select{

@@ -1,0 +1,20 @@
+<h1>Statistics URL visited</h1>
+<div class="container">
+    <table>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Url</th>
+            <th>Conteggio generati</th>
+        </tr>
+        </thead>
+    
+    <tbody id="table-url">
+      <tr *ngFor = "let stat of stats; let i = index;" >
+        <td>{{i+1}}</td>
+        <td>{{stat.url}}</td>
+        <td>{{stat.count}}</td>
+      </tr>
+    </tbody>   
+  </table>
+</div>
