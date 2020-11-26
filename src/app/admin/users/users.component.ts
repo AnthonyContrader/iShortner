@@ -47,7 +47,6 @@ export class UsersComponent implements OnInit {
           this.err = true
         ):( 
           this.err = false,
-          this.url = res,
           this.getUsers()
         )
       });
