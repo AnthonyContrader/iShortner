@@ -39,12 +39,12 @@ public class ServerService extends AbstractService<Server, ServerDTO>{
 		server.setPosizione(pos);
 		server.setTipologia(bro);
 		server.setData(d);
-		server.setFk_id_url(url.getId());
+		server.setFk_id_url(url.getFkurl());
 		insert(server);
 	}
 
 	public List<ServerDTO> searchList(Long id){
-		return conv.toDTOList(repo.searchList(id));
+		return conv.toDTOList(repo.findAllByFkidurl(id));
 	}
 
 	

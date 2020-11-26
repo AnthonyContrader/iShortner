@@ -12,9 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.contrader.converter.UrlConverter;
+import it.contrader.dao.StatsRepository;
 import it.contrader.dao.UrlRepository;
 import it.contrader.dto.UrlDTO;
 import it.contrader.dto.UserDTO;
+import it.contrader.model.StatsUrl;
 import it.contrader.model.Url;
 
 @Service
@@ -22,6 +24,8 @@ public class UrlService extends AbstractService<Url, UrlDTO> {
 
 	@Autowired
 	private UrlRepository repo;
+	@Autowired
+	private StatsRepository rep;
 	@Autowired 
 	private UrlConverter conv; 
 	
@@ -39,12 +43,33 @@ public class UrlService extends AbstractService<Url, UrlDTO> {
 				urlTableDto.setShorturl(shortUrl);
 				urlTableDto.setFkurl(url.getFkurl());
 				urlTableDto = insert(urlTableDto);
+				checkUrlCount(urlTableDto.getLongurl());
 				return urlTableDto;
 			}else {
 				createShortUrl(url);			
 			}
 		}
 		return null;
+	}
+	
+	public void checkUrlCount(String url) {
+		boolean a = rep.existsByUrl(url);
+		StatsUrl stat = new StatsUrl();
+		if(!a) {
+			stat.setUrl(url);
+			stat.setCount((long) 1);
+			rep.save(stat);
+		}else {
+			stat = rep.findByUrl(url);
+			stat.setId(stat.getId());
+			stat.setUrl(stat.getUrl());
+			stat.setCount(stat.getCount()+1);
+			rep.save(stat);
+		}
+	}
+	
+	public List<StatsUrl> getCount() {
+		return (List<StatsUrl>) rep.findAll();
 	}
 	
 	public boolean chkShort(String shortUrl) {

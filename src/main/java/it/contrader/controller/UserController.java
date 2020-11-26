@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import it.contrader.dto.ServerDTO;
 import it.contrader.dto.UrlDTO;
 import it.contrader.dto.UserDTO;
+import it.contrader.model.StatsUrl;
 import it.contrader.model.User.Usertype;
 import it.contrader.service.ServerService;
 import it.contrader.service.UrlService;
@@ -82,22 +83,27 @@ public class UserController {
 		return dto;
 	}
 
-	@GetMapping("/read")
-	public String read(HttpServletRequest request, @RequestParam("id") Long id) {
-		UserDTO dto = new UserDTO();
-		dto = service.read(id);
-		request.getSession().setAttribute("dto", dto);
+	@GetMapping("/readinfourl")
+	public List<UrlDTO> readurl(HttpServletRequest request, @RequestParam("id") Long id) {
 		List<UrlDTO> urlList = new ArrayList<>();
 		urlList = (List<UrlDTO>) shortUrlService.readList(id);
-		request.getSession().setAttribute("urlDto", urlList);
-		List<ServerDTO> serverList = new ArrayList<>();
-		if(urlList.size() >= 1) {
-			serverList = servService.searchList(urlList.get(0).getFkurl());
+		if(urlList.isEmpty()) {
+			return null;
 		}
-		request.getSession().setAttribute("server", serverList);
-		return "readuser";
+		return urlList;
 	}
 	
+	@GetMapping("/readserver")
+	public List<ServerDTO> readserver(HttpServletRequest request, @RequestParam("id") Long id) {
+		List<ServerDTO> serverList = new ArrayList<>();
+		serverList = servService.searchList(id);
+		return serverList;
+	}
+	
+	@GetMapping("/getcount")
+	public List<StatsUrl> readStats(){
+		return shortUrlService.getCount();
+	}
 	
 	@PostMapping("/edituser")
 	public String edit(HttpServletRequest request,  @RequestParam("id") Long id, @RequestParam("username") String username, @RequestParam("password") String password) {

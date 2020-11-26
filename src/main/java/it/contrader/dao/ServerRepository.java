@@ -9,12 +9,11 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import it.contrader.model.Server;
+import it.contrader.model.Url;
 
 @Repository
 @Transactional
 public interface ServerRepository extends CrudRepository<Server, Long>{
 
-	@Query(value= "SELECT * FROM server WHERE fkidurl IN(SELECT id FROM short_url WHERE fkurl = :idx)", nativeQuery = true)
-	public List<Server> searchList(Long idx);
-
+	List<Server> findAllByFkidurl(Long id);
 }
