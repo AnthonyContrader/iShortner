@@ -89,8 +89,8 @@ public class UrlService extends AbstractService<Url, UrlDTO> {
         return parte3;
     }
 	
-	public List<StatsUrl> getCount() {
-		return (List<StatsUrl>) rep.findAll();
+	public List<StatsUrlDTO> getCount() {
+		return statConv.toDTOList(rep.findAllByOrderByCountDesc());
 	}
 	
 	public boolean chkShort(String shortUrl) {

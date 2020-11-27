@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.contrader.dto.ServerDTO;
+import it.contrader.dto.StatsUrlDTO;
 import it.contrader.dto.UrlDTO;
 import it.contrader.dto.UserDTO;
 import it.contrader.model.StatsUrl;
@@ -101,7 +102,7 @@ public class UserController {
 	}
 	
 	@GetMapping("/getcount")
-	public List<StatsUrl> readStats(){
+	public List<StatsUrlDTO> readStats(){
 		return shortUrlService.getCount();
 	}
 	
