@@ -1,0 +1,39 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.ishortner.url"
+    },
+    "jhipsterVersion": "6.10.5",
+    "applicationType": "microservice",
+    "baseName": "URL",
+    "packageName": "com.ishortner.url",
+    "packageFolder": "com/ishortner/url",
+    "serverPort": "8081",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "consul",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "ZjUxZTFjMTIzZGFkYzBkNzFiZWNiNjViNmNiNjA4MjBiOGU2MmUwZmMyZTE0ZDJhNzk0OWRiNTQwNjQ2ODU0ZDdkZDkyMjkyMDc5OTMyNWU4YTViNmI4NmU0MzQwYzQ3ZWQ5ZmNhYzlmYTdiZmViMGEwOTBlZDUyZGNlNzlhOGU=",
+    "embeddableLaunchScript": false,
+    "creationTimestamp": 1606815237590,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "clientPackageManager": "npm",
+    "blueprints": [],
+    "skipClient": true,
+    "skipUserManagement": true,
+    "lastLiquibaseTimestamp": 1606816063000
+  }
+}

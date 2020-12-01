@@ -1,0 +1,25 @@
+{
+  "fluentMethods": true,
+  "clientRootFolder": "URL",
+  "relationships": [],
+  "fields": [
+    {
+      "fieldName": "longurl",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "shorturl",
+      "fieldType": "String"
+    }
+  ],
+  "changelogDate": "20201201094743",
+  "dto": "no",
+  "searchEngine": false,
+  "service": "no",
+  "entityTableName": "url",
+  "databaseType": "sql",
+  "readOnly": false,
+  "jpaMetamodelFiltering": false,
+  "pagination": "no",
+  "microserviceName": "URL"
+}
