@@ -1,19 +1,19 @@
 version: '2'
 services:
-  users-app:
-    image: users
+  user-app:
+    image: user
     environment:
       - _JAVA_OPTIONS=-Xmx512m -Xms256m
       - SPRING_PROFILES_ACTIVE=prod,swagger
       - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
       - SPRING_CLOUD_CONSUL_HOST=consul
       - SPRING_CLOUD_CONSUL_PORT=8500
-      - SPRING_DATASOURCE_URL=jdbc:mysql://users-mysql:3306/users?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
+      - SPRING_DATASOURCE_URL=jdbc:mysql://user-mysql:3306/user?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
       - JHIPSTER_SLEEP=30 # gives time for other services to boot before the application
-  users-mysql:
+  user-mysql:
     extends:
       file: mysql.yml
-      service: users-mysql
+      service: user-mysql
   consul:
     extends:
       file: consul.yml

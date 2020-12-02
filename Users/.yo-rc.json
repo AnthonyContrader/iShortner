@@ -5,7 +5,7 @@
     },
     "jhipsterVersion": "6.10.5",
     "applicationType": "microservice",
-    "baseName": "Users",
+    "baseName": "User",
     "packageName": "com.ishortner.user",
     "packageFolder": "com/ishortner/user",
     "serverPort": "8082",
@@ -21,9 +21,9 @@
     "serviceDiscoveryType": "consul",
     "buildTool": "maven",
     "enableSwaggerCodegen": false,
-    "jwtSecretKey": "YjdmYjYwMTQyODM0MGIwZjQ5ZTE5YWZhOGRiMDc1YjAzYTlkMmFmNjQwZGEyZWViOWNiMThmNmQ4YjBlZDY4MDM1YmM2Mzg1MDExMGZhODRmMWMwMDU2ZDUzZjc1YzExNGMxMjhiYTkzYzUyMTE5YzQ3YTkwYzE3OWJiZjE1OWY=",
+    "jwtSecretKey": "M2U5YWMxZGRlNmUzYWY4MTg3M2IyZjEwNmQ2ZmViM2ZmNzE5YTc4MzIzYjg3ZjQ2OTdkMzRiOWFiOTQxYjk3YjQ2YTEzMzIzNTUyYmNmZmZmMTZkMzc0MTNiMTRmMGZkYmFiMTU0ODU5MWJlYTRlYzIzZDY1NjJkMzhiYjFhZGY=",
     "embeddableLaunchScript": false,
-    "creationTimestamp": 1606901248636,
+    "creationTimestamp": 1606916973947,
     "testFrameworks": [],
     "jhiPrefix": "jhi",
     "entitySuffix": "",
@@ -33,6 +33,7 @@
     "clientPackageManager": "npm",
     "blueprints": [],
     "skipClient": true,
-    "skipUserManagement": true
+    "skipUserManagement": true,
+    "lastLiquibaseTimestamp": 1606917211000
   }
 }

@@ -1,0 +1,26 @@
+{
+  "fluentMethods": true,
+  "clientRootFolder": "Stats",
+  "relationships": [],
+  "fields": [
+    {
+      "fieldName": "domain",
+      "fieldType": "String",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "count",
+      "fieldType": "Integer"
+    }
+  ],
+  "changelogDate": "20201202144530",
+  "dto": "mapstruct",
+  "searchEngine": false,
+  "service": "serviceImpl",
+  "entityTableName": "stats",
+  "databaseType": "sql",
+  "readOnly": false,
+  "jpaMetamodelFiltering": false,
+  "pagination": "no",
+  "microserviceName": "Stats"
+}

@@ -27,25 +27,27 @@ export class LoginComponent implements OnInit {
 
   login(f: NgForm): void {
     this.loginDTO = new LoginDTO(f.value.username, f.value.password);
-    this.service.login(this.loginDTO).subscribe((user) => { 
- 
-      if (user != null) {
+    this.service.authenticate(this.loginDTO).subscribe((res) => {  
+      sessionStorage.setItem("id_token", res.id_token);
 
-        localStorage.setItem('currentUser', JSON.stringify(user));
-   
-        switch (user.usertype.toString()) {
-          case 'ADMIN': {
-            this.router.navigate(['/admin-dashboard']);
-            break;
+      this.service.login(this.loginDTO).subscribe((user) => {
+      
+        if (user != null) {
+          localStorage.setItem("currentUser", JSON.stringify(user));
+     
+          switch (user.usertype.toString()) {
+            case 'ADMIN': {
+              this.router.navigate(['/admin-dashboard']);
+              break;
+            }
+            case 'USER': {
+              this.router.navigate(['/user-dashboard']);
+              break;
+            }
+            default:
+              this.router.navigate(['/login']);
           }
-          case 'USER': {
-            this.router.navigate(['/user-dashboard']);
-            break;
-          }
-          default:
-            this.router.navigate(['/login']);
-        }
-      }else {this.err = true}
-    });  
-  }
+        }else {this.err = true}
+      });   
+    })}
 }

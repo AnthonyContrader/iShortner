@@ -33,6 +33,7 @@
     "clientPackageManager": "npm",
     "blueprints": [],
     "skipClient": true,
-    "skipUserManagement": true
+    "skipUserManagement": true,
+    "lastLiquibaseTimestamp": 1606919784000
   }
 }

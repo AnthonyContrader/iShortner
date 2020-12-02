@@ -1,0 +1,33 @@
+{
+  "fluentMethods": true,
+  "clientRootFolder": "Server",
+  "relationships": [],
+  "fields": [
+    {
+      "fieldName": "tipologia",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "posizione",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "data",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "fkurl",
+      "fieldType": "Long"
+    }
+  ],
+  "changelogDate": "20201202143624",
+  "dto": "mapstruct",
+  "searchEngine": false,
+  "service": "serviceImpl",
+  "entityTableName": "server",
+  "databaseType": "sql",
+  "readOnly": false,
+  "jpaMetamodelFiltering": false,
+  "pagination": "no",
+  "microserviceName": "Server"
+}

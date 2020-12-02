@@ -3,6 +3,9 @@ package com.ishortner.url.web.rest;
 import com.ishortner.url.UrlApp;
 import com.ishortner.url.domain.Url;
 import com.ishortner.url.repository.UrlRepository;
+import com.ishortner.url.service.UrlService;
+import com.ishortner.url.service.dto.UrlDTO;
+import com.ishortner.url.service.mapper.UrlMapper;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -35,8 +38,17 @@ public class UrlResourceIT {
     private static final String DEFAULT_SHORTURL = "AAAAAAAAAA";
     private static final String UPDATED_SHORTURL = "BBBBBBBBBB";
 
+    private static final Long DEFAULT_FKUSER = 1L;
+    private static final Long UPDATED_FKUSER = 2L;
+
     @Autowired
     private UrlRepository urlRepository;
+
+    @Autowired
+    private UrlMapper urlMapper;
+
+    @Autowired
+    private UrlService urlService;
 
     @Autowired
     private EntityManager em;
@@ -55,7 +67,8 @@ public class UrlResourceIT {
     public static Url createEntity(EntityManager em) {
         Url url = new Url()
             .longurl(DEFAULT_LONGURL)
-            .shorturl(DEFAULT_SHORTURL);
+            .shorturl(DEFAULT_SHORTURL)
+            .fkuser(DEFAULT_FKUSER);
         return url;
     }
     /**
@@ -67,7 +80,8 @@ public class UrlResourceIT {
     public static Url createUpdatedEntity(EntityManager em) {
         Url url = new Url()
             .longurl(UPDATED_LONGURL)
-            .shorturl(UPDATED_SHORTURL);
+            .shorturl(UPDATED_SHORTURL)
+            .fkuser(UPDATED_FKUSER);
         return url;
     }
 
@@ -81,9 +95,10 @@ public class UrlResourceIT {
     public void createUrl() throws Exception {
         int databaseSizeBeforeCreate = urlRepository.findAll().size();
         // Create the Url
+        UrlDTO urlDTO = urlMapper.toDto(url);
         restUrlMockMvc.perform(post("/api/urls")
             .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(url)))
+            .content(TestUtil.convertObjectToJsonBytes(urlDTO)))
             .andExpect(status().isCreated());
 
         // Validate the Url in the database
@@ -92,6 +107,7 @@ public class UrlResourceIT {
         Url testUrl = urlList.get(urlList.size() - 1);
         assertThat(testUrl.getLongurl()).isEqualTo(DEFAULT_LONGURL);
         assertThat(testUrl.getShorturl()).isEqualTo(DEFAULT_SHORTURL);
+        assertThat(testUrl.getFkuser()).isEqualTo(DEFAULT_FKUSER);
     }
 
     @Test
@@ -101,11 +117,12 @@ public class UrlResourceIT {
 
         // Create the Url with an existing ID
         url.setId(1L);
+        UrlDTO urlDTO = urlMapper.toDto(url);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restUrlMockMvc.perform(post("/api/urls")
             .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(url)))
+            .content(TestUtil.convertObjectToJsonBytes(urlDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the Url in the database
@@ -126,7 +143,8 @@ public class UrlResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(url.getId().intValue())))
             .andExpect(jsonPath("$.[*].longurl").value(hasItem(DEFAULT_LONGURL)))
-            .andExpect(jsonPath("$.[*].shorturl").value(hasItem(DEFAULT_SHORTURL)));
+            .andExpect(jsonPath("$.[*].shorturl").value(hasItem(DEFAULT_SHORTURL)))
+            .andExpect(jsonPath("$.[*].fkuser").value(hasItem(DEFAULT_FKUSER.intValue())));
     }
     
     @Test
@@ -141,7 +159,8 @@ public class UrlResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(url.getId().intValue()))
             .andExpect(jsonPath("$.longurl").value(DEFAULT_LONGURL))
-            .andExpect(jsonPath("$.shorturl").value(DEFAULT_SHORTURL));
+            .andExpect(jsonPath("$.shorturl").value(DEFAULT_SHORTURL))
+            .andExpect(jsonPath("$.fkuser").value(DEFAULT_FKUSER.intValue()));
     }
     @Test
     @Transactional
@@ -165,11 +184,13 @@ public class UrlResourceIT {
         em.detach(updatedUrl);
         updatedUrl
             .longurl(UPDATED_LONGURL)
-            .shorturl(UPDATED_SHORTURL);
+            .shorturl(UPDATED_SHORTURL)
+            .fkuser(UPDATED_FKUSER);
+        UrlDTO urlDTO = urlMapper.toDto(updatedUrl);
 
         restUrlMockMvc.perform(put("/api/urls")
             .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(updatedUrl)))
+            .content(TestUtil.convertObjectToJsonBytes(urlDTO)))
             .andExpect(status().isOk());
 
         // Validate the Url in the database
@@ -178,6 +199,7 @@ public class UrlResourceIT {
         Url testUrl = urlList.get(urlList.size() - 1);
         assertThat(testUrl.getLongurl()).isEqualTo(UPDATED_LONGURL);
         assertThat(testUrl.getShorturl()).isEqualTo(UPDATED_SHORTURL);
+        assertThat(testUrl.getFkuser()).isEqualTo(UPDATED_FKUSER);
     }
 
     @Test
@@ -185,10 +207,13 @@ public class UrlResourceIT {
     public void updateNonExistingUrl() throws Exception {
         int databaseSizeBeforeUpdate = urlRepository.findAll().size();
 
+        // Create the Url
+        UrlDTO urlDTO = urlMapper.toDto(url);
+
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restUrlMockMvc.perform(put("/api/urls")
             .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(url)))
+            .content(TestUtil.convertObjectToJsonBytes(urlDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the Url in the database

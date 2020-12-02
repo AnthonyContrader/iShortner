@@ -20,6 +20,7 @@ export class AdminMenuComponent implements OnInit {
 
   logout() {
     localStorage.clear();
+    sessionStorage.clear();
     this.router.navigateByUrl('');
   }
 

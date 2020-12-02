@@ -21,9 +21,9 @@
     "serviceDiscoveryType": "consul",
     "buildTool": "maven",
     "enableSwaggerCodegen": false,
-    "jwtSecretKey": "ZjUxZTFjMTIzZGFkYzBkNzFiZWNiNjViNmNiNjA4MjBiOGU2MmUwZmMyZTE0ZDJhNzk0OWRiNTQwNjQ2ODU0ZDdkZDkyMjkyMDc5OTMyNWU4YTViNmI4NmU0MzQwYzQ3ZWQ5ZmNhYzlmYTdiZmViMGEwOTBlZDUyZGNlNzlhOGU=",
+    "jwtSecretKey": "MTVjZmZlZmVkNGE2ODhiYmI1OGYyYzMzOTI4MmZmMmJmMjI5NWZmMzc1ZjBhMzU5ODJiZDkwNzQ1ZWU0ZDAwMTIyZGNjYWUyYmNjNTI5ZWFlMzg0ZWFmMmQxMDQ1YjAyYzZhNzRlMjM1MGFiMGRiNzM2MzMzM2VkMmY5N2MwNzc=",
     "embeddableLaunchScript": false,
-    "creationTimestamp": 1606815237590,
+    "creationTimestamp": 1606919428702,
     "testFrameworks": [],
     "jhiPrefix": "jhi",
     "entitySuffix": "",
@@ -34,6 +34,6 @@
     "blueprints": [],
     "skipClient": true,
     "skipUserManagement": true,
-    "lastLiquibaseTimestamp": 1606816063000
+    "lastLiquibaseTimestamp": 1606919530000
   }
 }

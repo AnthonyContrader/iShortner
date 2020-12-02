@@ -24,6 +24,9 @@ public class Url implements Serializable {
     @Column(name = "shorturl")
     private String shorturl;
 
+    @Column(name = "fkuser")
+    private Long fkuser;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
@@ -58,6 +61,19 @@ public class Url implements Serializable {
     public void setShorturl(String shorturl) {
         this.shorturl = shorturl;
     }
+
+    public Long getFkuser() {
+        return fkuser;
+    }
+
+    public Url fkuser(Long fkuser) {
+        this.fkuser = fkuser;
+        return this;
+    }
+
+    public void setFkuser(Long fkuser) {
+        this.fkuser = fkuser;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -83,6 +99,7 @@ public class Url implements Serializable {
             "id=" + getId() +
             ", longurl='" + getLongurl() + "'" +
             ", shorturl='" + getShorturl() + "'" +
+            ", fkuser=" + getFkuser() +
             "}";
     }
 }

@@ -4,10 +4,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.ishortner.user</groupId>
-    <artifactId>users</artifactId>
+    <artifactId>user</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>Users</name>
+    <name>User</name>
 
     <repositories>
         <!-- jhipster-needle-maven-repository -->
@@ -598,7 +598,7 @@
                             <image>adoptopenjdk:11-jre-hotspot</image>
                         </from>
                         <to>
-                            <image>users:latest</image>
+                            <image>user:latest</image>
                         </to>
                         <container>
                             <entrypoint>
@@ -635,9 +635,9 @@
                         <changeLogFile>${project.basedir}/src/main/resources/config/liquibase/master.xml</changeLogFile>
                         <diffChangeLogFile>${project.basedir}/src/main/resources/config/liquibase/changelog/${maven.build.timestamp}_changelog.xml</diffChangeLogFile>
                         <driver>org.h2.Driver</driver>
-                        <url>jdbc:h2:file:${project.build.directory}/h2db/db/users</url>
+                        <url>jdbc:h2:file:${project.build.directory}/h2db/db/user</url>
                         <defaultSchemaName></defaultSchemaName>
-                        <username>Users</username>
+                        <username>User</username>
                         <password></password>
                         <referenceUrl>hibernate:spring:com.ishortner.user.domain?dialect=org.hibernate.dialect.H2Dialect&amp;hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&amp;hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy</referenceUrl>
                         <verbose>true</verbose>

@@ -1,6 +1,6 @@
 package com.ishortner.user.web.rest.errors;
 
-import com.ishortner.user.UsersApp;
+import com.ishortner.user.UserApp;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @WithMockUser
 @AutoConfigureMockMvc
-@SpringBootTest(classes = UsersApp.class)
+@SpringBootTest(classes = UserApp.class)
 public class ExceptionTranslatorIT {
 
     @Autowired

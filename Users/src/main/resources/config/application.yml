@@ -80,13 +80,13 @@ management:
 
 spring:
   application:
-    name: Users
+    name: User
   cloud:
     consul:
       discovery:
         healthCheckPath: /management/health
-        instanceId: users:${spring.application.instance-id:${random.value}}
-        service-name: users
+        instanceId: user:${spring.application.instance-id:${random.value}}
+        service-name: user
       config:
         watch:
           enabled: false
@@ -122,13 +122,13 @@ spring:
     allow-bean-definition-overriding: true
   task:
     execution:
-      thread-name-prefix: users-task-
+      thread-name-prefix: user-task-
       pool:
         core-size: 2
         max-size: 50
         queue-capacity: 10000
     scheduling:
-      thread-name-prefix: users-scheduling-
+      thread-name-prefix: user-scheduling-
       pool:
         size: 2
   thymeleaf:
@@ -156,7 +156,7 @@ info:
 
 jhipster:
   clientApp:
-    name: 'usersApp'
+    name: 'userApp'
   # By default CORS is disabled. Uncomment to enable.
   # cors:
   #     allowed-origins: "*"
@@ -166,11 +166,11 @@ jhipster:
   #     allow-credentials: true
   #     max-age: 1800
   mail:
-    from: Users@localhost
+    from: User@localhost
   swagger:
     default-include-pattern: /api/.*
-    title: Users API
-    description: Users API documentation
+    title: User API
+    description: User API documentation
     version: 0.0.1
     terms-of-service-url:
     contact-name:

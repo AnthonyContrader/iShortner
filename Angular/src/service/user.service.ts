@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AbstractService } from './abstractservice';
 import { UserDTO } from 'src/dto/userdto';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoginDTO } from 'src/dto/logindto';
 import { Observable } from 'rxjs';
 
@@ -25,7 +25,17 @@ export class UserService extends AbstractService<UserDTO>{
   }
 
   login(loginDTO: LoginDTO): Observable<UserDTO> {
-    return this.http.post<any>('http://localhost:8080/' + this.type + '/login', loginDTO)
+/*     const object = new HttpHeaders();
+    object.set("Authorization", `Bearer ${sessionStorage.getItem('jhi-authenticationtoken')}`);
+    const httpoption = {
+      headers: object
+    } */  
+    const c = sessionStorage.getItem("id_token")
+    return this.http.post<any>('http://localhost:8080/services/user/api/login', loginDTO, {headers : { Authorization: "Bearer "+ c }})
+  }
+
+  authenticate(loginDTO: LoginDTO): Observable<any>{
+    return this.http.post<any>('http://localhost:8080/api/authenticate', loginDTO);
   }
 
 }

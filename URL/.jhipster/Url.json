@@ -10,12 +10,16 @@
     {
       "fieldName": "shorturl",
       "fieldType": "String"
+    },
+    {
+      "fieldName": "fkuser",
+      "fieldType": "Long"
     }
   ],
-  "changelogDate": "20201201094743",
-  "dto": "no",
+  "changelogDate": "20201202143210",
+  "dto": "mapstruct",
   "searchEngine": false,
-  "service": "no",
+  "service": "serviceImpl",
   "entityTableName": "url",
   "databaseType": "sql",
   "readOnly": false,
