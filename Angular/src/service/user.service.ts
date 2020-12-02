@@ -25,13 +25,7 @@ export class UserService extends AbstractService<UserDTO>{
   }
 
   login(loginDTO: LoginDTO): Observable<UserDTO> {
-/*     const object = new HttpHeaders();
-    object.set("Authorization", `Bearer ${sessionStorage.getItem('jhi-authenticationtoken')}`);
-    const httpoption = {
-      headers: object
-    } */  
-    const c = sessionStorage.getItem("id_token")
-    return this.http.post<any>('http://localhost:8080/services/user/api/login', loginDTO, {headers : { Authorization: "Bearer "+ c }})
+    return this.http.post<any>('http://localhost:8080/services/user/api/login', loginDTO)
   }
 
   authenticate(loginDTO: LoginDTO): Observable<any>{

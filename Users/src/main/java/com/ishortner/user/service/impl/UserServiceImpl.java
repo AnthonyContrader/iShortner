@@ -36,6 +36,7 @@ public class UserServiceImpl implements UserService {
     
     
     public UserDTO login(UserDTO userDTO) {
+    	log.debug("sadasd");
         User user = userMapper.toEntity(userDTO);
         user = userRepository.findByUsername(user.getUsername());
         return userMapper.toDto(user);

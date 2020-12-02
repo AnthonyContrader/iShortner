@@ -41,6 +41,5 @@ export class AuthServerProvider {
     } else {
       this.$sessionStorage.store('authenticationToken', jwt);
     }
-alert(jwt)
   }
 }
