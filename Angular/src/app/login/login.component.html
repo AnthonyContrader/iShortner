@@ -1,0 +1,26 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4">
+      
+    </div>
+    <div class="col-md-8 text-center">
+      <form #f="ngForm">
+        <h2>Welcome</h2>
+        <img src="../../assets/iShort.png" alt="logo">
+        <br>
+        <div class="form-group">
+          <input required  class="form-control" type="text" id="user" name="username" placeholder="Username" ngModel>
+        </div>
+        <div class="form-group">
+          <input required  class="form-control" type="password" id="pass" name="password" placeholder="Password" ngModel>
+        </div>
+        <br>
+        <button class="button" [disabled]="f.invalid" class="btn btn-success mr-4" type="submit" (click)="login(f)">Login</button>
+          <a class="register" [routerLink]="['/login/register']">Registrati</a>
+          <div *ngIf="err">
+            <p class="red" >*Username o Password errate!</p>
+         </div>
+      </form>
+    </div>
+  </div>
+</div>
