@@ -1,0 +1,38 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.ishortner.server"
+    },
+    "jhipsterVersion": "6.10.5",
+    "applicationType": "microservice",
+    "baseName": "Server",
+    "packageName": "com.ishortner.server",
+    "packageFolder": "com/ishortner/server",
+    "serverPort": "8083",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "consul",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "MmQyZjliNWJlOTFjYmY5ZWQ2MGRiYzkwYjQxY2M2Y2ZiMTI3ZGQ5ZTAwOGQ2ZmE3Yjk4YjA3NWE4NmEzZmE3M2EyYzQ0MjY2YTU0YmVlODA4MGM4MmQ5OTY2OTZkZjdhMjgxNmM5NTJjN2YxMWQ1ODNmMjdmMWZiMGRjMzJjZjU=",
+    "embeddableLaunchScript": false,
+    "creationTimestamp": 1606919626148,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "clientPackageManager": "npm",
+    "blueprints": [],
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}
