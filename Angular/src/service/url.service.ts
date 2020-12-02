@@ -17,9 +17,7 @@ import { UrlDTO } from 'src/dto/urldto';
     }
 
     create(url: UrlDTO): Observable<UrlDTO> {
-      return this.http.post<any>('http://localhost:8080/services/url/api/urls', url, {
-        headers: {Authorization: "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTYwNjkyMDYwOH0.su5P1mWP_ZqS0Fp4e2Y8xH99ZVe4KRZrwch_s4jwJ1wKwc8xvetCO8qAWLkxr28DcqVLcsOGR2hVMFFb_eIAEg"}
-      });
+      return this.http.post<any>('http://localhost:8080/services/url/api/urls', url);
     }
 
     redirect(url: UrlDTO): Observable<UrlDTO>{

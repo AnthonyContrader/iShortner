@@ -29,5 +29,9 @@ import { Injectable } from '@angular/core';
     getInfoUrl(id: number): Observable<ServerDTO[]>{
       return this.http.get<ServerDTO[]>('http://localhost:' + this.port + '/user/readserver?id=' +id);
     }
+
+    createInfo(id: number): Observable<any>{
+      return this.http.get<any>('localhost:8080/services/server/api/createinfo?id='+id);
+    }
   
   }
