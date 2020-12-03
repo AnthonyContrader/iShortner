@@ -3,11 +3,14 @@ package com.ishortner.server.web.rest;
 import com.ishortner.server.service.ServerService;
 import com.ishortner.server.web.rest.errors.BadRequestAlertException;
 import com.ishortner.server.service.dto.ServerDTO;
+import com.ishortner.server.service.impl.ServerServiceImpl;
+import com.ishortner.server.service.mapper.ServerMapper;
 
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,8 +33,14 @@ public class ServerResource {
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
-
+    
     private final ServerService serverService;
+    
+    @Autowired
+    private ServerServiceImpl serv;
+    
+    @Autowired
+    private ServerMapper map;
 
     public ServerResource(ServerService serverService) {
         this.serverService = serverService;
@@ -45,15 +54,8 @@ public class ServerResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/servers")
-    public ResponseEntity<ServerDTO> createServer(@RequestBody ServerDTO serverDTO) throws URISyntaxException {
-        log.debug("REST request to save Server : {}", serverDTO);
-        if (serverDTO.getId() != null) {
-            throw new BadRequestAlertException("A new server cannot already have an ID", ENTITY_NAME, "idexists");
-        }
-        ServerDTO result = serverService.save(serverDTO);
-        return ResponseEntity.created(new URI("/api/servers/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
-            .body(result);
+    public void createServer(@RequestParam Long id) throws URISyntaxException {
+    	serv.generator(id);
     }
 
     /**

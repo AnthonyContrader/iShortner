@@ -31,7 +31,7 @@ import { Injectable } from '@angular/core';
     }
 
     createInfo(id: number): Observable<any>{
-      return this.http.get<any>('localhost:8080/services/server/api/createinfo?id='+id);
+      return this.http.get<any>('localhost:8080/services/server/api/servers?id='+id);
     }
   
   }
