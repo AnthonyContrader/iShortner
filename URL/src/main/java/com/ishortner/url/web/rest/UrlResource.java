@@ -3,15 +3,18 @@ package com.ishortner.url.web.rest;
 import com.ishortner.url.service.UrlService;
 import com.ishortner.url.web.rest.errors.BadRequestAlertException;
 import com.ishortner.url.service.dto.UrlDTO;
+import com.ishortner.url.service.impl.ShortServiceImpl;
 
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -32,6 +35,9 @@ public class UrlResource {
     private String applicationName;
 
     private final UrlService urlService;
+    
+    @Autowired
+    private ShortServiceImpl shortServ;
 
     public UrlResource(UrlService urlService) {
         this.urlService = urlService;
@@ -43,17 +49,16 @@ public class UrlResource {
      * @param urlDTO the urlDTO to create.
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new urlDTO, or with status {@code 400 (Bad Request)} if the url has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
+     * @throws MalformedURLException 
      */
     @PostMapping("/urls")
-    public ResponseEntity<UrlDTO> createUrl(@RequestBody UrlDTO urlDTO) throws URISyntaxException {
-        log.debug("REST request to save Url : {}", urlDTO);
-        if (urlDTO.getId() != null) {
-            throw new BadRequestAlertException("A new url cannot already have an ID", ENTITY_NAME, "idexists");
-        }
-        UrlDTO result = urlService.save(urlDTO);
-        return ResponseEntity.created(new URI("/api/urls/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
-            .body(result);
+    public UrlDTO createUrl(@RequestBody UrlDTO urlDto) throws MalformedURLException {
+    	//Il valore di ritorno era ResponseEntity<UrlDTO>
+    	urlDto = shortServ.createShortUrl(urlDto);
+    	if(urlDto == null) {
+    		return null;
+    	}
+        return urlDto;
     }
 
     /**
@@ -82,11 +87,11 @@ public class UrlResource {
      *
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of urls in body.
      */
-    @GetMapping("/urls")
-    public List<UrlDTO> getAllUrls() {
-        log.debug("REST request to get all Urls");
-        return urlService.findAll();
-    }
+//    @GetMapping("/urls")
+//    public List<UrlDTO> getAllUrls() {
+//        log.debug("REST request to get all Urls");
+//        return urlService.findAll();
+//    }
 
     /**
      * {@code GET  /urls/:id} : get the "id" url.

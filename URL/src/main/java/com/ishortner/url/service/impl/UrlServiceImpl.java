@@ -42,14 +42,15 @@ public class UrlServiceImpl implements UrlService {
         return urlMapper.toDto(url);
     }
 
-    @Override
-    @Transactional(readOnly = true)
-    public List<UrlDTO> findAll() {
-        log.debug("Request to get all Urls");
-        return urlRepository.findAll().stream()
-            .map(urlMapper::toDto)
-            .collect(Collectors.toCollection(LinkedList::new));
-    }
+//    @Override
+//    @Transactional(readOnly = true)
+////    public List<UrlDTO> findAll() {
+////        log.debug("Request to get all Urls");
+//////        return urlRepository.findAll().stream()
+//////            .map(urlMapper::toDto)
+//////            .collect(Collectors.toCollection(LinkedList::new));
+////    	return null;
+////    }
 
 
     @Override
@@ -65,4 +66,5 @@ public class UrlServiceImpl implements UrlService {
         log.debug("Request to delete Url : {}", id);
         urlRepository.deleteById(id);
     }
+    
 }

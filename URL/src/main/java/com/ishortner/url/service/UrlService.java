@@ -23,7 +23,7 @@ public interface UrlService {
      *
      * @return the list of entities.
      */
-    List<UrlDTO> findAll();
+    //List<UrlDTO> findAll();
 
 
     /**

@@ -10,7 +10,7 @@ public class UrlMapperTest {
 
     @BeforeEach
     public void setUp() {
-        urlMapper = new UrlMapperImpl();
+        //urlMapper = new UrlMapperImpl();
     }
 
     @Test

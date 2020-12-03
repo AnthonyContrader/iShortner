@@ -3,6 +3,7 @@ package com.ishortner.url.repository;
 import com.ishortner.url.domain.Url;
 
 import org.springframework.data.jpa.repository.*;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -10,5 +11,7 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface UrlRepository extends JpaRepository<Url, Long> {
+public interface UrlRepository extends CrudRepository<Url, Long> {
+	
+	boolean existsByShorturl(String s);
 }
