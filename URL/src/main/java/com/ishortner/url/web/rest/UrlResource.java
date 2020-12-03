@@ -54,6 +54,7 @@ public class UrlResource {
     @PostMapping("/urls")
     public UrlDTO createUrl(@RequestBody UrlDTO urlDto) throws MalformedURLException {
     	//Il valore di ritorno era ResponseEntity<UrlDTO>
+    	log.debug(urlDto.toString());
     	urlDto = shortServ.createShortUrl(urlDto);
     	if(urlDto == null) {
     		return null;
@@ -87,11 +88,11 @@ public class UrlResource {
      *
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of urls in body.
      */
-//    @GetMapping("/urls")
-//    public List<UrlDTO> getAllUrls() {
-//        log.debug("REST request to get all Urls");
-//        return urlService.findAll();
-//    }
+    @GetMapping("/urls")
+    public List<UrlDTO> getAllUrls() {
+        log.debug("REST request to get all Urls");
+        return urlService.findAll();
+    }
 
     /**
      * {@code GET  /urls/:id} : get the "id" url.

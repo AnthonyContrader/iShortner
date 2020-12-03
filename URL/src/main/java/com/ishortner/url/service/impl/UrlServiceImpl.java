@@ -42,15 +42,12 @@ public class UrlServiceImpl implements UrlService {
         return urlMapper.toDto(url);
     }
 
-//    @Override
-//    @Transactional(readOnly = true)
-////    public List<UrlDTO> findAll() {
-////        log.debug("Request to get all Urls");
-//////        return urlRepository.findAll().stream()
-//////            .map(urlMapper::toDto)
-//////            .collect(Collectors.toCollection(LinkedList::new));
-////    	return null;
-////    }
+   @Override
+    @Transactional(readOnly = true)
+    public List<UrlDTO> findAll() {
+       log.debug("Request to get all Urls");
+        return urlMapper.toDto(urlRepository.findAll());
+    }
 
 
     @Override

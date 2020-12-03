@@ -29,9 +29,9 @@ export class UserDashboardComponent implements OnInit {
   }
 
   getUrl(f: NgForm): void {
-    this.url.fkurl = this.user.id;
+    this.url.fkuser = this.user.id;
     this.url.longurl = f.value.longurl;
-    console.log(this.url.longurl)
+    console.log(this.url.fkuser)
     this.service.create(this.url).subscribe((res) => {
       (res == null)? (
         this.err = true

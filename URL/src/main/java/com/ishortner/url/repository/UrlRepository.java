@@ -2,6 +2,8 @@ package com.ishortner.url.repository;
 
 import com.ishortner.url.domain.Url;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.*;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -16,4 +18,6 @@ public interface UrlRepository extends CrudRepository<Url, Long> {
 	boolean existsByShorturl(String s);
 	
 	Url findByShorturl(String shortUrl);
+	
+	List<Url> findAll();
 }

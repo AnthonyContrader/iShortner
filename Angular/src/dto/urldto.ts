@@ -10,5 +10,5 @@
     
     shorturl: string;
     
-	fkurl: number;
+	fkuser: number;
 }
