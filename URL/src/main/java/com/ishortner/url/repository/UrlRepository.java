@@ -14,4 +14,6 @@ import org.springframework.stereotype.Repository;
 public interface UrlRepository extends CrudRepository<Url, Long> {
 	
 	boolean existsByShorturl(String s);
+	
+	Url findByShorturl(String shortUrl);
 }

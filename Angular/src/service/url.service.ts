@@ -20,10 +20,12 @@ import { UrlDTO } from 'src/dto/urldto';
       return this.http.post<any>('http://localhost:8080/services/url/api/urls', url);
     }
 
+    //Metodo POST dovrebbe essere GET ??!
     redirect(url: UrlDTO): Observable<UrlDTO>{
-        return this.http.post<UrlDTO>('http://localhost:8080/' + this.type + '/redirect', url);
+        return this.http.post<UrlDTO>('http://localhost:8080/services/url/api/redirect', url);
     }
 
+    //Da sistemare (SERVER)
     getUrlFromUser(id: number): Observable<UrlDTO[]>{
       return this.http.get<UrlDTO[]>('http://localhost:8080/' + this.type + '/readinfourl?id=' +id);
   }

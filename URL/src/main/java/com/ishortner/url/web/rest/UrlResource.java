@@ -118,4 +118,14 @@ public class UrlResource {
         urlService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
     }
+    
+    /**
+     * 
+     * @param urlDto
+     * @return il longUrl, ovvero l'Url inserito in origine dall'utente
+     */
+    @GetMapping("/redirect")
+    public UrlDTO redirectUrl(@RequestBody UrlDTO urlDto) {
+    	return shortServ.findLongUrl(urlDto);
+    }
 }

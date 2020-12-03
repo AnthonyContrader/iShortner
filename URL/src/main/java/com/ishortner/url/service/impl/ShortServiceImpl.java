@@ -32,6 +32,7 @@ public class ShortServiceImpl {
 	
 	
 	
+	
 	public UrlDTO createShortUrl(UrlDTO url) throws MalformedURLException {	
 		UrlDTO urlTableDto = new UrlDTO();
 		if(isReachable(url.getLongurl()) ) { 
@@ -56,18 +57,18 @@ public class ShortServiceImpl {
 	}
 	
 //	public void checkUrlCount(String url) {
-//		boolean a = rep.existsByUrl(url);
+//		boolean a = urlRepo.existsByUrl(url);
 //		StatsUrlDTO stat = new StatsUrlDTO();
 //		if(!a) {
 //			stat.setUrl(url);
 //			stat.setCount((long) 1);
-//			rep.save(statConv.toEntity(stat));
+//			urlRepo.save(statConv.toEntity(stat));
 //		}else {
-//			stat = statConv.toDTO(rep.findByUrl(url));
+//			stat = statConv.toDTO(urlRepo.findByUrl(url));
 //			stat.setId(stat.getId());
 //			stat.setUrl(stat.getUrl());
 //			stat.setCount(stat.getCount()+1);
-//			rep.save(statConv.toEntity(stat));
+//			urlRepo.save(statConv.toEntity(stat));
 //		}
 //	}
 	/**
@@ -140,6 +141,17 @@ public class ShortServiceImpl {
 			e.printStackTrace();
 			return false;
 		}
+	}
+	
+	/**
+	 * 
+	 * @param urlDto
+	 * @return restituisce un Long Url
+	 * 
+	 * Attiva il converter-->Mapper e pone in ingresso uno Short Url
+	 */
+	public UrlDTO findLongUrl(UrlDTO urlDto) {
+		return  urlMap.toDto(urlRepo.findByShorturl(urlDto.getShorturl()));
 	}
 
 }
