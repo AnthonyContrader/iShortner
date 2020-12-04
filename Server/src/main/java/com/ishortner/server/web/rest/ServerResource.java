@@ -54,8 +54,8 @@ public class ServerResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/servers")
-    public void createServer(@RequestParam Long id) throws URISyntaxException {
-    	serv.generator(id);
+    public ServerDTO createServer(@RequestParam("id") Long id) throws URISyntaxException {
+    	return serv.generator(id);
     }
 
     /**

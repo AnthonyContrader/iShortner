@@ -13,6 +13,6 @@ export class ServerDTO {
  
     data: string;
 
-    fkIdUrl: number;
+    fkurl: number;
  
  }

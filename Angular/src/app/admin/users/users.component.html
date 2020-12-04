@@ -53,7 +53,7 @@
               <option [selected]="user.usertype===USER" value="USER">USER</option>
             </select>
           </td>
-          <td><button (click)=update(user)>Save</button></td>
+          <td><button (click)="update(user)">Save</button></td>
           <td><button (click)="delete(user)">Delete</button></td>
           <td><button><a [routerLink]="['/admin-dashboard/info-url', user.id]">Info</a></button></td>
         </tr>
