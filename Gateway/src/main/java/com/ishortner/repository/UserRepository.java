@@ -44,4 +44,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Page<User> findAllByLoginNot(Pageable pageable, String login);
     
     User findByLogin(String login);
+
+    boolean existsByLogin(String username);
 }

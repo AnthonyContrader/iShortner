@@ -28,6 +28,12 @@ export class InfoUrlComponent implements OnInit {
   }
 
   getUserInfo(id: number){
-    this.service.getUrlFromUser(id).subscribe((res) => {res==null? this.noData = true :this.url = res; this.serv.getInfoUrl(id).subscribe((res) => this.server = res);});  
+    this.service.getUrlFromUser(id).subscribe((res) => {
+      res==null? 
+        this.noData = true 
+        :
+        this.url = res; 
+        this.serv.getInfoUrl(id).subscribe((res) => this.server = res);
+    });  
  }
 }

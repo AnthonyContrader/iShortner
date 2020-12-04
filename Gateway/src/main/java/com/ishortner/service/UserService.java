@@ -60,6 +60,21 @@ public class UserService {
     	return uMap.usersToUserDTOs(userRepository.findAll());
     }
 
+    public void delete(Long id) {
+    	userRepository.deleteById(id);
+    }
+
+    public UserDTO insert(UserDTO userDto) {
+    	boolean exists = userRepository.existsByLogin(userDto.getLogin()); 
+    	if(!exists) {
+    		userRepository.save(uMap.userDTOToUser(userDto));
+    		return userDto;
+    	}
+    	return null;
+    }
+    
+
+    // AUTOGENERATE
     public Optional<User> activateRegistration(String key) {
         log.debug("Activating user for activation key {}", key);
         return userRepository.findOneByActivationKey(key)

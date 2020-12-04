@@ -81,6 +81,18 @@ public class UserResource {
         this.mailService = mailService; 
     }
 
+    @DeleteMapping("/users/{id}")
+    public Boolean deleteUser(@PathVariable Long id) {
+    	userService.delete(id);
+    	return true;
+    }
+
+//    we need password
+//    @PostMapping("/users/insert")
+//    public UserDTO insert(@RequestBody UserDTO userDto) {
+//    	return userService.insert(userDto);
+//    }
+
     /**
      * {@code POST  /users}  : Creates a new user.
      * <p>
@@ -207,12 +219,12 @@ public class UserResource {
      * @param login the login of the user to delete.
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
-    @DeleteMapping("/users/{login:" + Constants.LOGIN_REGEX + "}")
-    @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.ADMIN + "\")")
-    public ResponseEntity<Void> deleteUser(@PathVariable String login) {
-        log.debug("REST request to delete User: {}", login);
-        userService.deleteUser(login);
-        return ResponseEntity.noContent().headers(HeaderUtil.createAlert(applicationName,  "A user is deleted with identifier " + login, login)).build();
-    }
+//    @DeleteMapping("/users/{login:" + Constants.LOGIN_REGEX + "}")
+//    @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.ADMIN + "\")")
+//    public ResponseEntity<Void> deleteUser(@PathVariable String login) {
+//        log.debug("REST request to delete User: {}", login);
+//        userService.deleteUser(login);
+//        return ResponseEntity.noContent().headers(HeaderUtil.createAlert(applicationName,  "A user is deleted with identifier " + login, login)).build();
+//    }
 
 }

@@ -45,7 +45,7 @@
         </tr>
 
         <tr *ngFor="let user of users">                            
-          <td><input [(ngModel)]="user.username"></td>
+          <td><input [(ngModel)]="user.login"></td>
           <td><input [(ngModel)]="user.password"></td>
           <td>
             <select [(ngModel)]="user.usertype">
