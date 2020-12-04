@@ -19,13 +19,13 @@ export class UserEditComponent implements OnInit {
   ngOnInit() {
 
     this.dato = JSON.parse(localStorage.getItem('currentUser'))
-    this.username = this.dato.username
+    this.username = this.dato.login
     this.password = this.dato.password
     
   }
 
   modifica(f: NgForm): void {
-    this.dato.username = f.value.username;
+    this.dato.login = f.value.username;
     this.dato.password = f.value.password;
     this.service.update(this.dato).subscribe((res) => {localStorage.setItem('currentUser', JSON.stringify(res)); window.location.reload();});
   }

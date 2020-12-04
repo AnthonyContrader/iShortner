@@ -38,7 +38,7 @@ export class UsersComponent implements OnInit {
   }
 
   insert(user: UserDTO) {
-    if(user.username === undefined || user.password === undefined || user.usertype === undefined) {
+    if(user.login === undefined || user.password === undefined || user.usertype === undefined) {
       this.err = true;
     } else {
       this.service.insert(user).subscribe((res) => {

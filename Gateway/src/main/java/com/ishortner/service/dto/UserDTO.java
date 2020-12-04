@@ -1,10 +1,13 @@
 package com.ishortner.service.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ishortner.config.Constants;
 
 import com.ishortner.domain.Authority;
 import com.ishortner.domain.User;
+import com.ishortner.domain.User.Usertype;
 
+import javax.persistence.Column;
 import javax.validation.constraints.*;
 import java.time.Instant;
 import java.util.Set;
@@ -31,6 +34,11 @@ public class UserDTO {
     @Email
     @Size(min = 5, max = 254)
     private String email;
+    
+    @Size(max = 50)
+    private Usertype usertype;
+    
+    private boolean rememberme;
 
     @Size(max = 256)
     private String imageUrl;
@@ -62,6 +70,8 @@ public class UserDTO {
         this.email = user.getEmail();
         this.activated = user.getActivated();
         this.imageUrl = user.getImageUrl();
+        this.rememberme = user.isRememberme();
+        this.usertype = user.getUsertype();
         this.langKey = user.getLangKey();
         this.createdBy = user.getCreatedBy();
         this.createdDate = user.getCreatedDate();
@@ -72,7 +82,23 @@ public class UserDTO {
             .collect(Collectors.toSet());
     }
 
-    public Long getId() {
+	public Usertype getUsertype() {
+		return usertype;
+	}
+
+	public void setUsertype(Usertype usertype) {
+		this.usertype = usertype;
+	}
+
+	public boolean isRememberme() {
+		return rememberme;
+	}
+
+	public void setRememberme(boolean rememberme) {
+		this.rememberme = rememberme;
+	}
+
+	public Long getId() {
         return id;
     }
 

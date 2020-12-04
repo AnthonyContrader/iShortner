@@ -23,9 +23,10 @@ export class RegisterComponent implements OnInit {
 
   register(f: NgForm): void{
     this.userDTO = new UserDTO();
-    this.userDTO.username = f.value.username;
+    this.userDTO.login = f.value.username;
     this.userDTO.password = f.value.password;
     this.userDTO.usertype = Usertype.USER;
+    this.userDTO.rememberme = false;
     this.service.register(this.userDTO).subscribe((res) => {this.err = false;  this.router.navigate(['/login']);} , (res) => {this.err = true} );
   }
 

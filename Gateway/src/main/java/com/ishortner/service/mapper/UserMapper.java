@@ -2,8 +2,11 @@ package com.ishortner.service.mapper;
 
 import com.ishortner.domain.Authority;
 import com.ishortner.domain.User;
+import com.ishortner.service.UserService;
 import com.ishortner.service.dto.UserDTO;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -18,6 +21,7 @@ import java.util.stream.Collectors;
 @Service
 public class UserMapper {
 
+	 private final Logger log = LoggerFactory.getLogger(UserService.class);
     public List<UserDTO> usersToUserDTOs(List<User> users) {
         return users.stream()
             .filter(Objects::nonNull)
@@ -32,7 +36,7 @@ public class UserMapper {
     public List<User> userDTOsToUsers(List<UserDTO> userDTOs) {
         return userDTOs.stream()
             .filter(Objects::nonNull)
-            .map(this::userDTOToUser)
+            .map(this::userDTOToUser)	
             .collect(Collectors.toList());
     }
 
@@ -46,6 +50,8 @@ public class UserMapper {
             user.setFirstName(userDTO.getFirstName());
             user.setLastName(userDTO.getLastName());
             user.setEmail(userDTO.getEmail());
+            user.setUsertype(userDTO.getUsertype());
+            user.setRememberme(userDTO.isRememberme());
             user.setImageUrl(userDTO.getImageUrl());
             user.setActivated(userDTO.isActivated());
             user.setLangKey(userDTO.getLangKey());

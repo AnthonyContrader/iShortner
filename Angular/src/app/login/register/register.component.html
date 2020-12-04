@@ -12,7 +12,7 @@
           <input required  class="form-control" type="text" id="user" name="username" placeholder="Username" ngModel>
         </div>
         <div class="form-group">
-          <input required  class="form-control" type="password" id="pass" name="password" placeholder="Password" ngModel>
+          <input required  class="form-control" type="password" id="pass" name="password" minlength="4" placeholder="Password" ngModel>
         </div>
         <br>
         <button [disabled]="f.invalid" class="btn btn-success mr-4" type="submit" (click)="register(f)" >Registrati</button>

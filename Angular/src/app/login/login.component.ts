@@ -5,6 +5,7 @@ import { NgForm } from '@angular/forms';
 import { UserService } from 'src/service/user.service';
 import { Router } from '@angular/router';
 import { Usertype } from 'src/dto/usertype';
+import { stripGeneratedFileSuffix } from '@angular/compiler/src/aot/util';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ import { Usertype } from 'src/dto/usertype';
 export class LoginComponent implements OnInit {
 
   loginDTO: LoginDTO;
-  userDTO: UserDTO;
+  userDTO: UserDTO = new UserDTO();
   err = false;
 
   constructor(private service: UserService, private router: Router) { }
@@ -26,11 +27,12 @@ export class LoginComponent implements OnInit {
  
 
   login(f: NgForm): void {
-    this.loginDTO = new LoginDTO(f.value.username, f.value.password);
+    this.loginDTO = new LoginDTO(f.value.username.toLowerCase(), f.value.password);
     this.service.authenticate(this.loginDTO).subscribe((res) => {  
       sessionStorage.setItem("id_token", res.id_token);
-
-      this.service.login(this.loginDTO).subscribe((user) => {
+      this.userDTO.login = this.loginDTO.username;
+      this.userDTO.password = this.loginDTO.password;
+      this.service.login(this.userDTO).subscribe((user) => {
       
         if (user != null) {
           localStorage.setItem("currentUser", JSON.stringify(user));
@@ -48,6 +50,6 @@ export class LoginComponent implements OnInit {
               this.router.navigate(['/login']);
           }
         }else {this.err = true}
-      });   
+      }, () => {sessionStorage.clear(); localStorage.clear();});   
     })}
 }

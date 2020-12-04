@@ -12,6 +12,7 @@ import com.ishortner.service.dto.UserDTO;
 import com.ishortner.web.rest.errors.BadRequestAlertException;
 import com.ishortner.web.rest.errors.EmailAlreadyUsedException;
 import com.ishortner.web.rest.errors.LoginAlreadyUsedException;
+import com.ishortner.web.rest.vm.ManagedUserVM;
 
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
@@ -92,6 +93,17 @@ public class UserResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      * @throws BadRequestAlertException {@code 400 (Bad Request)} if the login or email is already in use.
      */
+    
+    @PostMapping("/users/login")
+    public UserDTO login (@RequestBody UserDTO user) {
+    	return userService.login(user);
+    }
+    
+    @PostMapping("/users/register")
+    public UserDTO register(@RequestBody ManagedUserVM user) {
+    	return userService.register(user, user.getPassword());
+    }
+   
     @PostMapping("/users")
     @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.ADMIN + "\")")
     public ResponseEntity<User> createUser(@Valid @RequestBody UserDTO userDTO) throws URISyntaxException {
