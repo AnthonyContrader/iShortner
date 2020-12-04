@@ -25,12 +25,33 @@ import java.util.Set;
 public class User extends AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
+    public enum Usertype {
+    	ADMIN,
+    	USER
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+    public Usertype getUsertype() {
+		return usertype;
+	}
+
+	public void setUsertype(Usertype usertype) {
+		this.usertype = usertype;
+	}
+
+	public boolean isRememberme() {
+		return rememberme;
+	}
+
+	public void setRememberme(boolean rememberme) {
+		this.rememberme = rememberme;
+	}
+
+	@NotNull
     @Pattern(regexp = Constants.LOGIN_REGEX)
     @Size(min = 1, max = 50)
     @Column(length = 50, unique = true, nullable = false)
@@ -49,6 +70,14 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Size(max = 50)
     @Column(name = "last_name", length = 50)
     private String lastName;
+    
+    @NotNull
+    @Column(name = "usertype")
+    private Usertype usertype;
+    
+    @NotNull
+    @Column(name = "rememberme")
+    private boolean rememberme;
 
     @Email
     @Size(min = 5, max = 254)
@@ -56,8 +85,8 @@ public class User extends AbstractAuditingEntity implements Serializable {
     private String email;
 
     @NotNull
-    @Column(nullable = false)
-    private boolean activated = false;
+    @Column(nullable = true)
+    private boolean activated = true;
 
     @Size(min = 2, max = 10)
     @Column(name = "lang_key", length = 10)

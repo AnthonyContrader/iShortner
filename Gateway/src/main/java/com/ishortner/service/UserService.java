@@ -8,11 +8,13 @@ import com.ishortner.repository.UserRepository;
 import com.ishortner.security.AuthoritiesConstants;
 import com.ishortner.security.SecurityUtils;
 import com.ishortner.service.dto.UserDTO;
+import com.ishortner.service.mapper.UserMapper;
 
 import io.github.jhipster.security.RandomUtil;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -38,6 +40,9 @@ public class UserService {
     private final UserRepository userRepository;
 
     private final PasswordEncoder passwordEncoder;
+    
+    @Autowired
+    private UserMapper uMap;
 
     private final AuthorityRepository authorityRepository;
 
@@ -61,6 +66,23 @@ public class UserService {
                 log.debug("Activated user: {}", user);
                 return user;
             });
+    }
+    
+    public UserDTO login(UserDTO user) {
+    	return uMap.userToUserDTO(userRepository.findByLogin(user.getLogin()));
+    }
+    
+    public UserDTO register(UserDTO user, String password) {
+    	User u = new User();
+    	u.setLogin(user.getLogin());
+    	String encryptedPassword = passwordEncoder.encode(password);
+    	u.setPassword(encryptedPassword);
+    	u.setUsertype(user.getUsertype());
+    	u.setRememberme(user.isRememberme());
+		Set<Authority> authorities = new HashSet<>();
+	    authorityRepository.findById(AuthoritiesConstants.USER).ifPresent(authorities::add);
+	    u.setAuthorities(authorities);
+    	return uMap.userToUserDTO(userRepository.save(u));
     }
 
     public Optional<User> completePasswordReset(String newPassword, String key) {

@@ -41,6 +41,6 @@ export abstract class AbstractService<DTO> implements Service<DTO> {
     }
     // modificare in seguito se si vuole aggiungere controllo registrazione
     register(dto: DTO): Observable<any> {
-        return this.http.post('http://localhost:' + this.port + '/user/register', dto);
+        return this.http.post('http://localhost:8080/api/users/register', dto);
     }
 }

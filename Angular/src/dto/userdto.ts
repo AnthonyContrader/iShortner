@@ -11,12 +11,21 @@ import {Usertype} from './usertype';
 export class UserDTO {
 
    id: number;
-
-   username: string;
-
+   login: string;
+   firstName: string;
    password: string;
-
+   lastName: string;
+   email: string;
    usertype: Usertype;
+   rememberme: boolean;
+   imageUrl: string;
+   activated: boolean;
+   langKey: string;
+   createdBy: string;
+   createdDate: any;
+   lastModifiedBy: string;
+   lastModifiedDate: string;
+   authorities: []
 
 }
 
