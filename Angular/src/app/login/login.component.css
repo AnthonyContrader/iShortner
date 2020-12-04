@@ -1,6 +1,11 @@
 h2 {
     font-size: 30px;
 }
+
+.chkBox{
+    float:left;
+}
+
 form{
     margin-top:270px;
     width: 50%;

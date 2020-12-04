@@ -210,8 +210,4 @@ public class UserResource {
         return ResponseEntity.noContent().headers(HeaderUtil.createAlert(applicationName,  "A user is deleted with identifier " + login, login)).build();
     }
 
-    @PostMapping("/urls")
-    public void createUrl(@RequestBody String str) throws URISyntaxException {
-        System.out.println("ciambella");
-    }
 }

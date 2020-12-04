@@ -14,13 +14,15 @@
         <div class="form-group">
           <input required  class="form-control" type="password" id="pass" name="password" placeholder="Password" ngModel>
         </div>
+        <input ngModel class="form-check-input" name="chkbox" type="checkbox" value="true"/>
+        <label class="form-check-label" for="inlineFormCheck">Remember me </label>
         <br>
         <button class="button" [disabled]="f.invalid" class="btn btn-success mr-4" type="submit" (click)="login(f)">Login</button>
           <a class="register" [routerLink]="['/login/register']">Registrati</a>
           <div *ngIf="err">
             <p class="red" >*Username o Password errate!</p>
          </div>
-      </form>
+      </form>  
     </div>
   </div>
 </div>

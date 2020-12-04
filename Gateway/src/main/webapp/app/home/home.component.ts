@@ -36,10 +36,4 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.authSubscription.unsubscribe();
     }
   }
-
-  test(f: NgForm) {
-    this.accountService.test(f.value.test).subscribe((res) => {
-      alert("ok");
-    });
-  }
 }
