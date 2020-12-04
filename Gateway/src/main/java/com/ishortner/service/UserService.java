@@ -43,6 +43,7 @@ public class UserService {
     
     @Autowired
     private UserMapper uMap;
+    
 
     private final AuthorityRepository authorityRepository;
 
@@ -53,6 +54,10 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
         this.authorityRepository = authorityRepository;
         this.cacheManager = cacheManager;
+    }
+    
+    public List<UserDTO> readAll() {
+    	return uMap.usersToUserDTOs(userRepository.findAll());
     }
 
     public Optional<User> activateRegistration(String key) {

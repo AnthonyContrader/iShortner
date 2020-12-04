@@ -78,7 +78,7 @@ public class UserResource {
     public UserResource(UserService userService, UserRepository userRepository, MailService mailService) {
         this.userService = userService;
         this.userRepository = userRepository;
-        this.mailService = mailService;
+        this.mailService = mailService; 
     }
 
     /**
@@ -102,6 +102,11 @@ public class UserResource {
     @PostMapping("/users/register")
     public UserDTO register(@RequestBody ManagedUserVM user) {
     	return userService.register(user, user.getPassword());
+    }
+    
+    @GetMapping("/users/getAll")
+    public List<UserDTO> readAll() {
+    	return userService.readAll();
     }
    
     @PostMapping("/users")
