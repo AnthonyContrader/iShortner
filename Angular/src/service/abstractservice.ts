@@ -20,7 +20,7 @@ export abstract class AbstractService<DTO> implements Service<DTO> {
     }
 
     getAll(): Observable<DTO[]> {
-        return this.http.get<DTO[]>('http://localhost:' + this.port + '/' + this.type + '/getall');
+        return this.http.get<DTO[]>('http://localhost:' + this.port + '/services/user/api/users');
     }
 
     read(id: number): Observable<DTO> {
@@ -28,15 +28,15 @@ export abstract class AbstractService<DTO> implements Service<DTO> {
     }
 
     delete(id: number): Observable<any> {
-        return this.http.delete('http://localhost:' + this.port + '/' + this.type + '/delete?id=' + id);
+        return this.http.delete('http://localhost:' + this.port + '/services/user/api/users/' + id);
     }
 
     insert(dto: DTO): Observable<any> {
-        return this.http.post('http://localhost:' + this.port + '/' + this.type + '/insert', dto);
+        return this.http.post('http://localhost:' + this.port + '/services/user/api/users', dto);
     }
 
     update(dto: DTO): Observable<DTO> {
-        return this.http.put<DTO>('http://localhost:' + this.port + '/' + this.type + '/update', dto);
+        return this.http.put<DTO>('http://localhost:' + this.port + '/services/user/api/users', dto);
 
     }
     // modificare in seguito se si vuole aggiungere controllo registrazione

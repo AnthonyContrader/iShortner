@@ -73,8 +73,8 @@ public class ServerServiceImpl implements ServerService {
     }
     
    
-   public void generator(Long id) {
-	    ServerDTO server = new ServerDTO();
+   public ServerDTO generator(Long id) {
+	    ServerDTO serverDto = new ServerDTO();
 		int min = 0;
 		int max = countries.length -1;
 		int index = (int)(Math.random() * (max - min));
@@ -85,11 +85,13 @@ public class ServerServiceImpl implements ServerService {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		Date date = new Date();
 		String d = dateFormat.format(date);
-		server.setPosizione(pos);
-		server.setTipologia(bro);
-		server.setData(d);
-		server.setFkurl(id);
-		serverRepository.save(serverMapper.toEntity(server));		
+		serverDto.setPosizione(pos);
+		serverDto.setTipologia(bro);
+		serverDto.setData(d);
+		serverDto.setFkurl(id);
+		log.debug("Server: "+serverDto.toString());
+		serverRepository.save(serverMapper.toEntity(serverDto));
+		return serverDto;
     }
 
     

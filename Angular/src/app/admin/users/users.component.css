@@ -56,3 +56,8 @@ input:hover,  input:active, input:focus{
 button:hover{
     background-color: crimson;
 }
+
+.container {
+	overflow: auto;
+	height: 95%;
+}
