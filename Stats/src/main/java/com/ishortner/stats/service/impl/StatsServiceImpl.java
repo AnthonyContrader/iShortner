@@ -7,7 +7,7 @@ import com.ishortner.stats.service.dto.StatsDTO;
 import com.ishortner.stats.service.mapper.StatsMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -69,9 +69,9 @@ public class StatsServiceImpl implements StatsService {
         return parte3;
     }
 	
-//	public List<StatsUrlDTO> getCount() {
-//	return statConv.toDTOList(rep.findAllByOrderByCountDesc());
-//}
+	public List<StatsDTO> getCount() {
+		return statsMapper.toDto(statsRepository.findAllByOrderByCountDesc());
+	}
 
     @Override
     public StatsDTO save(StatsDTO statsDTO) {

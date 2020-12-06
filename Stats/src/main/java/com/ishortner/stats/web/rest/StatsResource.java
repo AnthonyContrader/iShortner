@@ -48,6 +48,11 @@ public class StatsResource {
     	
     	return statsServ.insertOrUpdateCount(statsDTO.getDomain());
     }
+    
+    @GetMapping("stats/getcount")
+    public List<StatsDTO> getcount(){
+    	return statsServ.getCount();
+    }
 
     /**
      * {@code POST  /stats} : Create a new stats.

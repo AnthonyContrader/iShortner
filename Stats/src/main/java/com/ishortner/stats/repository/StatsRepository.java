@@ -2,6 +2,8 @@ package com.ishortner.stats.repository;
 
 import com.ishortner.stats.domain.Stats;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 
@@ -15,4 +17,6 @@ public interface StatsRepository extends JpaRepository<Stats, Long> {
 	boolean existsByDomain(String domain);
 	
 	Stats findByDomain(String domain);
+	
+	List<Stats> findAllByOrderByCountDesc();
 }
