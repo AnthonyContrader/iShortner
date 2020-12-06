@@ -14,11 +14,21 @@
         <div class="form-group">
           <input required  class="form-control" type="password" id="pass" name="password" placeholder="Password" ngModel>
         </div>
-          <div class="checkbox ">
-            <input ngModel class="" id="chkbox" name="chkbox" type="checkbox" value="true"/>
-            <label for="chkbox">Remember me </label>
-            <br>
-          </div>
+        <br>
+        <div class="form-check">
+          <label for="rememberMe" class="form-check-label">
+            <input ngModel class="form-check-input ng-untouched" name="rememberMe" id="remeberMe" type="checkbox" [ngModel]="false" ng-reflect-name="remeberMe">
+            <span class="font-weight-light">Remember me</span>
+          </label>
+        </div>
+        <br>
+        <!--
+          <div class="form-group checkbox">
+          <input ngModel class="" id="chkbox" name="chkbox" type="checkbox" value="true"/>
+          <label for="chkbox">Remember me</label>
+          <br>
+        </div>
+        -->
         <button class="button" [disabled]="f.invalid" class="btn btn-success mr-4" type="submit" (click)="login(f)">Login</button>
           <a class="register" [routerLink]="['/login/register']">Registrati</a>
           <div *ngIf="err">
