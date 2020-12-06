@@ -15,7 +15,7 @@ export class InfoUrlComponent implements OnInit {
 
   id: number;
   url: UrlDTO[];
-  server: ServerDTO[];
+  server: ServerDTO[] = [];
   noData = false;
   loading = false;
 
@@ -34,8 +34,12 @@ export class InfoUrlComponent implements OnInit {
         this.noData = true 
         :
         this.url = res; 
-        this.url.map((el) => {
-          this.serv.getInfoUrl(el.id).subscribe((res) => this.server = res);
+        this.url.map((el, index) => {
+          this.serv.getInfoUrl(el.id).subscribe((res) => this.server.push(res));
+          if(this.url.length - 1  === index){
+            this.server.sort((a, b) => a.id - b.id); // non funziona
+            this.loading = true;
+          }
         });
         
     });  

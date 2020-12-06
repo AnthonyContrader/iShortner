@@ -27,11 +27,8 @@ import { Injectable } from '@angular/core';
       return this.http.post<any>('http://localhost:8080/' + this.type + '/server', serverDTO);
     }
 
-    getInfoUrl(id: number): Observable<ServerDTO[]>{
-      return this.http.get<ServerDTO[]>('http://localhost:' + this.port + '/services/server/api/server/getinfo/' +id)
-      .pipe(map((res) => {
-        return res;
-      }));
+    getInfoUrl(id: number): Observable<ServerDTO>{
+      return this.http.get<ServerDTO>('http://localhost:' + this.port + '/services/server/api/server/getinfo/' +id);
     }
 
     createInfo(id : number): Observable<ServerDTO>{
