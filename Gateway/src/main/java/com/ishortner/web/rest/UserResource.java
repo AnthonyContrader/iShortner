@@ -87,11 +87,16 @@ public class UserResource {
     	return true;
     }
 
-//    we need password
-//    @PostMapping("/users/insert")
-//    public UserDTO insert(@RequestBody UserDTO userDto) {
-//    	return userService.insert(userDto);
-//    }
+    @PostMapping("/users/insert")
+    public UserDTO insert(@RequestBody ManagedUserVM user) {
+    	return userService.insert(user, user.getPassword());
+    }
+    
+    @PutMapping("/users/update")
+    public UserDTO update(@RequestBody ManagedUserVM user) {
+    	return userService.update(user, user.getPassword());
+    }
+    
 
     /**
      * {@code POST  /users}  : Creates a new user.

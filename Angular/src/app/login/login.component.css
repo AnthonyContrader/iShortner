@@ -23,7 +23,7 @@ img{
     margin: -2%;
 }
 
-input, input:hover, input::selection, input:checked, input:focus{
+input, input:checked, input:focus{
     border: 0;
     background-color: darkorange;
     border-radius: 10px;
@@ -31,8 +31,11 @@ input, input:hover, input::selection, input:checked, input:focus{
     border-bottom: 1px solid crimson;
     margin-left: 22%; 
     width: 57%;
-    height: 5%;
     font-size: 1.2em
+}
+
+.checkbox {
+    text-align: center !important;
 }
 
 .container-fluid{

@@ -64,28 +64,29 @@ public class UserService {
     	userRepository.deleteById(id);
     }
 
-    public UserDTO insert(UserDTO userDto) {
+    public UserDTO insert(UserDTO userDto, String password) {
     	boolean exists = userRepository.existsByLogin(userDto.getLogin()); 
     	if(!exists) {
-    		userRepository.save(uMap.userDTOToUser(userDto));
+    		User u = new User();
+    		String encryptedPassword = passwordEncoder.encode(password);
+    		u.setLogin(userDto.getLogin());
+    		u.setPassword(encryptedPassword);
+    		u.setUsertype(userDto.getUsertype());
+    		u.setRememberme(userDto.isRememberme());
+    		userRepository.save(u);
     		return userDto;
     	}
     	return null;
     }
     
-
-    // AUTOGENERATE
-    public Optional<User> activateRegistration(String key) {
-        log.debug("Activating user for activation key {}", key);
-        return userRepository.findOneByActivationKey(key)
-            .map(user -> {
-                // activate given user for the registration key.
-                user.setActivated(true);
-                user.setActivationKey(null);
-                this.clearUserCaches(user);
-                log.debug("Activated user: {}", user);
-                return user;
-            });
+    public UserDTO update(UserDTO userDto, String password) {
+    	User u = new User();
+    	u.setId(userDto.getId());
+    	u.setLogin(userDto.getLogin());
+    	String encryptedPassword = passwordEncoder.encode(password);
+    	u.setPassword(encryptedPassword);
+    	u.setUsertype(userDto.getUsertype());
+    	return uMap.userToUserDTO(userRepository.save(u));
     }
     
     public UserDTO login(UserDTO user) {
@@ -103,6 +104,20 @@ public class UserService {
 	    authorityRepository.findById(AuthoritiesConstants.USER).ifPresent(authorities::add);
 	    u.setAuthorities(authorities);
     	return uMap.userToUserDTO(userRepository.save(u));
+    }
+    
+    // AUTOGENERATE
+    public Optional<User> activateRegistration(String key) {
+        log.debug("Activating user for activation key {}", key);
+        return userRepository.findOneByActivationKey(key)
+            .map(user -> {
+                // activate given user for the registration key.
+                user.setActivated(true);
+                user.setActivationKey(null);
+                this.clearUserCaches(user);
+                log.debug("Activated user: {}", user);
+                return user;
+            });
     }
 
     public Optional<User> completePasswordReset(String newPassword, String key) {

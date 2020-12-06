@@ -13,8 +13,8 @@
       </tr>
 
       <tr>
-        <td><input [(ngModel)]="usertoinsert.username" placeholder="username"></td>
-        <td><input [(ngModel)]="usertoinsert.password" placeholder="password"></td>
+        <td><input [(ngModel)]="usertoinsert.login" placeholder="username"></td>
+        <td><input type="password" [(ngModel)]="usertoinsert.password" placeholder="password"></td>
         <td>
           <select placeholder="usertype" [(ngModel)]="usertoinsert.usertype">
             <option value="ADMIN">ADMIN</option>
@@ -32,7 +32,7 @@
   </div>
 
   <h2>Users list</h2>
-    <div class="col-md-10" *ngIf="!show">
+    <div class="col-md-10">
       <table>
 
         <tr>
@@ -46,7 +46,7 @@
 
         <tr *ngFor="let user of users">                            
           <td><input [(ngModel)]="user.login"></td>
-          <td><input [(ngModel)]="user.password"></td>
+          <td><input type="password" placeholder="*********" [(ngModel)]="user.password"></td>
           <td>
             <select [(ngModel)]="user.usertype">
               <option [selected]="user.usertype===ADMIN" value="ADMIN">ADMIN</option>

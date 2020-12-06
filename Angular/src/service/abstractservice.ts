@@ -32,13 +32,13 @@ export abstract class AbstractService<DTO> implements Service<DTO> {
     }
 
     insert(dto: DTO): Observable<any> {
-        return this.http.post('http://localhost:' + this.port + '/api/users/insert', dto); //not working
+        return this.http.post('http://localhost:' + this.port + '/api/users/insert', dto);
     }
 
     update(dto: DTO): Observable<DTO> {
-        return this.http.put<DTO>('http://localhost:' + this.port + '/api/users', dto); //not working
-
+        return this.http.put<DTO>('http://localhost:' + this.port + '/api/users/update', dto); 
     }
+
     // modificare in seguito se si vuole aggiungere controllo registrazione
     register(dto: DTO): Observable<any> {
         return this.http.post('http://localhost:8080/api/users/register', dto);
