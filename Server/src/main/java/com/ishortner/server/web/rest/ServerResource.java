@@ -57,6 +57,11 @@ public class ServerResource {
     public ServerDTO createServer(@RequestParam("id") Long id) throws URISyntaxException {
     	return serv.generator(id);
     }
+    
+    @GetMapping("/server/getinfo/{id}")
+    public ServerDTO getInfoUrl(@PathVariable Long id){
+    	return serv.getServerInfo(id);
+    }
 
     /**
      * {@code PUT  /servers} : Updates an existing server.

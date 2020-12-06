@@ -20,4 +20,6 @@ public interface UrlRepository extends CrudRepository<Url, Long> {
 	Url findByShorturl(String shortUrl);
 	
 	List<Url> findAll();
+	
+	List<Url> findAllByFkuser(Long id);
 }

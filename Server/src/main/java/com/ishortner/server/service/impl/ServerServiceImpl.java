@@ -39,6 +39,31 @@ public class ServerServiceImpl implements ServerService {
         this.serverRepository = serverRepository;
         this.serverMapper = serverMapper;
     }
+    
+    public ServerDTO generator(Long id) {
+	    ServerDTO serverDto = new ServerDTO();
+		int min = 0;
+		int max = countries.length -1;
+		int index = (int)(Math.random() * (max - min));
+		String pos = countries[index];
+		max = browser.length -1;
+		index = (int)(Math.random() * (max - min));
+		String bro = browser[index];
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		Date date = new Date();
+		String d = dateFormat.format(date);
+		serverDto.setPosizione(pos);
+		serverDto.setTipologia(bro);
+		serverDto.setData(d);
+		serverDto.setFkurl(id);
+		log.debug("Server: "+serverDto.toString());
+		serverRepository.save(serverMapper.toEntity(serverDto));
+		return serverDto;
+    }
+    
+    public ServerDTO getServerInfo(Long id) {
+    	return serverMapper.toDto(serverRepository.findAllByFkurl(id));
+    }
 
     @Override
     public ServerDTO save(ServerDTO serverDTO) {
@@ -70,28 +95,6 @@ public class ServerServiceImpl implements ServerService {
     public void delete(Long id) {
         log.debug("Request to delete Server : {}", id);
         serverRepository.deleteById(id);
-    }
-    
-   
-   public ServerDTO generator(Long id) {
-	    ServerDTO serverDto = new ServerDTO();
-		int min = 0;
-		int max = countries.length -1;
-		int index = (int)(Math.random() * (max - min));
-		String pos = countries[index];
-		max = browser.length -1;
-		index = (int)(Math.random() * (max - min));
-		String bro = browser[index];
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-		Date date = new Date();
-		String d = dateFormat.format(date);
-		serverDto.setPosizione(pos);
-		serverDto.setTipologia(bro);
-		serverDto.setData(d);
-		serverDto.setFkurl(id);
-		log.debug("Server: "+serverDto.toString());
-		serverRepository.save(serverMapper.toEntity(serverDto));
-		return serverDto;
     }
 
     

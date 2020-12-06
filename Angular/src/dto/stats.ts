@@ -2,7 +2,7 @@ export class StatsDTO {
 
     id: number;
  
-    url: string;
+    domain: string;
  
     count: number;
  

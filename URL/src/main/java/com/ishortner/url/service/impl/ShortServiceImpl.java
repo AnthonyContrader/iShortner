@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -47,7 +48,6 @@ public class ShortServiceImpl {
 				urlTableDto.setShorturl(shortUrl);
 				urlTableDto.setFkuser(url.getFkuser());
 				urlTableDto = urlMap.toDto(urlRepo.save(urlMap.toEntity(urlTableDto)));
-				//checkUrlCount(spezzaStringa(longUrl));
 				return urlTableDto;
 			}else {
 				createShortUrl(url);			
@@ -55,44 +55,7 @@ public class ShortServiceImpl {
 		}
 		return null;
 	}
-	
-//	public void checkUrlCount(String url) {
-//		boolean a = urlRepo.existsByUrl(url);
-//		StatsUrlDTO stat = new StatsUrlDTO();
-//		if(!a) {
-//			stat.setUrl(url);
-//			stat.setCount((long) 1);
-//			urlRepo.save(statConv.toEntity(stat));
-//		}else {
-//			stat = statConv.toDTO(urlRepo.findByUrl(url));
-//			stat.setId(stat.getId());
-//			stat.setUrl(stat.getUrl());
-//			stat.setCount(stat.getCount()+1);
-//			urlRepo.save(statConv.toEntity(stat));
-//		}
-//	}
-	/**
-	 * 
-	 * Divide la stringa inserita in più array ogni volta che incontra l'elemento specificato come argomento di
-	 * sppli()
-	 */
-	public String spezzaStringa(String url){
-        String[] https = url.split("//");
-        String parte2 = https[1];
 
-        String[] url2 = parte2.split("/");
-        String parte3 = url2[0];
-
-        if(!parte3.contains("www.")){
-            parte3 = "www."+parte3;
-        }
-        return parte3;
-    }
-	
-//	public List<StatsUrlDTO> getCount() {
-//		return statConv.toDTOList(rep.findAllByOrderByCountDesc());
-//	}
-	
 	public boolean chkShort(String shortUrl) {
 		return urlRepo.existsByShorturl(shortUrl);
 	}
@@ -108,14 +71,9 @@ public class ShortServiceImpl {
 		return s;
 	}
 
-//	public UrlDTO getLongUrl(UrlDTO url) {
-//		return conv.toDTO(repo.findByShorturl(url.getShorturl()));
-//	}	
-//
-//
-//	public List<UrlDTO> readList(Long id){
-//		return conv.toDTOList(repo.findAllByFkurl(id));
-//	}
+	public List<UrlDTO> readList(Long id){
+		return urlMap.toDto(urlRepo.findAllByFkuser(id));
+	}
 
 	public boolean isReachable(String url) throws MalformedURLException {
 		if (!url.contains("http") && !url.contains("https")) {

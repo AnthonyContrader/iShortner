@@ -17,4 +17,8 @@ export class StatsService extends AbstractService<StatsDTO> {
   getStats(): Observable<StatsDTO[]> {
     return this.http.get<StatsDTO[]>('http://localhost:' + this.port + '/' + this.type + '/getcount');
   }
+
+  insertStats(statsDto: StatsDTO):Observable<StatsDTO>{
+    return this.http.post<StatsDTO>('http://localhost:8080/services/stats/api/stats/insert', statsDto);
+  }
 }

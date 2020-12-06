@@ -1,5 +1,6 @@
 import { ServerDTO } from './../dto/serverdto';
-import { Observable } from 'rxjs';
+import { Observable} from 'rxjs';
+import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { UrlDTO } from 'src/dto/urldto';
 import { AbstractService } from './abstractservice';
@@ -27,7 +28,10 @@ import { Injectable } from '@angular/core';
     }
 
     getInfoUrl(id: number): Observable<ServerDTO[]>{
-      return this.http.get<ServerDTO[]>('http://localhost:' + this.port + '/user/readserver?id=' +id);
+      return this.http.get<ServerDTO[]>('http://localhost:' + this.port + '/services/server/api/server/getinfo/' +id)
+      .pipe(map((res) => {
+        return res;
+      }));
     }
 
     createInfo(id : number): Observable<ServerDTO>{

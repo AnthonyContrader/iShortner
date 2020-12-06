@@ -62,6 +62,18 @@ public class UrlResource {
         return urlDto;
     }
 
+    @GetMapping("/redirect")
+    public UrlDTO redirectUrl(@RequestBody UrlDTO urlDto) {
+    	return shortServ.findLongUrl(urlDto);
+    } 
+    
+    @GetMapping("urls/user/{id}")
+    public List<UrlDTO> getUserUrl(@PathVariable Long id){
+    	return shortServ.readList(id);
+    }
+    
+    
+    
     /**
      * {@code PUT  /urls} : Updates an existing url.
      *
@@ -125,8 +137,5 @@ public class UrlResource {
      * @param urlDto
      * @return il longUrl, ovvero l'Url inserito in origine dall'utente
      */
-    @GetMapping("/redirect")
-    public UrlDTO redirectUrl(@RequestBody UrlDTO urlDto) {
-    	return shortServ.findLongUrl(urlDto);
-    }
+ 
 }

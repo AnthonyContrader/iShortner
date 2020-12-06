@@ -25,8 +25,8 @@ import { UrlDTO } from 'src/dto/urldto';
         return this.http.post<UrlDTO>('http://localhost:8080/services/url/api/redirect', url);
     }
 
-    //Da sistemare (SERVER)
+    //Da sistemare (url)
     getUrlFromUser(id: number): Observable<UrlDTO[]>{
-      return this.http.get<UrlDTO[]>('http://localhost:8080/' + this.type + '/readinfourl?id=' +id);
+      return this.http.get<UrlDTO[]>('http://localhost:8080/services/url/api/urls/user/' +id);
   }
 }

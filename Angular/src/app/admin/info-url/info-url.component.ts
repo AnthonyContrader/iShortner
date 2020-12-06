@@ -17,6 +17,7 @@ export class InfoUrlComponent implements OnInit {
   url: UrlDTO[];
   server: ServerDTO[];
   noData = false;
+  loading = false;
 
   constructor(private route: ActivatedRoute, private service: UrlService, private serv: ServerService) { }
 
@@ -33,7 +34,10 @@ export class InfoUrlComponent implements OnInit {
         this.noData = true 
         :
         this.url = res; 
-        this.serv.getInfoUrl(id).subscribe((res) => this.server = res);
+        this.url.map((el) => {
+          this.serv.getInfoUrl(el.id).subscribe((res) => this.server = res);
+        });
+        
     });  
  }
 }

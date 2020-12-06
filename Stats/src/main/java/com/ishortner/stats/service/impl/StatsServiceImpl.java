@@ -33,6 +33,45 @@ public class StatsServiceImpl implements StatsService {
         this.statsRepository = statsRepository;
         this.statsMapper = statsMapper;
     }
+    
+    public boolean insertOrUpdateCount(String url) {
+    	return checkUrlCount(spezzaStringa(url));
+    }
+	
+	public boolean checkUrlCount(String url) {
+		boolean a = statsRepository.existsByDomain(url);
+		StatsDTO stat = new StatsDTO();
+		if(!a) {
+			stat.setDomain(url);
+			stat.setCount(1);
+			statsRepository.save(statsMapper.toEntity(stat));
+			return true;
+		}else {
+			stat = statsMapper.toDto(statsRepository.findByDomain(url));
+			stat.setId(stat.getId());
+			stat.setDomain(stat.getDomain());
+			stat.setCount(stat.getCount()+1);
+			statsRepository.save(statsMapper.toEntity(stat));
+			return true;
+		}
+	}
+    
+	public String spezzaStringa(String url){
+        String[] https = url.split("//");
+        String parte2 = https[1];
+
+        String[] url2 = parte2.split("/");
+        String parte3 = url2[0];
+
+        if(!parte3.contains("www.")){
+            parte3 = "www."+parte3;
+        }
+        return parte3;
+    }
+	
+//	public List<StatsUrlDTO> getCount() {
+//	return statConv.toDTOList(rep.findAllByOrderByCountDesc());
+//}
 
     @Override
     public StatsDTO save(StatsDTO statsDTO) {

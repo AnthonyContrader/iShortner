@@ -1,3 +1,5 @@
+import { StatsDTO } from 'src/dto/stats';
+import { StatsService } from 'src/service/stats.service';
 import { ServerService } from './../../../service/server.service';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { UrlService } from 'src/service/url.service';
@@ -17,11 +19,12 @@ export class UserDashboardComponent implements OnInit {
 
   user: UserDTO;
   url: UrlDTO = new UrlDTO();
+  stat: StatsDTO = new StatsDTO();
   err = false;
   
   @Input() pattern: string | RegExp
 
-  constructor(private service: UrlService, private serverService : ServerService) { }
+  constructor(private service: UrlService, private serverService : ServerService, private statsServ: StatsService) { }
 
   //recupera l'utente loggato
   ngOnInit() {
@@ -39,7 +42,9 @@ export class UserDashboardComponent implements OnInit {
         this.err = false, this.url = res,
         this.serverService.createInfo(this.url.id).subscribe((res) =>{
           console.log("successo")
-        })
+        }),
+        this.stat.domain = this.url.longurl,
+        this.statsServ.insertStats(this.stat).subscribe(() => console.log("Successo"))
       )})
   }
 

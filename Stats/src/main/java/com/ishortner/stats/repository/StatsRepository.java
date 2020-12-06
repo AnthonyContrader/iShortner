@@ -11,4 +11,8 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface StatsRepository extends JpaRepository<Stats, Long> {
+	
+	boolean existsByDomain(String domain);
+	
+	Stats findByDomain(String domain);
 }
