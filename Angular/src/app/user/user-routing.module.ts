@@ -1,3 +1,5 @@
+import { ErrorRoleComponent } from './../error-role/error-role.component';
+import { ErrorComponent } from './../error/error.component';
 import { EditComponent } from './edit/edit.component';
 import { UserInfoUrlComponent } from './user-info-url/user-info-url.component';
 import { UserLayoutComponent } from './../layout/user-layout/user-layout.component';
@@ -9,11 +11,13 @@ import { RoleGuardService } from 'src/service/role-guard.service';
 //Aggiungo al sotto path il component UserInfoUrlComponent
 
 const routes: Routes = [
-  {path:'user-dashboard', component: UserLayoutComponent, canActivate:[RoleGuardService],  data: {  expectedRole: 'ROLE_USER'}, children: [
+  {path:'user-dashboard', component: UserLayoutComponent, canActivate:[RoleGuardService], data: { expectedRole: 'ROLE_USER'}, children: [
     {path: '', component: UserDashboardComponent},
     {path: 'edit', component: EditComponent},
     {path: 'user-info-url', component: UserInfoUrlComponent}
-  ]}
+  ]},
+  { path: 'error-role', component: ErrorRoleComponent },
+  { path: '**', component: ErrorComponent}
 ]
 
 @NgModule({

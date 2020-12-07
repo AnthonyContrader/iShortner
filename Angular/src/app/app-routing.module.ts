@@ -1,3 +1,5 @@
+import { InfoUrlComponent } from './admin/info-url/info-url.component';
+import { ErrorComponent } from './error/error.component';
 
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';

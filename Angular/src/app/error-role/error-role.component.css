@@ -1,0 +1,21 @@
+.container-fluid{
+    background-color: orange;
+    padding-bottom: 40%;
+}
+.title {
+    font-size: 90px;
+}
+
+.click {
+    cursor: pointer;
+    color: blue;
+
+}
+
+.click:hover{
+    text-decoration: underline;
+}
+
+.textual{
+    font-size: 30px;
+}

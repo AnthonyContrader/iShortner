@@ -9,6 +9,8 @@ import { LoginModule } from './login/login.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LayoutModule } from './layout/layout.module';
 import { AdminModule } from './admin/admin.module';
+import { ErrorComponent } from './error/error.component';
+import { ErrorRoleComponent } from './error-role/error-role.component';
 
 
 /** 
@@ -20,7 +22,9 @@ import { AdminModule } from './admin/admin.module';
 */
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ErrorComponent,
+    ErrorRoleComponent
   ],
   imports: [
     BrowserModule,

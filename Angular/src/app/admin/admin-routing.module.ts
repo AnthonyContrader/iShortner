@@ -1,3 +1,5 @@
+import { ErrorRoleComponent } from './../error-role/error-role.component';
+import { ErrorComponent } from './../error/error.component';
 import { RoleGuardService } from './../../service/role-guard.service';
 import { UserInfoUrlComponent } from './../user/user-info-url/user-info-url.component';
 import { NgModule } from '@angular/core';
@@ -21,12 +23,13 @@ import { InfoUrlComponent } from './info-url/info-url.component';
  * @see layout
  */
 const routes: Routes = [
-  { path: 'admin-dashboard', component: AdminLayoutComponent, canActivate:[RoleGuardService],  data: {  expectedRole: 'ROLE_ADMIN'  } , children:[
+  { path: 'admin-dashboard', component: AdminLayoutComponent, canActivate:[RoleGuardService],  data: {  expectedRole: 'ROLE_ADMIN,ROLE_USER'  } , children:[
     { path: '', component: AdminDashboardComponent},
     { path: 'users', component: UsersComponent},
     { path: 'stats', component: StatsComponent},
     { path: 'info-url/:id', component: InfoUrlComponent }
-  ]}
+  ]},
+  //{ path: 'error-role', component: ErrorRoleComponent }
 ];
 
 @NgModule({

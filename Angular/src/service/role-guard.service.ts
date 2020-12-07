@@ -16,11 +16,15 @@ export class RoleGuardService {
   const helper = new JwtHelperService();
   const token = sessionStorage.getItem('id_token');
   // decode the token to get its payload
-  const tokenPayload = helper.decodeToken(token)
-  if (!this.auth.isAuthenticated() || tokenPayload.auth !== expectedRole) {
-       
+  const tokenPayload = helper.decodeToken(token);
+  console.log(tokenPayload);
+  if (!this.auth.isAuthenticated()) {
       this.router.navigate(['login']); //pagina di errore
       return false;
+  }
+  else if(tokenPayload.auth !== expectedRole){
+    this.router.navigate(['error-role']);
+    return false;
   }
   return true;
 }
