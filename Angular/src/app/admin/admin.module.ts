@@ -6,6 +6,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { UsersComponent } from './users/users.component';
 import { StatsComponent } from './stats/stats.component';
 import { InfoUrlComponent } from './info-url/info-url.component';
+import { AuthService } from 'src/service/auth.service';
 
 
 /**
@@ -22,6 +23,7 @@ import { InfoUrlComponent } from './info-url/info-url.component';
     CommonModule,
     AdminRoutingModule,
     FormsModule
-  ]
+  ],
+  providers:[AuthService]
 })
 export class AdminModule { }

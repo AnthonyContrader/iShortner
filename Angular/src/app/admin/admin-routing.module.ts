@@ -1,3 +1,4 @@
+import { RoleGuardService } from './../../service/role-guard.service';
 import { UserInfoUrlComponent } from './../user/user-info-url/user-info-url.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -20,7 +21,7 @@ import { InfoUrlComponent } from './info-url/info-url.component';
  * @see layout
  */
 const routes: Routes = [
-  { path: 'admin-dashboard', component: AdminLayoutComponent, children:[
+  { path: 'admin-dashboard', component: AdminLayoutComponent, canActivate:[RoleGuardService],  data: {  expectedRole: 'ROLE_ADMIN'  } , children:[
     { path: '', component: AdminDashboardComponent},
     { path: 'users', component: UsersComponent},
     { path: 'stats', component: StatsComponent},

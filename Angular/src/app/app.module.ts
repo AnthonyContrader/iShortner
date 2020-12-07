@@ -1,14 +1,15 @@
+
 import { HttpInterceptorService } from './../service/http-interceptor.service';
 import { UserModule } from './user/user.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginModule } from './login/login.module';
-import { HttpClientModule, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LayoutModule } from './layout/layout.module';
 import { AdminModule } from './admin/admin.module';
+
 
 /** 
  * Modulo principale dell'applicazione. Qui vengono importati i moduli secondari. L'UNICA component
