@@ -69,7 +69,11 @@ public class UrlResource {
     
     @GetMapping("urls/user/{id}")
     public List<UrlDTO> getUserUrl(@PathVariable Long id){
-    	return shortServ.readList(id);
+    	List<UrlDTO> list = shortServ.readList(id);
+    	if(list.isEmpty()) {
+    		return null;
+    	}
+    	return list;
     }
     
     

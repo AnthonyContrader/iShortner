@@ -26,22 +26,29 @@ export class InfoUrlComponent implements OnInit {
       this.id = +params['id']; 
    });
    this.getUserInfo(this.id);
+   this.loading = false;
+   this.noData = false;
   }
 
   getUserInfo(id: number){
     this.service.getUrlFromUser(id).subscribe((res) => {
-      res==null? 
-        this.noData = true 
-        :
-        this.url = res; 
-        this.url.map((el, index) => {
-          this.serv.getInfoUrl(el.id).subscribe((res) => this.server.push(res));
-          if(this.url.length - 1  === index){
-            this.server.sort((a, b) => a.id - b.id); // non funziona
-            this.loading = true;
-          }
-        });
-        
+      console.log(res)
+      if(res == null){
+        this.loading = true;
+        this.noData = true
+      }else {
+        this.url = res 
+        this.url.map((el) => {
+          this.serv.getInfoUrl(el.id).subscribe((res) => this.server.push(res),
+          () => console.warn("errore"), 
+          () => {if(this.url.length == this.server.length){this.sort(); this.loading = true}}
+          );
+        })
+      };
     });  
+ }
+
+ sort(){
+   this.server.sort((a,b) => {return a.id - b.id} )
  }
 }
