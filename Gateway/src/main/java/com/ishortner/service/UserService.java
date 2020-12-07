@@ -3,6 +3,7 @@ package com.ishortner.service;
 import com.ishortner.config.Constants;
 import com.ishortner.domain.Authority;
 import com.ishortner.domain.User;
+import com.ishortner.domain.User.Usertype;
 import com.ishortner.repository.AuthorityRepository;
 import com.ishortner.repository.UserRepository;
 import com.ishortner.security.AuthoritiesConstants;
@@ -85,10 +86,17 @@ public class UserService {
     	u.setLogin(userDto.getLogin());
     	String encryptedPassword = passwordEncoder.encode(password);
     	u.setPassword(encryptedPassword);
-    	u.setUsertype(userDto.getUsertype());
+    	u.setUsertype(userDto.getUsertype());    	
+    	Set<Authority> authorities = new HashSet<>();
+    	if(u.getUsertype() == Usertype.USER) {
+    		authorityRepository.findById(AuthoritiesConstants.USER).ifPresent(authorities::add);
+    	}else {
+    		authorityRepository.findById(AuthoritiesConstants.ADMIN).ifPresent(authorities::add);
+    		authorityRepository.findById(AuthoritiesConstants.USER).ifPresent(authorities::add);
+    	}
+    	u.setAuthorities(authorities);
     	return uMap.userToUserDTO(userRepository.save(u));
     }
-    
     public UserDTO login(UserDTO user) {
     	return uMap.userToUserDTO(userRepository.findByLogin(user.getLogin()));
     }
