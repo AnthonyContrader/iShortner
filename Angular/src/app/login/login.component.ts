@@ -38,7 +38,6 @@ export class LoginComponent implements OnInit {
     this.loginDTO = new LoginDTO(f.value.username.toLowerCase(), f.value.password);
     this.service.authenticate(this.loginDTO).subscribe((res) => {  
       sessionStorage.setItem("id_token", res.id_token);
-      console.log(this.loginDTO.username);
       this.userDTO.login = this.loginDTO.username;
       this.userDTO.password = this.loginDTO.password;
       this.service.login(this.userDTO).subscribe((user) => {

@@ -32,8 +32,7 @@ export class InfoUrlComponent implements OnInit {
 
   getUserInfo(id: number){
     this.service.getUrlFromUser(id).subscribe((res) => {
-      console.log(res)
-      if(res == null){
+      if(res.length == 0){
         this.loading = true;
         this.noData = true
       }else {

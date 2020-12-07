@@ -34,7 +34,6 @@ export class UserDashboardComponent implements OnInit {
   getUrl(f: NgForm): void {
     this.url.fkuser = this.user.id;
     this.url.longurl = f.value.longurl;
-    console.log(this.url.fkuser)
     this.service.create(this.url).subscribe((res) => {
       (res == null)? (
         this.err = true
@@ -49,7 +48,6 @@ export class UserDashboardComponent implements OnInit {
   }
 
   redirect(g: NgForm): void{
-    console.log(this.url.longurl)
     this.service.redirect(this.url).subscribe((url) => this.url = url);
     window.location.href = this.url.longurl
   }
