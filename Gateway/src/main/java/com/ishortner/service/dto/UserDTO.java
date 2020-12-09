@@ -1,13 +1,11 @@
 package com.ishortner.service.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ishortner.config.Constants;
 
 import com.ishortner.domain.Authority;
 import com.ishortner.domain.User;
 import com.ishortner.domain.User.Usertype;
 
-import javax.persistence.Column;
 import javax.validation.constraints.*;
 import java.time.Instant;
 import java.util.Set;

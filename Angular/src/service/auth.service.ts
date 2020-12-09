@@ -11,9 +11,9 @@ export class AuthService {
     let token = sessionStorage.getItem('id_token');
 
     if (token){
-
       return true;
-    } else {
+    }
+    else {
       return false
     }
   }
