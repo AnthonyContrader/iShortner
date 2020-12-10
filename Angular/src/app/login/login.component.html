@@ -22,13 +22,6 @@
           </label>
         </div>
         <br>
-        <!--
-          <div class="form-group checkbox">
-          <input ngModel class="" id="chkbox" name="chkbox" type="checkbox" value="true"/>
-          <label for="chkbox">Remember me</label>
-          <br>
-        </div>
-        -->
         <button class="button" [disabled]="f.invalid" class="btn btn-success mr-4" type="submit" (click)="login(f)">Login</button>
           <a class="register" [routerLink]="['/login/register']">Registrati</a>
           <div *ngIf="err">
@@ -37,4 +30,4 @@
       </form>  
     </div>
   </div>
-</div>
+</div> 

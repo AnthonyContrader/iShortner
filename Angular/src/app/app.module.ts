@@ -11,7 +11,7 @@ import { LayoutModule } from './layout/layout.module';
 import { AdminModule } from './admin/admin.module';
 import { ErrorComponent } from './error/error.component';
 import { ErrorRoleComponent } from './error-role/error-role.component';
-
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 /** 
  * Modulo principale dell'applicazione. Qui vengono importati i moduli secondari. L'UNICA component
@@ -33,7 +33,8 @@ import { ErrorRoleComponent } from './error-role/error-role.component';
     HttpClientModule,
     LayoutModule,
     AdminModule,
-    UserModule
+    UserModule,
+    NoopAnimationsModule,
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true }],
   bootstrap: [AppComponent]

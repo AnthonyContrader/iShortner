@@ -9,7 +9,17 @@ export class HttpInterceptorService implements HttpInterceptor{
 
   constructor() { }
 
-  // te li commenti tu, grazie 
+  /**
+   * Metodo per intercettare tutte le chiamate HTTP
+   * Bisogna aggiungere al Provider di app.module il Providing:
+   * { 
+      provide: HTTP_INTERCEPTORS, 
+      useClass: name_Interceptor, 
+      multi: true 
+      }
+   * @param httpRequest 
+   * @param next 
+   */
   intercept(httpRequest: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let c = sessionStorage.getItem("id_token");
     if(c != null){
