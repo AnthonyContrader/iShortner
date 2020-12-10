@@ -24,8 +24,8 @@
 
       <!-- controllo errore su short url generato -->
       <div *ngIf="!err">  
-			  <input ngModel type="text" name ="shorturl" [(ngModel)]="url.shorturl" placeholder="iShort.ner/sample">
-        <button type="submit" (click)="redirect();" [disabled]="f.invalid">Go</button>
+			  <input ngModel type="text" name="shorturl" [(ngModel)]="url.shorturl" placeholder="iShort.ner/sample">
+        <button type="submit" (click)="redirect(url.shorturl)" [disabled]="f.invalid">Go</button>
       </div>
       <div *ngIf="err">
         <div class="error">Invalid URL !</div>

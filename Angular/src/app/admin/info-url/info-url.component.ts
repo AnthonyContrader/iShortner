@@ -35,19 +35,45 @@ export class InfoUrlComponent implements OnInit {
       if(res.length == 0){
         this.loading = true;
         this.noData = true
-      }else {
+      } else {
         this.url = res 
-        this.url.map((el) => {
-          this.serv.getInfoUrl(el.id).subscribe((res) => this.server.push(res),
-          () => console.warn("errore"), 
-          () => {if(this.url.length == this.server.length){this.sort(); this.loading = true}}
+        this.url.map((el, index) => {
+          this.serv.getInfoUrl(el.id).subscribe(
+            (res) => {
+              if(res != null) {
+                res.id = index;
+                this.server.push(res);
+              } else {
+                this.notfound(index);  //sostituisce gli elementi null con elementi "not found"
+              }
+            },
+            () => console.warn("errore"), 
+            () => {
+              if(this.url.length == this.server.length) {
+                this.sort(); 
+                this.loading = true;
+              }
+            }
           );
         })
       };
     });  
  }
 
- sort(){
-   this.server.sort((a,b) => {return a.id - b.id} )
- }
+  sort() {
+   this.server.sort((a,b) => {
+      return a.id - b.id
+    })
+  }
+
+  notfound(index: number) {
+    let nf = "not found";
+    let substitute = new ServerDTO();
+    substitute.id = index;
+    substitute.tipologia = nf;
+    substitute.posizione = nf;
+    substitute.data = nf;
+
+    this.server.push(substitute);
+  }
 }

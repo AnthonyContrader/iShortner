@@ -43,9 +43,10 @@ export class UserDashboardComponent implements OnInit {
       })
   }
 
-  redirect(g: NgForm): void{
-    this.service.redirect(this.url).subscribe((url) => this.url = url);
-    window.location.href = this.url.longurl
+  redirect(g: string): void{
+    this.url.shorturl = g;
+    this.service.redirect(this.url).subscribe((url) => this.url = url )
+    window.location.href = this.url.longurl;
   }
   
 }

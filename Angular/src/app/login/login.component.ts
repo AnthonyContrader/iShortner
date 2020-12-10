@@ -4,8 +4,6 @@ import { LoginDTO } from 'src/dto/logindto';
 import { NgForm } from '@angular/forms';
 import { UserService } from 'src/service/user.service';
 import { Router } from '@angular/router';
-import { Usertype } from 'src/dto/usertype';
-import { stripGeneratedFileSuffix } from '@angular/compiler/src/aot/util';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +15,7 @@ export class LoginComponent implements OnInit {
   loginDTO: LoginDTO;
   userDTO: UserDTO = new UserDTO();
   err = false;
+  hide = true;
 
   constructor(private service: UserService, private router: Router) { }
 
@@ -71,5 +70,7 @@ export class LoginComponent implements OnInit {
         sessionStorage.clear();
         localStorage.clear();
       });   
-    })}
+    })
+  }
+
 }

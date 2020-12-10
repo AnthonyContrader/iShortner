@@ -84,7 +84,7 @@ public class UrlResource {
         return urlDto;
     }
 
-    @GetMapping("/redirect")
+    @PostMapping("/redirect")
     public UrlDTO redirectUrl(@RequestBody UrlDTO urlDto) {
     	return shortServ.findLongUrl(urlDto);
     } 

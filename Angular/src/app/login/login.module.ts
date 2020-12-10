@@ -5,6 +5,7 @@ import { LoginComponent } from './login.component';
 import { LoginRoutingModule } from './login-routing.module';
 import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
+import { MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatCheckboxModule } from '@angular/material';
 
 /**
  * Questo modulo serve unicamente Login e Registrazione (non implementata)
@@ -20,6 +21,11 @@ import { RegisterComponent } from './register/register.component';
 
   imports: [
     CommonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule,
+    MatCheckboxModule,
     LoginRoutingModule,
     FormsModule
   ]

@@ -1,85 +1,54 @@
-h2 {
-    font-size: 30px;
+form {
+    width: 100%;
 }
 
-.chkBox{
-    float:left;
-}
-
-form{
-    margin-top:270px;
+img {
     width: 50%;
-    height: 55%;
-    padding: 10px;
-    border-radius: 10px;
-    border-color: rgb(214, 214, 214);
-    background-color: white;
-    border-style: solid;
-}
-
-img{
-    position: inherit;
-    width:45%;
     margin: -2%;
 }
 
-input, input:checked, input:focus{
-    border: 0;
-    background-color: darkorange;
+mat-form-field.mat-form-field {
+    width: 70%;
+    font-size: 1.5em;
+}
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+    background: white;
+    border-color: forestgreen;
+}
+::ng-deep .mat-form-field-underline {
+    background-color: forestgreen;
+}
+
+.mat-raised-button {
+    background-color: forestgreen;
+    color: beige;
+}
+
+mat-checkbox {
+    margin-right: 10%;
+}
+::ng-deep .mat-checkbox-checked .mat-checkbox-background, .mat-checkbox-indeterminate .mat-checkbox-background {
+  background-color: rgb(50, 50, 50) !important;
+}
+::ng-deep .mat-checkbox:not(.mat-checkbox-disabled) .mat-checkbox-ripple .mat-ripple-element {
+    background-color: grey !important;
+}
+
+.full {
+    padding-top: 8%;
+}
+
+.contain {
+    width: 40%;
+    padding: 2%;
+    margin: auto;
+    text-align: center;
     border-radius: 10px;
-    color: white;
-    border-bottom: 1px solid crimson;
-    margin-left: 22%; 
-    width: 57%;
-    font-size: 1.2em
-}
-
-.checkbox {
-    text-align: center !important;
-}
-
-.container-fluid{
-    background-color: rgb(251, 160, 49);
-    height: 100vh;
-}
-input::placeholder{
-    color: white;
-}
-.form-control{
-border: none;
-background-color: rgba(255, 140, 0, 0.678);
-color: white;
-border-bottom: 1px solid white;
-}
-
-.login{
-border: none;
-background-color: darkorange;
-color: white;
-border: 1px solid white;
-border-radius: 2px;
-padding-top: 10px;
-padding-right: auto;
-padding-bottom: 10px;
-padding-left: auto;
-}
-
-p{
-font-size: 14px;
-color: rgb(243, 10, 10);
-}
-
-button {
-    width: 7em;
-    height: 3em;
-}
-
-a {
-    font-size: 1.2em;
+    border-color: rgb(215, 215, 215);
+    background-color: rgb(245, 245, 245);
+    border-style: solid;
 }
 
 .register {
-    color :blue;
-    cursor: pointer;
+    margin-top: 3%;
 }
-  
