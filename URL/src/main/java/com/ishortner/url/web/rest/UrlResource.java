@@ -11,10 +11,19 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
@@ -51,13 +60,27 @@ public class UrlResource {
      * @throws MalformedURLException 
      */
     @PostMapping("/urls")
-    public UrlDTO createUrl(@RequestBody UrlDTO urlDto) throws MalformedURLException {
-    	//Il valore di ritorno era ResponseEntity<UrlDTO>
-    	log.debug(urlDto.toString());
+    public UrlDTO createUrl(@RequestBody UrlDTO urlDto, @RequestHeader("Authorization") String jwt) throws MalformedURLException, URISyntaxException {	
     	urlDto = shortServ.createShortUrl(urlDto);
-    	if(urlDto == null) {
-    		return null;
+    	
+    	if(urlDto != null) {
+    		
+            RestTemplate restTemplate = new RestTemplate();
+            
+            final String baseUrl = "http://localhost:8080/services/server/api/servers";
+            URI uri = new URI(baseUrl);
+            
+            MultiValueMap<String, Long> map= new LinkedMultiValueMap<String, Long>();
+            map.add("id", urlDto.getId());
+            
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("Authorization", jwt);  
+             
+            HttpEntity<MultiValueMap<String, Long>> request = new HttpEntity<>(map, headers);
+            restTemplate.postForEntity(uri, request, String.class);
+ 
     	}
+    	
         return urlDto;
     }
 

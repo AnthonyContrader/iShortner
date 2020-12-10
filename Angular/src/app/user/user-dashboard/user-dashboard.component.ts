@@ -38,13 +38,9 @@ export class UserDashboardComponent implements OnInit {
       (res == null)? (
         this.err = true
       ):( 
-        this.err = false, this.url = res,
-        this.serverService.createInfo(this.url.id).subscribe((res) =>{
-          console.log("successo")
-        }),
-        this.stat.domain = this.url.longurl,
-        this.statsServ.insertStats(this.stat).subscribe(() => console.log("Successo"))
-      )})
+        this.url = res //messaggio di successo
+        )
+      })
   }
 
   redirect(g: NgForm): void{
