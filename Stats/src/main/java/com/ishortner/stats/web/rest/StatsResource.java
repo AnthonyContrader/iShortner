@@ -44,9 +44,8 @@ public class StatsResource {
     }
     
     @PostMapping("/stats/insert")
-    public boolean insert(@RequestBody StatsDTO statsDTO) {
-    	
-    	return statsServ.insertOrUpdateCount(statsDTO.getDomain());
+    public boolean insert(@RequestParam("url") String url) {	
+    	return statsServ.insertOrUpdateCount(url);
     }
     
     @GetMapping("stats/getcount")

@@ -27,12 +27,16 @@ export class UserInfoUrlComponent implements OnInit {
   getUrl(){
     this.userDto = JSON.parse(localStorage.getItem("currentUser"));
     this.serviceUrl.getUrlFromUser(this.userDto.id).subscribe((url) => {
-      (url != null) ? (
+      (url[0] != undefined) ? (
         this.urlDto = url
       ) : (
         this.empty = true
       )
       
+    },
+    () => {
+      //Angela's Style
+      console.warn("Errore Subscribe");
     });
   }
 

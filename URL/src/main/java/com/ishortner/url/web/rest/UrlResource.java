@@ -13,14 +13,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
+import org.springframework.web.client.UnknownHttpStatusCodeException;
 
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -65,20 +65,46 @@ public class UrlResource {
     	
     	if(urlDto != null) {
     		
-            RestTemplate restTemplate = new RestTemplate();
+    		RestTemplate restTemplate = new RestTemplate();
             
-            final String baseUrl = "http://localhost:8080/services/server/api/servers";
-            URI uri = new URI(baseUrl);
+    		String baseUrl = "http://localhost:8080/services/server/api/servers";
+    		URI uri = new URI(baseUrl);
+    		
+    		MultiValueMap<String, Long> map= new LinkedMultiValueMap<String, Long>();
+    		map.add("id", urlDto.getId());
+    		
+    		HttpHeaders headers = new HttpHeaders();
+    		headers.set("Authorization", jwt);  
+    		
+    		HttpEntity<MultiValueMap<String, Long>> request = new HttpEntity<>(map, headers);
             
-            MultiValueMap<String, Long> map= new LinkedMultiValueMap<String, Long>();
-            map.add("id", urlDto.getId());
+            try {
+                restTemplate.postForEntity(uri, request, String.class);
+            }catch(HttpClientErrorException e) {
+            	e.printStackTrace();
+            }catch(HttpServerErrorException e) {
+            	e.printStackTrace();
+            }catch(UnknownHttpStatusCodeException e) {
+            	e.printStackTrace();
+            }
             
-            HttpHeaders headers = new HttpHeaders();
-            headers.set("Authorization", jwt);  
-             
-            HttpEntity<MultiValueMap<String, Long>> request = new HttpEntity<>(map, headers);
-            restTemplate.postForEntity(uri, request, String.class);
+            baseUrl = "http://localhost:8080/services/stats/api/stats/insert";
+            uri = new URI(baseUrl);
+            
+            MultiValueMap<String, String> mapStats= new LinkedMultiValueMap<String, String>();
+            mapStats.add("url", urlDto.getLongurl());
+            
+            HttpEntity<MultiValueMap<String, String>> requestStats = new HttpEntity<>(mapStats, headers);
  
+            try {
+            	restTemplate.postForEntity(uri, requestStats, String.class);
+            }catch(HttpClientErrorException e) {
+            	e.printStackTrace();
+            }catch(HttpServerErrorException e) {
+            	e.printStackTrace();
+            }catch(UnknownHttpStatusCodeException e) {
+            	e.printStackTrace();
+            }
     	}
     	
         return urlDto;
