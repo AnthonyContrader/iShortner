@@ -6,6 +6,7 @@ import { HeaderComponent } from './header/header.component';
 import { RouterModule } from '@angular/router';
 import { UserLayoutComponent } from './user-layout/user-layout.component';
 import { UserMenuComponent } from './user-layout/user-menu/user-menu.component';
+import { FooterComponent } from './footer/footer.component';
 
 /**
  * Modulo di layout. Viene caricato nel rputer outlet padre e poi 
@@ -17,7 +18,7 @@ import { UserMenuComponent } from './user-layout/user-menu/user-menu.component';
  * @see AdminLayoutComponent
  */
 @NgModule({
-  declarations: [AdminLayoutComponent, AdminMenuComponent, HeaderComponent, UserLayoutComponent, UserMenuComponent],
+  declarations: [AdminLayoutComponent, AdminMenuComponent, HeaderComponent, UserLayoutComponent, UserMenuComponent, FooterComponent],
   imports: [
     CommonModule,
     RouterModule
